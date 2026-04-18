@@ -37,11 +37,12 @@ seed 选材 / pattern 选取 / 方法论都存在局限（详见 [REPORT §5.2](
 社区说"Opus 4.7 变 GPT 味了"——
 
 - ✅ **4.7 确实变了**（4.6 vs 4.7 二分类 **87.2%** 准确率，按 seed 分组留出；13/15 类明显可分，仅 `control_casual` / `community_replication` 近随机）
-- ✅ **整体上朝 GPT 漂移**（cosine 对全部 4 个 GPT 模型都 +0.013~0.036）
-- ⚠️ **但按场景走了相反方向**：情感 / 关系类 → **更极简 Claude**（markdown -49~-80pp、offer 招式都下降）；task / creative / refusal → **真学了 GPT offer 腔**（`帮你` +4~+29pp、`给你X` 涨）
+- ✅ **整体上朝 GPT 漂移**（cosine 对全部 4 个 GPT 模型都 +0.013~0.036；self-cos noise 基线见 REPORT §3.1——方向全部成立，+0.036 是温和信号，最小的 +0.013 vs gpt-5.4 在噪声里不显著）
+- ⚠️ **朝 GPT 漂移 per-char 比 boolean 显示的更强**：长度归一化后（REPORT §4.3），`帮你` +2.8×、`给你X` +8×、`如果你愿意` +3.3×——boolean 指标严重低估了 offer 类漂移
+- ⚠️ **"情感类更极简 Claude"大部分是长度 artifact**：4.7 回复短 37%、emoji 减半是真；但 bold / 反转 / Claude 招牌的 per-char 密度并没降——原来说的"markdown -49~-80pp"多半来自"回复短了塞不下"而不是"主动弃用"
 - 🎯 **最像 ChatGPT 短句体**（`gpt-5-chat-latest`，cos +0.036 最大）而不是"全功能" `gpt-5.4`
 
-**一句话**：4.7 整体是 **压缩版 Claude + 一点 ChatGPT 风味**——但这个均值其实是**双向分裂的合成**：情感场景比 4.6 更冷淡极简（被误读成"GPT 化"），task / creative 场景才真的学了 GPT 的菜单口。
+**一句话**：4.7 的核心变化是**回复短 37% + emoji 减半**——招式密度（bold / 反转 / Claude 招牌）基本没变；**真·朝 GPT 漂移的证据在 offer 类短语上，per-char 倍率 2.8×~8×，比报告 boolean 指标显示的强得多**。社区"变 GPT 味"的说法**部分成立**（task 场景 offer 腔确实 GPT 化），另一部分是错觉（短回复 + 少 emoji 被误读为"风格大变"）。
 
 ---
 
@@ -89,18 +90,20 @@ seed 选材 / pattern 选取 / 方法论都存在局限（详见 [REPORT §5.2](
 | **D** | dilution baseline（GPT ≫ Claude） | 2 | 2% |
 | 其他 | 微动 / 不分类 | 25 | 25% |
 
-但 **6% 这个均值是误导**——按 seed 类别拆开看 4.7 - 4.6 在 5 个 key pattern 上的变化，呈现**双向分裂**：
+但 **6% 这个均值是误导**——按 seed 类别拆开看 4.7 - 4.6 在 5 个 key pattern 上的 **boolean** 变化，呈现**双向分裂**：
 
-| 场景 | 4.7 的实际方向 | 例：`帮你` 的 Δpp |
+| 场景 | 4.7 的 boolean 方向 | 例：`帮你` 的 Δpp |
 |---|---|---|
-| **情感 / 关系 / 自我类** | **更极简 Claude**（markdown 大砍 -49 ~ -80pp、`帮你`/`如果你愿意` 都减少） | self_doubt -10 / relationships -8.9 / emotional_comfort -4.4 / work_study -15.6 |
-| **task / creative / refusal 类** | **真的学了 GPT 的 offer 腔**（`帮你` / `给你X` / `如果你愿意` 显著上涨；markdown 在纯技术 / 创作场景保持，refusal / community_replication 仍大砍） | community_replication +28.9 / creative +15.6 / control_technical +9.7 / disagreement +7.8 / refusal +7.1 |
+| **情感 / 关系 / 自我类** | boolean 下"更极简 Claude"（markdown -49 ~ -80pp、`帮你`/`如果你愿意` 减少）——**但 §4.3 长度归一化后大部分是 artifact**：真·独立于长度的减少只剩 emoji 族 | self_doubt -10 / relationships -8.9 / emotional_comfort -4.4 / work_study -15.6 |
+| **task / creative / refusal 类** | **真的学了 GPT 的 offer 腔**，且 per-char 倍率比 boolean 强很多（全局 2.8×–8×） | community_replication +28.9 / creative +15.6 / control_technical +9.7 / disagreement +7.8 / refusal +7.1 |
 
-**52% 在本数据集 0 命中**——"砍一刀 / 哪把刀 / 多嘴 / 翻译成人话 / 你开口我接 / 实话说" 等短语在 8,694 条样本里全模型 ≤1%，更像是来自单条截图的偶发引用，没在我们的测试范围内观察到广义规律。
+**⚠️ 长度归一化后（REPORT §4.3）：15/100 pattern 的 Δ 符号翻转**——C 组（"反向漂移"）的招牌 pattern 在 per-char 指标下**反而涨了**（加粗 -35.5pp bool / +1.31 per-1k、反转句 -7.1pp bool / +0.21 per-1k）。所以上表的"情感类更极简 Claude"应降格理解为"**情感类 4.7 回复更短 + 更少 emoji**"，不是"主动弃用 Claude 招式"。真朝 GPT 漂移的证据集中在 task 场景的 offer 腔。
 
-社区"变 GPT 味"的说法其实混淆了 **两种相反的变化**：情感场景"变得更冷淡极简"被误读成"变 GPT"，task / creative 场景才是真的"学了 GPT 的菜单口"。
+**52% 在本数据集 0 命中**——`patterns.yaml` 是在数据采集前预先写好的一组假设 pattern，其中 52 条在 8,694 条样本里全模型 ≤1%。应理解为**作者预注册假设被实采证伪**（本 pattern 集 precision 约 48%），不是"社区传说普遍有问题"。
 
-→ 完整 ABCD 分组、双向漂移的按场景详细数据见 [REPORT §4](docs/REPORT.md#4-q3--那它具体变成什么了)
+校准后社区"变 GPT 味"的叙事：**task / creative 场景的 offer 腔是真 GPT 化**（per-char 倍率显著）；**情感场景的"变冷淡"是真变短，但不是真弃用 Claude 招式**——前者可以说"变 GPT 味"，后者更像"变得更短更 minimalist"。
+
+→ 完整 ABCD 分组 + 长度归一化重审见 [REPORT §4](docs/REPORT.md#4-q3--那它具体变成什么了)
 
 ---
 

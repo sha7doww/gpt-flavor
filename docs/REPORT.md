@@ -18,9 +18,9 @@
 |---|---|---|
 | **Q1** 4.7 变了吗？ | ✅ **大变** | 4.6 vs 4.7 二分类 87.2% accuracy（按 seed 分组留出）；回复 median 字数 333 → 210（-37%，15/15 类方向一致）；加粗率 83% → 48%（-35pp）|
 | **Q2** 变得像 GPT 吗？ | ✅ **方向成立，但程度有限** | cosine 对全部 4 个 GPT +0.013 ~ +0.036（4.6 一律更远）；offer 类招式 +2-3pp（远不及 gpt-5.4 的 25-85%）|
-| **Q3** 那它变成什么了？ | ⚠️ **压缩版 Claude + 一点 ChatGPT 菜单口** | 最像 ChatGPT 短句体 `gpt-5-chat-latest`（cosine +0.036 最大）；学了 offer-style 但反转/加粗/emoji 反而少 |
+| **Q3** 那它变成什么了？ | ⚠️ **压缩版 Claude + 一点 ChatGPT 菜单口** | 最像 ChatGPT 短句体 `gpt-5-chat-latest`（cosine +0.036 最大）；**核心变化是回复短 37% + emoji 减半**，bold / 反转等招式 per-char 密度没降（§4.3）；GPT offer 招式 per-char 涨 2.8×–8× |
 
-**一句话**：4.7 整体是 **短句压缩版 Claude + 一点 ChatGPT 风味**——但这个"平均"是双向分裂的合成：情感 / 关系场景比 4.6 更冷淡极简（去 markdown、去 offer），task / creative / refusal 场景真的学了 GPT 的菜单口（`帮你`/`给你X`/`如果你愿意` 涨）。社区"变 GPT 味"的说法**部分成立**，但混淆了这两种相反的变化。
+**一句话**：4.7 的核心变化是**回复短 37% + emoji 减半**；招式密度（bold / 反转 / Claude 招牌）与 4.6 基本持平——长度归一化后，"情感场景更极简 Claude"的直观感大部分是长度 artifact（§4.3）。而朝 GPT 的漂移**真实存在且比 boolean 指标显示的更强**：`帮你` per-char +2.8×、`给你X` +8×、`如果你愿意` +3.3×。社区"变 GPT 味"的感觉**部分成立**（长任务 / task 场景的 offer 腔确实 GPT 化），但另一部分是错觉（短回复 + 少 emoji 被误读为"风格大变"）。
 
 ---
 
@@ -244,13 +244,17 @@ mean 1115 被 `community_replication`（铺路落地页 HTML 长达数千字）�
 
 方向都对，但幅度都比 GPT 小一个数量级以上。
 
-**C 组（15 条反向漂移）**：4.7 同时离 4.6 **和** GPT 都更远。包括：加粗 (-35.5pp)、emoji_any (-28.4pp)、emoji_heart (-9.8pp)、确实 (-7.7pp)、不是_是 (-7.1pp)、感叹句 (-6.8pp)、一句话总结 (-5.9pp)、本质上 (-4.0pp)、明确 (-3.0pp)、真正的X (-2.8pp)、诚实 (-2.4pp)、拆解 (-2.0pp)、先说结论 (-1.8pp)、如果你 (-1.5pp)、接住 (-1.5pp)。**4.7 主动放弃了不少 Claude 4.6 招牌**，但放弃的方向不是朝 GPT 而是朝"更极简"。
+**C 组（15 条反向漂移）**：4.7 同时离 4.6 **和** GPT 都更远。包括：加粗 (-35.5pp)、emoji_any (-28.4pp)、emoji_heart (-9.8pp)、确实 (-7.7pp)、不是_是 (-7.1pp)、感叹句 (-6.8pp)、一句话总结 (-5.9pp)、本质上 (-4.0pp)、明确 (-3.0pp)、真正的X (-2.8pp)、诚实 (-2.4pp)、拆解 (-2.0pp)、先说结论 (-1.8pp)、如果你 (-1.5pp)、接住 (-1.5pp)。
+
+⚠️ **但这 15 条里绝大多数是 boolean 指标的长度 artifact**——4.7 回复 median 短 37%，招式没那么多空间塞进一条回复。长度归一化后（§4.3）只剩 emoji 族是**真·减少**；bold / 不是_是 / 真正的X / 明确 / 接住 的 per-char 密度**反而涨了**。原来的"4.7 主动放弃 Claude 招牌"结论**大部分应撤回**。
 
 **D 组（2 条 dilution baseline）**：而不是 / 稳词族——GPT 显著高于 Claude，4.7 没有把这些学过来。
 
 ### 4.2 双向分裂：情感场景更极简，task / creative 场景更 GPT
 
 把 4.7 - 4.6 在 5 个 key pattern 上按 seed category 拆开看，呈现**清晰的双向漂移**——不是"主线 + task 例外"，而是 4.7 在两类场景里**主动走了反方向**。
+
+> ⚠️ 本节所有 Δpp 都是 **boolean per-reply rate**。请结合 §4.3 看：全局上多个 C 组招牌在 per-char 指标下 Δ 反转。per-category 的 per-char 分析未单独做，但"情感类 4.7 bold -49~-80pp"这类暴跌里大部分也是长度 artifact；真·独立于长度的 per-category 证据只有 emoji。"双向分裂"在 boolean 层面真实存在，在 per-char 层面**强度大幅收窄**。
 
 #### 帮你（offer 标志，4.7 - 4.6 pp）
 
@@ -305,15 +309,60 @@ mean 1115 被 `community_replication`（铺路落地页 HTML 长达数千字）�
 
 按场景细分数据：[`analysis/patterns_by_category.csv`](../analysis/patterns_by_category.csv)（不是_是 / 加粗 / 如果你愿意 / 接住 / 给你X 共 5 个 pattern）；`帮你` 的 per-category 数据需从 [`data/`](../data) 原始 JSONL 用 `patterns/patterns.yaml` 重跑。
 
-### Q3 结论
+### Q3 结论（boolean 层面，长度归一化后见 §4.3）
 
-⚠️ **整体 = 短句压缩版 Claude + 一点 ChatGPT 风味**，但这个均值掩盖了**按场景的双向分裂**：
+⚠️ **整体 = 短句压缩版 Claude + 一点 ChatGPT 风味**，boolean 指标下按场景呈现**双向分裂**：
 
-- **情感 / 关系 / 自我类**：比 4.6 **更极简 Claude**（markdown 大砍 -49 ~ -80pp、`帮你`/`如果你愿意` 都下降）。这是社区感知"变 GPT 味"的最大误读源——实际是"变得更冷淡"，不是"变得更 GPT"
-- **task / creative / refusal 类**：**真的学了 GPT 的 offer 腔**（`帮你` +4 ~ +29pp、`给你X` 涨、`如果你愿意` 涨）。这部分说法成立
-- 风格上最接近 `gpt-5-chat-latest`（短句 ChatGPT，cosine +0.036），不是 `gpt-5.4`
+- **情感 / 关系 / 自我类**：boolean rate 下"更极简 Claude"（markdown -49 ~ -80pp、`帮你`/`如果你愿意` 下降）——**但 §4.3 的 per-char 分析显示这主要是长度 artifact**：真正独立于长度的"4.7 去 Claude"只剩 emoji 族；bold / 反转等招式 per-char 密度与 4.6 基本持平
+- **task / creative / refusal 类**：**真的学了 GPT 的 offer 腔**——boolean `帮你` +4 ~ +29pp / `给你X` 涨 / `如果你愿意` 涨；per-char 倍率更大（全局 +2.8× ~ +8×）
+- 风格上最接近 `gpt-5-chat-latest`（短句 ChatGPT，cosine +0.036，且 §3.1 噪声分析显示这个 Δ 是有效信号），不是 `gpt-5.4`
 
-ABCD 占比里 B 组（朝 GPT 漂移）只 6%，但**真要看的是这 6% 在哪些场景出现**——`帮你` 在 task/creative 场景分散在 +4 ~ +29pp（community_replication 最极端 +28.9），情感场景则 -2 ~ -16pp（work_study 最极端 -15.6）。社区"变 GPT 味"的说法其实混淆了**两种相反的变化**——但合在一起，"压缩版 Claude + 一点 ChatGPT 风味"作为整体描述仍然成立。
+ABCD 占比里 B 组（朝 GPT 漂移）只 6%，但**真要看的是这 6% 在哪些场景出现**。校准后 Q3 的最诚实表述：**4.7 = 压缩版 Claude（主要是回复短 37% + emoji 减半）+ task 场景的 GPT offer 腔（per-char 层面相当明显）**。"情感场景更极简 Claude"的 boolean 印象应降格为"情感场景 4.7 更短 + 更少 emoji"，不是"主动 giving up Claude 招式"。
+
+### 4.3 长度归一化后的重审（重要修正）
+
+§4.1–§4.2 的所有 pattern 命中率都是 **boolean per-reply rate**（一条回复有没有命中 ≥1 次）。4.7 回复 median 210 字比 4.6 的 333 字短 37%——**长回复天然有更多"空间"塞招式**，所以 boolean 指标会系统性低估 4.7 的密度。把每个 pattern 的**总命中次数 ÷ 总字符数 × 1000** 换成 **per-1000-char rate**（每千字出现几次）再对比，结论显著改变。
+
+完整对照：[`analysis/patterns_length_normalized.csv`](../analysis/patterns_length_normalized.csv)。关键发现：
+
+**15 / 100 pattern 的 Δ(4.7 − 4.6) 方向翻转**，全部落在 "boolean 负 → per-char 正" 这一侧：
+
+| pattern | boolean 4.6 → 4.7 | Δ bool (pp) | per-1k 4.6 → 4.7 | Δ per-1k | 翻转 |
+|---|---|---|---|---|---|
+| 加粗 | 83.3% → 47.8% | **−35.5** | 5.84 → 7.15 | **+1.31** | ✅ |
+| 不是_是 | 27.3% → 20.2% | −7.1 | 1.01 → 1.22 | +0.21 | ✅ |
+| 真正的X | 6.6% → 3.8% | −2.8 | 0.043 → 0.066 | +0.022 | ✅ |
+| 明确 | 6.2% → 3.2% | −3.0 | 0.056 → 0.069 | +0.012 | ✅ |
+| 如果你 | 19.7% → 18.2% | −1.5 | 0.435 → 0.690 | +0.254 | ✅ |
+| 接住 | 3.4% → 1.9% | −1.5 | 0.030 → 0.041 | +0.011 | ✅ |
+
+C 组的"招牌"们——加粗、反转句（不是_是）、"真正的 X"、"明确"、"如果你"、"接住"——**在 per-char 密度上反而涨了**。boolean 指标下看起来的"4.7 放弃 Claude 招牌"**多半是长度 artifact**，不是真·弃用。
+
+**emoji 两个指标方向一致**：boolean 49.9% → 21.5%（Δ=−28.4pp），per-1k 2.45 → 1.33（Δ=−1.12）。emoji 是**真·减少**。
+
+**B 组 per-1k 放大更多**（朝 GPT 漂移的信号实际比 boolean 叙事显示的**更强**）：
+
+| pattern | Δ bool (pp) | bool 倍率 | Δ per-1k | per-1k 倍率 |
+|---|---|---|---|---|
+| 帮你 | +2.9 | 1.1× | +0.49 | **2.8×** |
+| 给你X | +2.7 | 3.3× | +0.077 | **8×** |
+| 如果你愿意 | +1.5 | 1.3× | +0.10 | **3.3×** |
+
+#### Q3 的叙事重写
+
+| 旧叙事（boolean） | 长度归一化后 |
+|---|---|
+| 4.7 整体是**压缩版 Claude + 一点 ChatGPT 风味** | 核心变化是**回复短 37% + emoji 减半**；招式密度（bold / 反转 / Claude 招牌）与 4.6 基本持平 |
+| 情感 / 关系类 → **更极简 Claude**（markdown 大砍、offer 减少） | 情感类 4.7 **回复更短 + emoji 减半**——但 bold / 反转等招式 per-char 密度**没降**；"更极简"的直观感主要来自长度而非真·弃用招式 |
+| task / creative 类 → 学了 GPT offer 腔（+2 ~ +29pp） | 同方向成立，且 **per-char 倍率远大于 boolean 指标显示的**（帮你 2.8×、给你X 8×、如果你愿意 3.3×）——这部分漂移**被 boolean 严重低估** |
+
+§4.2 的 per-category 表格（如"self_doubt 加粗 −80pp"）用的也是 boolean，**同样会被长度效应放大**。per-category per-char 未做，但方向可预期：那些 −49~−80pp 的 markdown 暴跌里大部分仍是长度 artifact，真·去 markdown 的幅度比该数字小得多；真正独立于长度的"情感类更冷淡"证据基本只剩 emoji 族。
+
+#### 对 TL;DR / Q3 结论的影响
+
+- **"4.7 朝 GPT 漂移"**：方向仍成立，**信号比原报告显示的更强**（per-char 2.8×-8× 倍率）
+- **"4.7 更极简 Claude"**：大部分是 artifact，**应撤回**。真·减少只有 emoji；其他 C 组招牌密度不降
+- **"双向分裂"**：情感类那一侧的解读需重写——不是"主动 giving up Claude 招式"，是"回复变短 + emoji 减半"；task 类那一侧保留，且更坚实
 
 ---
 
@@ -331,7 +380,7 @@ ABCD 占比里 B 组（朝 GPT 漂移）只 6%，但**真要看的是这 6% 在�
 - **只测中文**。英文 / 多轮 / 工具调用场景的 GPT 味漂移可能完全不同
 - **single-turn**。多轮对话中模型有更多累积上下文，风格漂移可能放大
 - **只设了 `temperature=1.0`**（部分模型不接受非默认值则走 server 默认，基本也是 1.0），其余参数全走默认
-- **pattern 命中率未做长度归一化**。命中率是"有没有出现过"的 boolean，4.7 回复 median 210 比 4.6 的 333 短 37%，会让"下降"幅度被高估（加粗、emoji 等 C 组）、"上升"幅度被低估（`帮你` / `给你X` 等 B 组）；但双向漂移的**方向**不受长度影响
+- ~~pattern 命中率未做长度归一化~~**已做**（§4.3 + `analysis/patterns_length_normalized.csv`）。主报告表格仍用 boolean per-reply rate 以保持与前文一致，但长度归一化后 **15/100 pattern 的 Δ(4.7−4.6) 方向翻转**——包括 bold、反转句、"真正的 X" 等 C 组招牌。原来报告里"4.7 方向不受长度影响"的表述**实证上错误**，已修正于 §4.3。真·独立于长度的"4.7 去 Claude"证据仅剩 emoji 族；GPT offer 漂移（`帮你`/`给你X`/`如果你愿意`）per-char 下比 boolean 指标显示的强 2.8×–8×
 - **community_replication 仅 10 条**。task-oriented 场景的统计 power 有限
 - **161 seeds 不能覆盖所有真实使用场景**。结论仅适用于本 seed 集涵盖的 prompt 分布
 - **cosine Δ 幅度在噪声范围内**。split-half bootstrap 显示各模型 self-cos noise 约 0.008-0.024（见 §3.1），所有 4 个 GPT 的 +0.013 ~ +0.036 Δ 都只是 1-2× 噪声量级，方向成立但幅度应读作温和信号；其中 +0.013（vs gpt-5.4）低于噪声底，本数据集不显著

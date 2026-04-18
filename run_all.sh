@@ -35,6 +35,7 @@ python scripts/patterns_by_category.py
 python scripts/classifier_by_category.py
 python scripts/abcd_breakdown.py
 python scripts/cosine_self_stability.py
+python scripts/patterns_length_normalized.py
 
 echo
 echo "Done. 产出见 analysis/ 和 analysis/figures/"
