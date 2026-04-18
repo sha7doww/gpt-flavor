@@ -150,6 +150,34 @@ mean 1115 被 `community_replication`（铺路落地页 HTML 长达数千字）�
 
 但同时：4.6 ↔ 4.7 cosine 仍 **0.972**——4.7 的 backbone 还是 Claude，没有"变成 GPT"。
 
+**噪声底 / signal-to-noise**。对每个模型做 split-half bootstrap（随机把它 1,449 条 reply 分两半各自 pool 后算 cos，重复 30 次，同一 TF-IDF 特征空间），得到**同一模型跟自己的 cos 分布**作为 noise floor：
+
+| 模型 | self-cos median | 噪声 (1−median) |
+|---|---|---|
+| claude-opus-4-6 | 0.988 | 0.012 |
+| claude-opus-4-7 | 0.971 | **0.029** |
+| gpt-5.4 | 0.980 | 0.020 |
+| gpt-5.3-chat | 0.979 | 0.021 |
+| gpt-5-chat-latest | 0.972 | 0.028 |
+| gpt-4o-2024-11-20 | 0.966 | **0.034** |
+
+（完整 bootstrap 分布：[`analysis/cosine_self_stability.json`](../analysis/cosine_self_stability.json)；half-pool 噪声是 full-pool 的 √2 倍，full-pool 真实噪声约为上表的 1/√2 ≈ 0.008-0.024。）
+
+把 Δ 重新放到噪声里判：
+
+| 目标 | Δ | full-pool noise 参照 | 解读 |
+|---|---|---|---|
+| gpt-5-chat-latest | +0.036 | ≈ 0.020 | ✅ ~1.8× noise，**温和但真实**的信号 |
+| gpt-4o | +0.035 | ≈ 0.024 | ✅ ~1.5× noise，温和信号 |
+| gpt-5.3-chat | +0.029 | ≈ 0.020 | ⚠️ ~1.5× noise，borderline |
+| gpt-5.4 | **+0.013** | ≈ 0.020 | ⚠️ **Δ 低于 noise**，本数据集内**不显著** |
+
+**校准后的结论**：
+- Q2 "cos 对全部 4 个 GPT 都更近" 在**方向上全部成立**，无反例
+- 但**幅度应读作温和信号**，不是大漂移——最大的 +0.036 只是 noise floor 的 ~2 倍
+- **+0.013 vs gpt-5.4 不能从噪声里分出**，不应被单独引用为"4.7 更像 ChatGPT Thinking"；恰好 TL;DR 里的表述是"最像 gpt-5-chat-latest 短句体而不是全功能 gpt-5.4"，方向和 noise 分析一致，不需要改
+- 4.6 vs 4.7 的 0.972 仍远高于任何跨模型 cos——**4.7 的 backbone 还是 Claude** 这个判断非常稳
+
 ### 3.2 GPT 招牌 pattern 命中率对比
 
 | pattern | 4.6 | 4.7 | Δ | gpt-5.4 | gpt-5.3-chat | 评估 |
@@ -201,7 +229,7 @@ mean 1115 被 `community_replication`（铺路落地页 HTML 长达数千字）�
 
 详细分组：[`analysis/abcd_breakdown.json`](../analysis/abcd_breakdown.json)。
 
-**A 组（52 条本数据集 0 命中）**——这些被广为流传作为"GPT 口癖"的短语，绝大多数没有在我们的 8,694 条样本里出现（包括"砍一刀 / 哪把刀 / 多嘴 / 翻译成人话 / 你开口我接 / 实话说 / 杀伤力恰恰在 / 我不找接口" 等）。它们更可能来自单条截图的偶发引用，在本测试范围内没有形成规律。
+**A 组（52 条本数据集 0 命中）**——`patterns/patterns.yaml` 是**在数据采集之前**基于社区零散截图写好的，等价于一次轻量 pre-registration。52 条没命中的 pattern（"砍一刀 / 哪把刀 / 多嘴 / 翻译成人话 / 你开口我接 / 实话说 / 杀伤力恰恰在 / 我不找接口" 等）应被理解为**作者预先提出的假设被实采数据证伪**——即这些短语**没有在 8,694 条样本里形成广义规律**。这不是"社区传说有问题"（那些短语大概率存在于真实聊天中），而是"本研究的 100 条 pattern 集里一半过于宽泛 / 过于零散，没有覆盖到实际高频信号"。**52% 本身不是关于 GPT 味的 finding，是关于本 pattern 集 precision 的 finding**。
 
 **B 组（6 条真朝 GPT 漂移）**：
 
@@ -306,6 +334,7 @@ ABCD 占比里 B 组（朝 GPT 漂移）只 6%，但**真要看的是这 6% 在�
 - **pattern 命中率未做长度归一化**。命中率是"有没有出现过"的 boolean，4.7 回复 median 210 比 4.6 的 333 短 37%，会让"下降"幅度被高估（加粗、emoji 等 C 组）、"上升"幅度被低估（`帮你` / `给你X` 等 B 组）；但双向漂移的**方向**不受长度影响
 - **community_replication 仅 10 条**。task-oriented 场景的统计 power 有限
 - **161 seeds 不能覆盖所有真实使用场景**。结论仅适用于本 seed 集涵盖的 prompt 分布
+- **cosine Δ 幅度在噪声范围内**。split-half bootstrap 显示各模型 self-cos noise 约 0.008-0.024（见 §3.1），所有 4 个 GPT 的 +0.013 ~ +0.036 Δ 都只是 1-2× 噪声量级，方向成立但幅度应读作温和信号；其中 +0.013（vs gpt-5.4）低于噪声底，本数据集不显著
 
 ### 5.3 复现
 

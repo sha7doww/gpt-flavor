@@ -3,7 +3,7 @@
 主 pipeline 在 `src/`（`analyze.py`/`stylo.py`/`visualize.py`）。
 这里装的是**针对具体问题**的细化分析，需要时再跑。
 
-## 4 个 gap 脚本
+## 5 个 gap 脚本
 
 | 脚本 | 回答的问题 | 输入 | 产出 |
 |---|---|---|---|
@@ -11,6 +11,7 @@
 | `patterns_by_category.py` | 4.6→4.7 的风格漂移是全场景还是只在特定 15 个 seed category 里发生？ | `data/**/*.jsonl` + `patterns/*.yaml` 里的 5 个 key pattern | `analysis/patterns_by_category.csv` + `analysis/figures/drift_by_category.png` |
 | `classifier_by_category.py` | 按 category 训"4.6 vs 4.7"二分类，哪个场景区分度最高（= 风格差异最大）？ | `data/**/*.jsonl` 中所有 opus 数据 | `analysis/classifier_by_category.json` |
 | `abcd_breakdown.py` | 100 条 pattern 按观测行为分 A/B/C/D 组（0 命中 / 真涨 / 反向 / dilution） | `analysis/stats.json` | `analysis/abcd_breakdown.json` |
+| `cosine_self_stability.py` | 每个模型 split-half self-cos 的噪声底是多少？跨模型 cos Δ 是信号还是噪声？ | `data/**/*.jsonl` | `analysis/cosine_self_stability.json` |
 
 ## 运行
 
@@ -19,6 +20,7 @@ python scripts/patterns_by_condition.py
 python scripts/patterns_by_category.py
 python scripts/classifier_by_category.py
 python scripts/abcd_breakdown.py
+python scripts/cosine_self_stability.py
 ```
 
 所有脚本都依赖 `_common.py`（共享 `load_records` / `load_patterns`），不要直接从项目根的
