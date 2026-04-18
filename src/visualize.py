@@ -30,11 +30,22 @@ FIG = ANA / "figures"
 
 def configure_cjk_font():
     """Find a single font file that has BOTH Latin and CJK, register it."""
-    # prefer fonts that cover both CJK and Latin in one file (arphic family do)
+    # prefer fonts that cover both CJK and Latin in one file
     preferred_paths = [
+        # macOS
+        "/System/Library/Fonts/Hiragino Sans GB.ttc",
+        "/System/Library/Fonts/STHeiti Medium.ttc",
+        "/System/Library/Fonts/STHeiti Light.ttc",
+        "/System/Library/Fonts/Supplemental/Songti.ttc",
+        "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+        # Linux (arphic / droid cover both CJK and Latin)
         "/usr/share/fonts/truetype/arphic/uming.ttc",
         "/usr/share/fonts/truetype/arphic-gbsn00lp/gbsn00lp.ttf",
         "/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf",
+        "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+        # Windows
+        "C:/Windows/Fonts/msyh.ttc",
+        "C:/Windows/Fonts/simhei.ttf",
     ]
     chosen = next((p for p in preferred_paths if Path(p).exists()), None)
     if chosen:
