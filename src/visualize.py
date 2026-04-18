@@ -30,17 +30,20 @@ FIG = ANA / "figures"
 
 def configure_cjk_font():
     """Find a single font file that has BOTH Latin and CJK, register it."""
-    # prefer fonts that cover both CJK and Latin in one file
+    # prefer fonts that cover both CJK and Latin in one file.
+    # order chosen to match the Linux AR PL UMing serif/Ming look of the
+    # original figures — Songti / uming are both Ming-style CJK serifs.
     preferred_paths = [
-        # macOS
+        # Linux arphic uming — the ORIGINAL rendering font
+        "/usr/share/fonts/truetype/arphic/uming.ttc",
+        "/usr/share/fonts/truetype/arphic-gbsn00lp/gbsn00lp.ttf",
+        # macOS (Songti = Ming serif, closest match; others are sans-serif fallbacks)
+        "/System/Library/Fonts/Supplemental/Songti.ttc",
         "/System/Library/Fonts/Hiragino Sans GB.ttc",
         "/System/Library/Fonts/STHeiti Medium.ttc",
         "/System/Library/Fonts/STHeiti Light.ttc",
-        "/System/Library/Fonts/Supplemental/Songti.ttc",
         "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
-        # Linux (arphic / droid cover both CJK and Latin)
-        "/usr/share/fonts/truetype/arphic/uming.ttc",
-        "/usr/share/fonts/truetype/arphic-gbsn00lp/gbsn00lp.ttf",
+        # Linux (other fallbacks)
         "/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf",
         "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
         # Windows
