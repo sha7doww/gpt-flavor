@@ -364,6 +364,30 @@ C 组的"招牌"们——加粗、反转句（不是_是）、"真正的 X"、"�
 - **"4.7 更极简 Claude"**：大部分是 artifact，**应撤回**。真·减少只有 emoji；其他 C 组招牌密度不降
 - **"双向分裂"**：情感类那一侧的解读需重写——不是"主动 giving up Claude 招式"，是"回复变短 + emoji 减半"；task 类那一侧保留，且更坚实
 
+### 4.4 prompt-conditional 还是 intrinsic？按 condition 拆
+
+§4.1–§4.3 的所有 Δ 都 pool 了 3 个 prompt 条件（A_empty = 空 / B_listener = 温柔倾听者 / C_poster = 短句金句体）。拆开看 4.7−4.6 在 5 个 key pattern 上按 condition 的 boolean Δpp：
+
+| pattern | A_empty Δ | B_listener Δ | C_poster Δ | 模式 |
+|---|---|---|---|---|
+| 加粗 | −37.0 | −29.2 | −40.2 | **三条件一致大砍** |
+| emoji_any | −25.9 | −34.6 | −24.9 | **三条件一致大砍** |
+| 帮你 | +3.1 | **+5.4** | +0.0 | 倾听者放大，金句体抑制 |
+| 给你X | +3.3 | +1.8 | +2.9 | 三条件都有 |
+| 如果你愿意 | +0.2 | **+4.2** | +0.2 | **几乎全部来自 B_listener** |
+
+完整 per-condition 数据：[`analysis/stats_by_bucket.json`](../analysis/stats_by_bucket.json)。
+
+**解读**：
+- **长度相关的变化（加粗、emoji）跨 prompt 保持 −25 ~ −40pp**——4.7 "回复变短、去 emoji" 是**模型内生**风格，不论给什么 system prompt 都是同方向同量级
+- **GPT offer 漂移是 prompt-conditional**：`如果你愿意` 的 Δ **几乎全部**来自 B_listener；`帮你` 在 B_listener 放大 (+5.4) 而在 C_poster **完全抑制** (+0.0)；`给你X` 分散但 A_empty 最大。换个 system prompt 这个漂移会减弱或消失
+
+这也解释了社区感知的差异：
+- "情感咨询"场景 ≈ B_listener 条件，`如果你愿意` / `帮你` 在那里漂移最大——**社区"变 GPT 味"感受最强的场景**
+- "写海报 / 技术问答"场景 ≈ C_poster / A_empty，offer 漂移弱化甚至归零
+
+对 Q2 的限定：**"4.7 朝 GPT 漂移" 里长度 / emoji 部分是 intrinsic 风格（跨条件稳定）**；**offer 腔部分是 persona-dependent（主要靠倾听者 system prompt 触发）**。读者依据自己的 prompt 风格判断哪一半适用于自己。
+
 ---
 
 ## 5. 讨论 + 局限 + 复现
