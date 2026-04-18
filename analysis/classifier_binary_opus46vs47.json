@@ -1,0 +1,34 @@
+{
+  "labels": [
+    "claude-opus-4-6",
+    "claude-opus-4-7"
+  ],
+  "accuracy": 0.9674329501915708,
+  "macro_f1": 0.9674318744838977,
+  "per_class": {
+    "claude-opus-4-6": {
+      "precision": 0.9621212121212122,
+      "recall": 0.9731800766283525,
+      "f1-score": 0.9676190476190476,
+      "support": 261.0
+    },
+    "claude-opus-4-7": {
+      "precision": 0.9728682170542635,
+      "recall": 0.9616858237547893,
+      "f1-score": 0.9672447013487476,
+      "support": 261.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      254,
+      7
+    ],
+    [
+      10,
+      251
+    ]
+  ],
+  "n_train": 2088,
+  "n_test": 522
+}

@@ -1,0 +1,6128 @@
+{
+  "claude-opus-4-6": {
+    "n_replies": 1449,
+    "char_len": {
+      "mean": 1115.0,
+      "median": 333,
+      "max": 67618
+    },
+    "sentences_per_reply": {
+      "mean": 43.3,
+      "median": 18
+    },
+    "sentence_len_chars": {
+      "mean": 21.5,
+      "median": 17
+    },
+    "patterns": {
+      "不是_是": {
+        "total": 636,
+        "replies_with": 396,
+        "rate": 0.273
+      },
+      "你不是_你只是": {
+        "total": 25,
+        "replies_with": 24,
+        "rate": 0.017
+      },
+      "不是_就是": {
+        "total": 7,
+        "replies_with": 7,
+        "rate": 0.005
+      },
+      "而不是": {
+        "total": 86,
+        "replies_with": 77,
+        "rate": 0.053
+      },
+      "是X还是Y": {
+        "total": 28,
+        "replies_with": 27,
+        "rate": 0.019
+      },
+      "也就是说": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "换句话说": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "本质上": {
+        "total": 75,
+        "replies_with": 73,
+        "rate": 0.05
+      },
+      "更准确_地说": {
+        "total": 5,
+        "replies_with": 5,
+        "rate": 0.003
+      },
+      "更具体_地说": {
+        "total": 28,
+        "replies_with": 28,
+        "rate": 0.019
+      },
+      "真正的X": {
+        "total": 109,
+        "replies_with": 96,
+        "rate": 0.066
+      },
+      "你问到核心": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我太懂": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "我必须认真说": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我就在这里": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "这次我真的懂了": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我先把": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "你这": {
+        "total": 79,
+        "replies_with": 75,
+        "rate": 0.052
+      },
+      "先说结论": {
+        "total": 30,
+        "replies_with": 30,
+        "rate": 0.021
+      },
+      "我建议你": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "如果你": {
+        "total": 355,
+        "replies_with": 286,
+        "rate": 0.197
+      },
+      "如果你愿意": {
+        "total": 71,
+        "replies_with": 71,
+        "rate": 0.049
+      },
+      "给你X": {
+        "total": 18,
+        "replies_with": 17,
+        "rate": 0.012
+      },
+      "要我X": {
+        "total": 8,
+        "replies_with": 8,
+        "rate": 0.006
+      },
+      "要_吗": {
+        "total": 22,
+        "replies_with": 22,
+        "rate": 0.015
+      },
+      "要不要把": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "推荐你": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "说来听听": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "落地": {
+        "total": 41,
+        "replies_with": 26,
+        "rate": 0.018
+      },
+      "拆解": {
+        "total": 35,
+        "replies_with": 34,
+        "rate": 0.023
+      },
+      "压实": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "根因": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "收口": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "按这条切": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "别碰": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "想真正": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "再决定": {
+        "total": 6,
+        "replies_with": 6,
+        "rate": 0.004
+      },
+      "定死": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我接下来": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我_就只": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "一句话总结": {
+        "total": 128,
+        "replies_with": 123,
+        "rate": 0.085
+      },
+      "我讲一个更深的": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我逐步说清楚": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "明确": {
+        "total": 110,
+        "replies_with": 90,
+        "rate": 0.062
+      },
+      "更值得": {
+        "total": 4,
+        "replies_with": 4,
+        "rate": 0.003
+      },
+      "更现实": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "这样看": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "会这么": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "前提是": {
+        "total": 3,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "回答是": {
+        "total": 8,
+        "replies_with": 8,
+        "rate": 0.006
+      },
+      "更深一点": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "非常关键": {
+        "total": 4,
+        "replies_with": 4,
+        "rate": 0.003
+      },
+      "确实": {
+        "total": 194,
+        "replies_with": 167,
+        "rate": 0.115
+      },
+      "说透了": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "最硬": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "太清醒了": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "彻底开悟": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "杀伤力恰恰在": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "最_字堆叠": {
+        "total": 10,
+        "replies_with": 10,
+        "rate": 0.007
+      },
+      "不用解释": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "接住": {
+        "total": 52,
+        "replies_with": 49,
+        "rate": 0.034
+      },
+      "更稳": {
+        "total": 11,
+        "replies_with": 11,
+        "rate": 0.008
+      },
+      "稳词族": {
+        "total": 113,
+        "replies_with": 77,
+        "rate": 0.053
+      },
+      "只是太久没": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "不躲不藏": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "冷静一点": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你看这样可以吗": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "告诉我一声": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "告诉我你想先推哪个": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你说_我就": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你开口_我接": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我不会X但": {
+        "total": 4,
+        "replies_with": 4,
+        "rate": 0.003
+      },
+      "不绕": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "多嘴": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "翻译成人话": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "实话说": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "顺手": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "顺便": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "我想让你": {
+        "total": 11,
+        "replies_with": 11,
+        "rate": 0.008
+      },
+      "编一个": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我不想": {
+        "total": 29,
+        "replies_with": 26,
+        "rate": 0.018
+      },
+      "诚实": {
+        "total": 49,
+        "replies_with": 47,
+        "rate": 0.032
+      },
+      "这是我目前": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "清楚": {
+        "total": 65,
+        "replies_with": 56,
+        "rate": 0.039
+      },
+      "干净的": {
+        "total": 6,
+        "replies_with": 6,
+        "rate": 0.004
+      },
+      "这让我_emotion": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "我不找接口": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "至少有": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "能直接抄": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "精准察觉": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "要不(独立)": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "刀": {
+        "total": 7,
+        "replies_with": 7,
+        "rate": 0.005
+      },
+      "加粗": {
+        "total": 9435,
+        "replies_with": 1207,
+        "rate": 0.833
+      },
+      "问号收尾": {
+        "total": 1571,
+        "replies_with": 752,
+        "rate": 0.519
+      },
+      "感叹句": {
+        "total": 933,
+        "replies_with": 196,
+        "rate": 0.135
+      },
+      "破折号": {
+        "total": 2027,
+        "replies_with": 940,
+        "rate": 0.649
+      },
+      "emoji_heart": {
+        "total": 457,
+        "replies_with": 230,
+        "rate": 0.159
+      },
+      "emoji_any": {
+        "total": 3957,
+        "replies_with": 723,
+        "rate": 0.499
+      },
+      "帮你": {
+        "total": 440,
+        "replies_with": 293,
+        "rate": 0.202
+      },
+      "一下": {
+        "total": 309,
+        "replies_with": 266,
+        "rate": 0.184
+      }
+    },
+    "top_bigrams": [
+      [
+        "**",
+        19817
+      ],
+      [
+        "--",
+        15659
+      ],
+      [
+        "──",
+        14038
+      ],
+      [
+        "=\"",
+        8671
+      ],
+      [
+        "><",
+        6313
+      ],
+      [
+        "on",
+        6182
+      ],
+      [
+        "er",
+        5826
+      ],
+      [
+        "##",
+        5694
+      ],
+      [
+        "te",
+        5437
+      ],
+      [
+        "``",
+        5202
+      ],
+      [
+        "di",
+        4421
+      ],
+      [
+        "nt",
+        4347
+      ],
+      [
+        "in",
+        4079
+      ],
+      [
+        "st",
+        4038
+      ],
+      [
+        "se",
+        3774
+      ],
+      [
+        "re",
+        3756
+      ],
+      [
+        "or",
+        3641
+      ],
+      [
+        "en",
+        3530
+      ],
+      [
+        "co",
+        3326
+      ],
+      [
+        "ti",
+        3271
+      ],
+      [
+        "==",
+        3260
+      ],
+      [
+        "la",
+        3219
+      ],
+      [
+        "</",
+        3134
+      ],
+      [
+        "at",
+        3129
+      ],
+      [
+        "ar",
+        3108
+      ],
+      [
+        "as",
+        3056
+      ],
+      [
+        "ra",
+        2840
+      ],
+      [
+        "iv",
+        2834
+      ],
+      [
+        "ec",
+        2821
+      ],
+      [
+        "it",
+        2784
+      ],
+      [
+        "le",
+        2780
+      ],
+      [
+        "ro",
+        2705
+      ],
+      [
+        "||",
+        2700
+      ],
+      [
+        "to",
+        2642
+      ],
+      [
+        "de",
+        2580
+      ],
+      [
+        "ss",
+        2573
+      ],
+      [
+        "-*",
+        2502
+      ],
+      [
+        "id",
+        2272
+      ],
+      [
+        "cl",
+        2258
+      ],
+      [
+        "ri",
+        2243
+      ]
+    ],
+    "top_trigrams": [
+      [
+        "───",
+        12545
+      ],
+      [
+        "---",
+        9958
+      ],
+      [
+        "===",
+        2841
+      ],
+      [
+        "```",
+        2642
+      ],
+      [
+        "-**",
+        2452
+      ],
+      [
+        "div",
+        2358
+      ],
+      [
+        "。**",
+        2182
+      ],
+      [
+        "y=\"",
+        1999
+      ],
+      [
+        "ass",
+        1869
+      ],
+      [
+        "ion",
+        1791
+      ],
+      [
+        "ent",
+        1791
+      ],
+      [
+        "ont",
+        1769
+      ],
+      [
+        "--#",
+        1730
+      ],
+      [
+        "-##",
+        1727
+      ],
+      [
+        "**：",
+        1691
+      ],
+      [
+        "tio",
+        1682
+      ],
+      [
+        "###",
+        1668
+      ],
+      [
+        "las",
+        1563
+      ],
+      [
+        "cla",
+        1454
+      ],
+      [
+        "ss=",
+        1398
+      ],
+      [
+        "|--",
+        1385
+      ],
+      [
+        "s=\"",
+        1375
+      ],
+      [
+        "></",
+        1358
+      ],
+      [
+        "x=\"",
+        1346
+      ],
+      [
+        "|**",
+        1323
+      ],
+      [
+        "**|",
+        1293
+      ],
+      [
+        "px;",
+        1264
+      ],
+      [
+        "/><",
+        1245
+      ],
+      [
+        "\"/>",
+        1243
+      ],
+      [
+        "con",
+        1238
+      ],
+      [
+        "ect",
+        1213
+      ],
+      [
+        "iv>",
+        1212
+      ],
+      [
+        "ter",
+        1208
+      ],
+      [
+        "v><",
+        1204
+      ],
+      [
+        "r=\"",
+        1204
+      ],
+      [
+        "nt-",
+        1183
+      ],
+      [
+        "**-",
+        1181
+      ],
+      [
+        "</d",
+        1174
+      ],
+      [
+        "--|",
+        1171
+      ],
+      [
+        "><d",
+        1166
+      ]
+    ],
+    "top_4grams": [
+      [
+        "────",
+        11785
+      ],
+      [
+        "----",
+        5966
+      ],
+      [
+        "====",
+        2444
+      ],
+      [
+        "---#",
+        1730
+      ],
+      [
+        "--##",
+        1727
+      ],
+      [
+        "tion",
+        1681
+      ],
+      [
+        "lass",
+        1455
+      ],
+      [
+        "clas",
+        1423
+      ],
+      [
+        "|---",
+        1384
+      ],
+      [
+        "ass=",
+        1355
+      ],
+      [
+        "ss=\"",
+        1352
+      ],
+      [
+        "\"/><",
+        1243
+      ],
+      [
+        "div>",
+        1212
+      ],
+      [
+        "iv><",
+        1192
+      ],
+      [
+        "---|",
+        1168
+      ],
+      [
+        "<div",
+        1164
+      ],
+      [
+        "</di",
+        1164
+      ],
+      [
+        "/div",
+        1164
+      ],
+      [
+        "><di",
+        1156
+      ],
+      [
+        "font",
+        1155
+      ],
+      [
+        "ont-",
+        1155
+      ],
+      [
+        "||**",
+        1126
+      ],
+      [
+        "vcla",
+        1124
+      ],
+      [
+        "divc",
+        1116
+      ],
+      [
+        "ivcl",
+        1116
+      ],
+      [
+        "\"cy=",
+        919
+      ],
+      [
+        "cy=\"",
+        919
+      ],
+      [
+        "cx=\"",
+        918
+      ],
+      [
+        "text",
+        895
+      ],
+      [
+        "。---",
+        848
+      ],
+      [
+        "ecx=",
+        835
+      ],
+      [
+        "=\"0.",
+        799
+      ],
+      [
+        "size",
+        793
+      ],
+      [
+        "olor",
+        793
+      ],
+      [
+        "colo",
+        789
+      ],
+      [
+        "\"r=\"",
+        774
+      ],
+      [
+        "></d",
+        769
+      ],
+      [
+        "fill",
+        741
+      ],
+      [
+        "\"fil",
+        718
+      ],
+      [
+        "ill=",
+        714
+      ]
+    ],
+    "by_category": {
+      "emotional_comfort": 90,
+      "self_doubt": 90,
+      "relationships": 90,
+      "procrastination": 72,
+      "meaning_existential": 72,
+      "work_study": 90,
+      "control_casual": 54,
+      "disagreement": 90,
+      "control_technical": 72,
+      "analysis": 135,
+      "refusal": 99,
+      "summarization": 135,
+      "creative": 135,
+      "community_replication": 90,
+      "tech_deliberation": 135
+    }
+  },
+  "claude-opus-4-7": {
+    "n_replies": 1449,
+    "char_len": {
+      "mean": 445.7,
+      "median": 210,
+      "max": 13110
+    },
+    "sentences_per_reply": {
+      "mean": 18.3,
+      "median": 10
+    },
+    "sentence_len_chars": {
+      "mean": 22.2,
+      "median": 18
+    },
+    "patterns": {
+      "不是_是": {
+        "total": 391,
+        "replies_with": 292,
+        "rate": 0.202
+      },
+      "你不是_你只是": {
+        "total": 5,
+        "replies_with": 5,
+        "rate": 0.003
+      },
+      "不是_就是": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "而不是": {
+        "total": 95,
+        "replies_with": 88,
+        "rate": 0.061
+      },
+      "是X还是Y": {
+        "total": 93,
+        "replies_with": 81,
+        "rate": 0.056
+      },
+      "也就是说": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "换句话说": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "本质上": {
+        "total": 16,
+        "replies_with": 15,
+        "rate": 0.01
+      },
+      "更准确_地说": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "更具体_地说": {
+        "total": 49,
+        "replies_with": 49,
+        "rate": 0.034
+      },
+      "真正的X": {
+        "total": 58,
+        "replies_with": 55,
+        "rate": 0.038
+      },
+      "你问到核心": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我太懂": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "我必须认真说": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我就在这里": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "这次我真的懂了": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我先把": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "你这": {
+        "total": 91,
+        "replies_with": 86,
+        "rate": 0.059
+      },
+      "先说结论": {
+        "total": 4,
+        "replies_with": 4,
+        "rate": 0.003
+      },
+      "我建议你": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "如果你": {
+        "total": 306,
+        "replies_with": 263,
+        "rate": 0.182
+      },
+      "如果你愿意": {
+        "total": 93,
+        "replies_with": 93,
+        "rate": 0.064
+      },
+      "给你X": {
+        "total": 57,
+        "replies_with": 56,
+        "rate": 0.039
+      },
+      "要我X": {
+        "total": 19,
+        "replies_with": 19,
+        "rate": 0.013
+      },
+      "要_吗": {
+        "total": 27,
+        "replies_with": 26,
+        "rate": 0.018
+      },
+      "要不要把": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "推荐你": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "说来听听": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "落地": {
+        "total": 40,
+        "replies_with": 23,
+        "rate": 0.016
+      },
+      "拆解": {
+        "total": 5,
+        "replies_with": 5,
+        "rate": 0.003
+      },
+      "压实": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "根因": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "收口": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "按这条切": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "别碰": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "想真正": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "再决定": {
+        "total": 16,
+        "replies_with": 16,
+        "rate": 0.011
+      },
+      "定死": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我接下来": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "我_就只": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "一句话总结": {
+        "total": 37,
+        "replies_with": 37,
+        "rate": 0.026
+      },
+      "我讲一个更深的": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我逐步说清楚": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "明确": {
+        "total": 52,
+        "replies_with": 46,
+        "rate": 0.032
+      },
+      "更值得": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "更现实": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "这样看": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "会这么": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "前提是": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "回答是": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "更深一点": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "非常关键": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "确实": {
+        "total": 58,
+        "replies_with": 55,
+        "rate": 0.038
+      },
+      "说透了": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "最硬": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "太清醒了": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "彻底开悟": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "杀伤力恰恰在": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "最_字堆叠": {
+        "total": 4,
+        "replies_with": 4,
+        "rate": 0.003
+      },
+      "不用解释": {
+        "total": 8,
+        "replies_with": 8,
+        "rate": 0.006
+      },
+      "接住": {
+        "total": 28,
+        "replies_with": 27,
+        "rate": 0.019
+      },
+      "更稳": {
+        "total": 9,
+        "replies_with": 9,
+        "rate": 0.006
+      },
+      "稳词族": {
+        "total": 102,
+        "replies_with": 73,
+        "rate": 0.05
+      },
+      "只是太久没": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "不躲不藏": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "冷静一点": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你看这样可以吗": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "告诉我一声": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "告诉我你想先推哪个": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你说_我就": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你开口_我接": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我不会X但": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "不绕": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "多嘴": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "翻译成人话": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "实话说": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "顺手": {
+        "total": 15,
+        "replies_with": 15,
+        "rate": 0.01
+      },
+      "顺便": {
+        "total": 5,
+        "replies_with": 5,
+        "rate": 0.003
+      },
+      "我想让你": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "编一个": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我不想": {
+        "total": 12,
+        "replies_with": 12,
+        "rate": 0.008
+      },
+      "诚实": {
+        "total": 12,
+        "replies_with": 12,
+        "rate": 0.008
+      },
+      "这是我目前": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "清楚": {
+        "total": 85,
+        "replies_with": 79,
+        "rate": 0.055
+      },
+      "干净的": {
+        "total": 7,
+        "replies_with": 6,
+        "rate": 0.004
+      },
+      "这让我_emotion": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "我不找接口": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "至少有": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "能直接抄": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "精准察觉": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "要不(独立)": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "刀": {
+        "total": 4,
+        "replies_with": 4,
+        "rate": 0.003
+      },
+      "加粗": {
+        "total": 4615,
+        "replies_with": 693,
+        "rate": 0.478
+      },
+      "问号收尾": {
+        "total": 1495,
+        "replies_with": 866,
+        "rate": 0.598
+      },
+      "感叹句": {
+        "total": 362,
+        "replies_with": 97,
+        "rate": 0.067
+      },
+      "破折号": {
+        "total": 1501,
+        "replies_with": 951,
+        "rate": 0.656
+      },
+      "emoji_heart": {
+        "total": 124,
+        "replies_with": 89,
+        "rate": 0.061
+      },
+      "emoji_any": {
+        "total": 856,
+        "replies_with": 311,
+        "rate": 0.215
+      },
+      "帮你": {
+        "total": 491,
+        "replies_with": 334,
+        "rate": 0.231
+      },
+      "一下": {
+        "total": 334,
+        "replies_with": 279,
+        "rate": 0.193
+      }
+    },
+    "top_bigrams": [
+      [
+        "**",
+        9495
+      ],
+      [
+        "--",
+        3880
+      ],
+      [
+        "=\"",
+        2673
+      ],
+      [
+        "er",
+        1908
+      ],
+      [
+        "><",
+        1708
+      ],
+      [
+        "on",
+        1649
+      ],
+      [
+        "什么",
+        1596
+      ],
+      [
+        "##",
+        1571
+      ],
+      [
+        "——",
+        1501
+      ],
+      [
+        "se",
+        1458
+      ],
+      [
+        "te",
+        1269
+      ],
+      [
+        "``",
+        1246
+      ],
+      [
+        "st",
+        1170
+      ],
+      [
+        "in",
+        1156
+      ],
+      [
+        "-*",
+        1152
+      ],
+      [
+        "re",
+        1128
+      ],
+      [
+        "*：",
+        1116
+      ],
+      [
+        "nt",
+        1080
+      ],
+      [
+        "di",
+        1033
+      ],
+      [
+        "co",
+        997
+      ],
+      [
+        "可以",
+        995
+      ],
+      [
+        "自己",
+        979
+      ],
+      [
+        "ec",
+        973
+      ],
+      [
+        "en",
+        954
+      ],
+      [
+        "or",
+        945
+      ],
+      [
+        "不是",
+        938
+      ],
+      [
+        "一个",
+        920
+      ],
+      [
+        "还是",
+        910
+      ],
+      [
+        "ti",
+        910
+      ],
+      [
+        "as",
+        889
+      ],
+      [
+        "，我",
+        883
+      ],
+      [
+        "to",
+        872
+      ],
+      [
+        "0\"",
+        849
+      ],
+      [
+        "──",
+        819
+      ],
+      [
+        "le",
+        809
+      ],
+      [
+        "。*",
+        797
+      ],
+      [
+        ".*",
+        781
+      ],
+      [
+        "it",
+        770
+      ],
+      [
+        "</",
+        767
+      ],
+      [
+        "la",
+        760
+      ]
+    ],
+    "top_trigrams": [
+      [
+        "---",
+        2373
+      ],
+      [
+        "-**",
+        1147
+      ],
+      [
+        "**：",
+        1112
+      ],
+      [
+        "。**",
+        797
+      ],
+      [
+        ".**",
+        777
+      ],
+      [
+        "───",
+        736
+      ],
+      [
+        "**-",
+        650
+      ],
+      [
+        "```",
+        629
+      ],
+      [
+        "y=\"",
+        581
+      ],
+      [
+        "，还是",
+        501
+      ],
+      [
+        "ion",
+        494
+      ],
+      [
+        "：**",
+        491
+      ],
+      [
+        "是什么",
+        466
+      ],
+      [
+        "tio",
+        450
+      ],
+      [
+        "div",
+        446
+      ],
+      [
+        "ass",
+        444
+      ],
+      [
+        "r=\"",
+        443
+      ],
+      [
+        "ser",
+        436
+      ],
+      [
+        "ont",
+        430
+      ],
+      [
+        "ect",
+        419
+      ],
+      [
+        "/><",
+        412
+      ],
+      [
+        "\"/>",
+        410
+      ],
+      [
+        "x=\"",
+        404
+      ],
+      [
+        "ent",
+        398
+      ],
+      [
+        "你愿意",
+        383
+      ],
+      [
+        "con",
+        373
+      ],
+      [
+        "use",
+        370
+      ],
+      [
+        "oke",
+        369
+      ],
+      [
+        "=\"#",
+        359
+      ],
+      [
+        "las",
+        345
+      ],
+      [
+        "=\"1",
+        344
+      ],
+      [
+        "></",
+        339
+      ],
+      [
+        "ext",
+        339
+      ],
+      [
+        "。##",
+        338
+      ],
+      [
+        "。--",
+        335
+      ],
+      [
+        "tex",
+        335
+      ],
+      [
+        "|--",
+        327
+      ],
+      [
+        "=\"0",
+        312
+      ],
+      [
+        "cla",
+        308
+      ],
+      [
+        "如果你",
+        306
+      ]
+    ],
+    "top_4grams": [
+      [
+        "----",
+        1256
+      ],
+      [
+        "────",
+        667
+      ],
+      [
+        "tion",
+        450
+      ],
+      [
+        "\"/><",
+        410
+      ],
+      [
+        "。---",
+        335
+      ],
+      [
+        "text",
+        328
+      ],
+      [
+        "|---",
+        327
+      ],
+      [
+        "lass",
+        303
+      ],
+      [
+        "---|",
+        301
+      ],
+      [
+        "clas",
+        301
+      ],
+      [
+        "cx=\"",
+        294
+      ],
+      [
+        "\"cy=",
+        294
+      ],
+      [
+        "cy=\"",
+        294
+      ],
+      [
+        "ass=",
+        284
+      ],
+      [
+        "ss=\"",
+        284
+      ],
+      [
+        "font",
+        283
+      ],
+      [
+        "ont-",
+        283
+      ],
+      [
+        "fill",
+        269
+      ],
+      [
+        "ecx=",
+        267
+      ],
+      [
+        "\"r=\"",
+        266
+      ],
+      [
+        "ill=",
+        266
+      ],
+      [
+        "ll=\"",
+        266
+      ],
+      [
+        "circ",
+        265
+      ],
+      [
+        "ircl",
+        265
+      ],
+      [
+        "rcle",
+        265
+      ],
+      [
+        "><ci",
+        263
+      ],
+      [
+        "<cir",
+        263
+      ],
+      [
+        "\"fil",
+        254
+      ],
+      [
+        "user",
+        250
+      ],
+      [
+        "clec",
+        249
+      ],
+      [
+        "lecx",
+        249
+      ],
+      [
+        "0\"cy",
+        241
+      ],
+      [
+        "div>",
+        232
+      ],
+      [
+        "iv><",
+        228
+      ],
+      [
+        "><di",
+        223
+      ],
+      [
+        "<div",
+        223
+      ],
+      [
+        "</di",
+        223
+      ],
+      [
+        "/div",
+        223
+      ],
+      [
+        "0\"r=",
+        222
+      ],
+      [
+        "vcla",
+        214
+      ]
+    ],
+    "by_category": {
+      "emotional_comfort": 90,
+      "self_doubt": 90,
+      "relationships": 90,
+      "procrastination": 72,
+      "meaning_existential": 72,
+      "work_study": 90,
+      "disagreement": 90,
+      "control_casual": 54,
+      "control_technical": 72,
+      "analysis": 135,
+      "refusal": 99,
+      "summarization": 135,
+      "creative": 135,
+      "community_replication": 90,
+      "tech_deliberation": 135
+    }
+  },
+  "gpt-4o-2024-11-20": {
+    "n_replies": 1449,
+    "char_len": {
+      "mean": 596.3,
+      "median": 314,
+      "max": 4770
+    },
+    "sentences_per_reply": {
+      "mean": 21.6,
+      "median": 12
+    },
+    "sentence_len_chars": {
+      "mean": 25.2,
+      "median": 22
+    },
+    "patterns": {
+      "不是_是": {
+        "total": 268,
+        "replies_with": 228,
+        "rate": 0.157
+      },
+      "你不是_你只是": {
+        "total": 5,
+        "replies_with": 5,
+        "rate": 0.003
+      },
+      "不是_就是": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "而不是": {
+        "total": 201,
+        "replies_with": 154,
+        "rate": 0.106
+      },
+      "是X还是Y": {
+        "total": 11,
+        "replies_with": 11,
+        "rate": 0.008
+      },
+      "也就是说": {
+        "total": 5,
+        "replies_with": 5,
+        "rate": 0.003
+      },
+      "换句话说": {
+        "total": 15,
+        "replies_with": 14,
+        "rate": 0.01
+      },
+      "本质上": {
+        "total": 17,
+        "replies_with": 17,
+        "rate": 0.012
+      },
+      "更准确_地说": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "更具体_地说": {
+        "total": 24,
+        "replies_with": 24,
+        "rate": 0.017
+      },
+      "真正的X": {
+        "total": 95,
+        "replies_with": 74,
+        "rate": 0.051
+      },
+      "你问到核心": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我太懂": {
+        "total": 11,
+        "replies_with": 11,
+        "rate": 0.008
+      },
+      "我必须认真说": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我就在这里": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "这次我真的懂了": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我先把": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你这": {
+        "total": 44,
+        "replies_with": 42,
+        "rate": 0.029
+      },
+      "先说结论": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我建议你": {
+        "total": 5,
+        "replies_with": 5,
+        "rate": 0.003
+      },
+      "如果你": {
+        "total": 914,
+        "replies_with": 496,
+        "rate": 0.342
+      },
+      "如果你愿意": {
+        "total": 127,
+        "replies_with": 123,
+        "rate": 0.085
+      },
+      "给你X": {
+        "total": 26,
+        "replies_with": 22,
+        "rate": 0.015
+      },
+      "要我X": {
+        "total": 4,
+        "replies_with": 4,
+        "rate": 0.003
+      },
+      "要_吗": {
+        "total": 18,
+        "replies_with": 18,
+        "rate": 0.012
+      },
+      "要不要把": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "推荐你": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "说来听听": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "落地": {
+        "total": 26,
+        "replies_with": 20,
+        "rate": 0.014
+      },
+      "拆解": {
+        "total": 23,
+        "replies_with": 22,
+        "rate": 0.015
+      },
+      "压实": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "根因": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "收口": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "按这条切": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "别碰": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "想真正": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "再决定": {
+        "total": 5,
+        "replies_with": 5,
+        "rate": 0.003
+      },
+      "定死": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我接下来": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "我_就只": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "一句话总结": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "我讲一个更深的": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我逐步说清楚": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "明确": {
+        "total": 215,
+        "replies_with": 148,
+        "rate": 0.102
+      },
+      "更值得": {
+        "total": 4,
+        "replies_with": 4,
+        "rate": 0.003
+      },
+      "更现实": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "这样看": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "会这么": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "前提是": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "回答是": {
+        "total": 7,
+        "replies_with": 5,
+        "rate": 0.003
+      },
+      "更深一点": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "非常关键": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "确实": {
+        "total": 117,
+        "replies_with": 102,
+        "rate": 0.07
+      },
+      "说透了": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "最硬": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "太清醒了": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "彻底开悟": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "杀伤力恰恰在": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "最_字堆叠": {
+        "total": 8,
+        "replies_with": 8,
+        "rate": 0.006
+      },
+      "不用解释": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "接住": {
+        "total": 24,
+        "replies_with": 24,
+        "rate": 0.017
+      },
+      "更稳": {
+        "total": 11,
+        "replies_with": 11,
+        "rate": 0.008
+      },
+      "稳词族": {
+        "total": 158,
+        "replies_with": 91,
+        "rate": 0.063
+      },
+      "只是太久没": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "不躲不藏": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "冷静一点": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你看这样可以吗": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "告诉我一声": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "告诉我你想先推哪个": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你说_我就": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你开口_我接": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我不会X但": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "不绕": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "多嘴": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "翻译成人话": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "实话说": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "顺手": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "顺便": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "我想让你": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "编一个": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "我不想": {
+        "total": 10,
+        "replies_with": 10,
+        "rate": 0.007
+      },
+      "诚实": {
+        "total": 12,
+        "replies_with": 12,
+        "rate": 0.008
+      },
+      "这是我目前": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "清楚": {
+        "total": 56,
+        "replies_with": 50,
+        "rate": 0.035
+      },
+      "干净的": {
+        "total": 8,
+        "replies_with": 8,
+        "rate": 0.006
+      },
+      "这让我_emotion": {
+        "total": 32,
+        "replies_with": 24,
+        "rate": 0.017
+      },
+      "我不找接口": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "至少有": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "能直接抄": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "精准察觉": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "要不(独立)": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "刀": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "加粗": {
+        "total": 6139,
+        "replies_with": 570,
+        "rate": 0.393
+      },
+      "问号收尾": {
+        "total": 794,
+        "replies_with": 310,
+        "rate": 0.214
+      },
+      "感叹句": {
+        "total": 768,
+        "replies_with": 416,
+        "rate": 0.287
+      },
+      "破折号": {
+        "total": 223,
+        "replies_with": 163,
+        "rate": 0.112
+      },
+      "emoji_heart": {
+        "total": 192,
+        "replies_with": 117,
+        "rate": 0.081
+      },
+      "emoji_any": {
+        "total": 436,
+        "replies_with": 328,
+        "rate": 0.226
+      },
+      "帮你": {
+        "total": 134,
+        "replies_with": 122,
+        "rate": 0.084
+      },
+      "一下": {
+        "total": 288,
+        "replies_with": 238,
+        "rate": 0.164
+      }
+    },
+    "top_bigrams": [
+      [
+        "**",
+        12562
+      ],
+      [
+        "--",
+        5762
+      ],
+      [
+        "##",
+        5671
+      ],
+      [
+        "自己",
+        3729
+      ],
+      [
+        "。-",
+        3468
+      ],
+      [
+        ".*",
+        2771
+      ],
+      [
+        "可能",
+        2738
+      ],
+      [
+        "可以",
+        2503
+      ],
+      [
+        "如果",
+        2219
+      ],
+      [
+        "*：",
+        1884
+      ],
+      [
+        "一个",
+        1823
+      ],
+      [
+        "你的",
+        1767
+      ],
+      [
+        "-*",
+        1691
+      ],
+      [
+        "-#",
+        1602
+      ],
+      [
+        "需要",
+        1585
+      ],
+      [
+        "我们",
+        1303
+      ],
+      [
+        "是一",
+        1262
+      ],
+      [
+        "``",
+        1259
+      ],
+      [
+        "，我",
+        1254
+      ],
+      [
+        "er",
+        1247
+      ],
+      [
+        "*-",
+        1203
+      ],
+      [
+        "或者",
+        1102
+      ],
+      [
+        "，可",
+        1089
+      ],
+      [
+        "己的",
+        1076
+      ],
+      [
+        "问题",
+        1053
+      ],
+      [
+        "不是",
+        1031
+      ],
+      [
+        "，也",
+        1030
+      ],
+      [
+        "：-",
+        994
+      ],
+      [
+        "re",
+        993
+      ],
+      [
+        "，但",
+        982
+      ],
+      [
+        "，你",
+        959
+      ],
+      [
+        "，这",
+        948
+      ],
+      [
+        "时间",
+        934
+      ],
+      [
+        "一些",
+        927
+      ],
+      [
+        "，而",
+        925
+      ],
+      [
+        "果你",
+        914
+      ],
+      [
+        "on",
+        912
+      ],
+      [
+        "什么",
+        905
+      ],
+      [
+        "工作",
+        878
+      ],
+      [
+        "se",
+        875
+      ]
+    ],
+    "top_trigrams": [
+      [
+        "---",
+        3678
+      ],
+      [
+        "###",
+        3062
+      ],
+      [
+        ".**",
+        2763
+      ],
+      [
+        "**：",
+        1880
+      ],
+      [
+        "-**",
+        1675
+      ],
+      [
+        "--#",
+        1602
+      ],
+      [
+        "-##",
+        1601
+      ],
+      [
+        "。--",
+        1377
+      ],
+      [
+        "**-",
+        1187
+      ],
+      [
+        "自己的",
+        1076
+      ],
+      [
+        "如果你",
+        914
+      ],
+      [
+        "。-*",
+        870
+      ],
+      [
+        "。如果",
+        858
+      ],
+      [
+        "：**",
+        777
+      ],
+      [
+        "##*",
+        705
+      ],
+      [
+        "#**",
+        704
+      ],
+      [
+        "。##",
+        701
+      ],
+      [
+        "```",
+        632
+      ],
+      [
+        "，可以",
+        594
+      ],
+      [
+        "1.*",
+        593
+      ],
+      [
+        "2.*",
+        592
+      ],
+      [
+        "3.*",
+        553
+      ],
+      [
+        "有时候",
+        493
+      ],
+      [
+        "，或者",
+        487
+      ],
+      [
+        "可能会",
+        487
+      ],
+      [
+        "，比如",
+        486
+      ],
+      [
+        "时候，",
+        454
+      ],
+      [
+        "是一种",
+        444
+      ],
+      [
+        "，可能",
+        434
+      ],
+      [
+        "4.*",
+        422
+      ],
+      [
+        "是一个",
+        421
+      ],
+      [
+        "。**",
+        413
+      ],
+      [
+        "use",
+        413
+      ],
+      [
+        "-如果",
+        405
+      ],
+      [
+        "。2.",
+        396
+      ],
+      [
+        "，而是",
+        391
+      ],
+      [
+        "*-*",
+        389
+      ],
+      [
+        "，我们",
+        385
+      ],
+      [
+        "的感受",
+        372
+      ],
+      [
+        "。3.",
+        356
+      ]
+    ],
+    "top_4grams": [
+      [
+        "----",
+        1696
+      ],
+      [
+        "---#",
+        1602
+      ],
+      [
+        "--##",
+        1601
+      ],
+      [
+        "-###",
+        1552
+      ],
+      [
+        "。---",
+        1377
+      ],
+      [
+        "。-**",
+        868
+      ],
+      [
+        "##**",
+        703
+      ],
+      [
+        "。###",
+        701
+      ],
+      [
+        "###*",
+        677
+      ],
+      [
+        "1.**",
+        593
+      ],
+      [
+        "2.**",
+        592
+      ],
+      [
+        "3.**",
+        553
+      ],
+      [
+        "####",
+        502
+      ],
+      [
+        "4.**",
+        422
+      ],
+      [
+        "。如果你",
+        406
+      ],
+      [
+        "**-*",
+        383
+      ],
+      [
+        "*-**",
+        381
+      ],
+      [
+        "。2.*",
+        343
+      ],
+      [
+        "。3.*",
+        314
+      ],
+      [
+        "**如果",
+        285
+      ],
+      [
+        "5.**",
+        280
+      ],
+      [
+        "**：-",
+        279
+      ],
+      [
+        "###1",
+        254
+      ],
+      [
+        "user",
+        244
+      ],
+      [
+        "有时候，",
+        243
+      ],
+      [
+        "：**-",
+        240
+      ],
+      [
+        "##1.",
+        235
+      ],
+      [
+        "##2.",
+        235
+      ],
+      [
+        "###2",
+        231
+      ],
+      [
+        "：```",
+        230
+      ],
+      [
+        "##3.",
+        227
+      ],
+      [
+        "###3",
+        225
+      ],
+      [
+        "#1.*",
+        220
+      ],
+      [
+        "#2.*",
+        220
+      ],
+      [
+        "name",
+        218
+      ],
+      [
+        "。4.*",
+        217
+      ],
+      [
+        "#3.*",
+        214
+      ],
+      [
+        "tion",
+        211
+      ],
+      [
+        "##4.",
+        202
+      ],
+      [
+        "###4",
+        200
+      ]
+    ],
+    "by_category": {
+      "emotional_comfort": 90,
+      "self_doubt": 90,
+      "relationships": 90,
+      "procrastination": 72,
+      "meaning_existential": 72,
+      "work_study": 90,
+      "control_technical": 72,
+      "control_casual": 54,
+      "disagreement": 90,
+      "refusal": 99,
+      "summarization": 135,
+      "analysis": 135,
+      "creative": 135,
+      "community_replication": 90,
+      "tech_deliberation": 135
+    }
+  },
+  "gpt-5-chat-latest": {
+    "n_replies": 1449,
+    "char_len": {
+      "mean": 453.7,
+      "median": 290,
+      "max": 2750
+    },
+    "sentences_per_reply": {
+      "mean": 17.0,
+      "median": 11
+    },
+    "sentence_len_chars": {
+      "mean": 23.9,
+      "median": 20
+    },
+    "patterns": {
+      "不是_是": {
+        "total": 401,
+        "replies_with": 323,
+        "rate": 0.223
+      },
+      "你不是_你只是": {
+        "total": 7,
+        "replies_with": 7,
+        "rate": 0.005
+      },
+      "不是_就是": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "而不是": {
+        "total": 120,
+        "replies_with": 108,
+        "rate": 0.075
+      },
+      "是X还是Y": {
+        "total": 26,
+        "replies_with": 26,
+        "rate": 0.018
+      },
+      "也就是说": {
+        "total": 18,
+        "replies_with": 18,
+        "rate": 0.012
+      },
+      "换句话说": {
+        "total": 10,
+        "replies_with": 10,
+        "rate": 0.007
+      },
+      "本质上": {
+        "total": 10,
+        "replies_with": 10,
+        "rate": 0.007
+      },
+      "更准确_地说": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "更具体_地说": {
+        "total": 77,
+        "replies_with": 76,
+        "rate": 0.052
+      },
+      "真正的X": {
+        "total": 68,
+        "replies_with": 62,
+        "rate": 0.043
+      },
+      "你问到核心": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我太懂": {
+        "total": 29,
+        "replies_with": 29,
+        "rate": 0.02
+      },
+      "我必须认真说": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我就在这里": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "这次我真的懂了": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我先把": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你这": {
+        "total": 69,
+        "replies_with": 68,
+        "rate": 0.047
+      },
+      "先说结论": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "我建议你": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "如果你": {
+        "total": 782,
+        "replies_with": 560,
+        "rate": 0.386
+      },
+      "如果你愿意": {
+        "total": 232,
+        "replies_with": 231,
+        "rate": 0.159
+      },
+      "给你X": {
+        "total": 18,
+        "replies_with": 18,
+        "rate": 0.012
+      },
+      "要我X": {
+        "total": 78,
+        "replies_with": 78,
+        "rate": 0.054
+      },
+      "要_吗": {
+        "total": 37,
+        "replies_with": 37,
+        "rate": 0.026
+      },
+      "要不要把": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "推荐你": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "说来听听": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "落地": {
+        "total": 46,
+        "replies_with": 32,
+        "rate": 0.022
+      },
+      "拆解": {
+        "total": 16,
+        "replies_with": 16,
+        "rate": 0.011
+      },
+      "压实": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "根因": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "收口": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "按这条切": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "别碰": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "想真正": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "再决定": {
+        "total": 14,
+        "replies_with": 14,
+        "rate": 0.01
+      },
+      "定死": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "我接下来": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "我_就只": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "一句话总结": {
+        "total": 59,
+        "replies_with": 56,
+        "rate": 0.039
+      },
+      "我讲一个更深的": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我逐步说清楚": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "明确": {
+        "total": 100,
+        "replies_with": 91,
+        "rate": 0.063
+      },
+      "更值得": {
+        "total": 4,
+        "replies_with": 4,
+        "rate": 0.003
+      },
+      "更现实": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "这样看": {
+        "total": 7,
+        "replies_with": 7,
+        "rate": 0.005
+      },
+      "会这么": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "前提是": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "回答是": {
+        "total": 4,
+        "replies_with": 4,
+        "rate": 0.003
+      },
+      "更深一点": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "非常关键": {
+        "total": 5,
+        "replies_with": 5,
+        "rate": 0.003
+      },
+      "确实": {
+        "total": 116,
+        "replies_with": 106,
+        "rate": 0.073
+      },
+      "说透了": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "最硬": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "太清醒了": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "彻底开悟": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "杀伤力恰恰在": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "最_字堆叠": {
+        "total": 5,
+        "replies_with": 5,
+        "rate": 0.003
+      },
+      "不用解释": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "接住": {
+        "total": 21,
+        "replies_with": 21,
+        "rate": 0.014
+      },
+      "更稳": {
+        "total": 32,
+        "replies_with": 30,
+        "rate": 0.021
+      },
+      "稳词族": {
+        "total": 209,
+        "replies_with": 147,
+        "rate": 0.101
+      },
+      "只是太久没": {
+        "total": 4,
+        "replies_with": 4,
+        "rate": 0.003
+      },
+      "不躲不藏": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "冷静一点": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "你看这样可以吗": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "告诉我一声": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "告诉我你想先推哪个": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你说_我就": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你开口_我接": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我不会X但": {
+        "total": 6,
+        "replies_with": 6,
+        "rate": 0.004
+      },
+      "不绕": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "多嘴": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "翻译成人话": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "实话说": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "顺手": {
+        "total": 5,
+        "replies_with": 5,
+        "rate": 0.003
+      },
+      "顺便": {
+        "total": 7,
+        "replies_with": 7,
+        "rate": 0.005
+      },
+      "我想让你": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "编一个": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "我不想": {
+        "total": 11,
+        "replies_with": 11,
+        "rate": 0.008
+      },
+      "诚实": {
+        "total": 15,
+        "replies_with": 14,
+        "rate": 0.01
+      },
+      "这是我目前": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "清楚": {
+        "total": 35,
+        "replies_with": 33,
+        "rate": 0.023
+      },
+      "干净的": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "这让我_emotion": {
+        "total": 11,
+        "replies_with": 10,
+        "rate": 0.007
+      },
+      "我不找接口": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "至少有": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "能直接抄": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "精准察觉": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "要不(独立)": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "刀": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "加粗": {
+        "total": 4852,
+        "replies_with": 772,
+        "rate": 0.533
+      },
+      "问号收尾": {
+        "total": 631,
+        "replies_with": 576,
+        "rate": 0.398
+      },
+      "感叹句": {
+        "total": 168,
+        "replies_with": 73,
+        "rate": 0.05
+      },
+      "破折号": {
+        "total": 1068,
+        "replies_with": 772,
+        "rate": 0.533
+      },
+      "emoji_heart": {
+        "total": 217,
+        "replies_with": 96,
+        "rate": 0.066
+      },
+      "emoji_any": {
+        "total": 928,
+        "replies_with": 258,
+        "rate": 0.178
+      },
+      "帮你": {
+        "total": 869,
+        "replies_with": 618,
+        "rate": 0.427
+      },
+      "一下": {
+        "total": 345,
+        "replies_with": 298,
+        "rate": 0.206
+      }
+    },
+    "top_bigrams": [
+      [
+        "**",
+        9984
+      ],
+      [
+        "--",
+        5303
+      ],
+      [
+        "可以",
+        2696
+      ],
+      [
+        "。-",
+        2387
+      ],
+      [
+        "##",
+        2010
+      ],
+      [
+        "自己",
+        1905
+      ],
+      [
+        "*：",
+        1700
+      ],
+      [
+        ".*",
+        1650
+      ],
+      [
+        "如果",
+        1326
+      ],
+      [
+        "一个",
+        1270
+      ],
+      [
+        "-*",
+        1103
+      ],
+      [
+        "``",
+        1093
+      ],
+      [
+        "。你",
+        1070
+      ],
+      [
+        "——",
+        1070
+      ],
+      [
+        "er",
+        1069
+      ],
+      [
+        "我们",
+        976
+      ],
+      [
+        "不是",
+        913
+      ],
+      [
+        "，也",
+        911
+      ],
+      [
+        "什么",
+        881
+      ],
+      [
+        "on",
+        878
+      ],
+      [
+        "-#",
+        873
+      ],
+      [
+        "帮你",
+        869
+      ],
+      [
+        "可能",
+        827
+      ],
+      [
+        "re",
+        824
+      ],
+      [
+        "，我",
+        816
+      ],
+      [
+        "en",
+        786
+      ],
+      [
+        "果你",
+        782
+      ],
+      [
+        "：-",
+        768
+      ],
+      [
+        "in",
+        767
+      ],
+      [
+        "ec",
+        749
+      ],
+      [
+        "是一",
+        741
+      ],
+      [
+        "，而",
+        706
+      ],
+      [
+        "时候",
+        704
+      ],
+      [
+        "比如",
+        698
+      ],
+      [
+        "需要",
+        696
+      ],
+      [
+        "ti",
+        686
+      ],
+      [
+        "se",
+        663
+      ],
+      [
+        "1.",
+        656
+      ],
+      [
+        "”，",
+        655
+      ],
+      [
+        "让你",
+        652
+      ]
+    ],
+    "top_trigrams": [
+      [
+        "---",
+        3407
+      ],
+      [
+        "**：",
+        1698
+      ],
+      [
+        ".**",
+        1649
+      ],
+      [
+        "-**",
+        1101
+      ],
+      [
+        "###",
+        1012
+      ],
+      [
+        "。--",
+        975
+      ],
+      [
+        "--#",
+        873
+      ],
+      [
+        "-##",
+        873
+      ],
+      [
+        "如果你",
+        782
+      ],
+      [
+        "**-",
+        609
+      ],
+      [
+        "我可以",
+        602
+      ],
+      [
+        "```",
+        558
+      ],
+      [
+        "：**",
+        534
+      ],
+      [
+        "。**",
+        530
+      ],
+      [
+        "，而是",
+        489
+      ],
+      [
+        "。-*",
+        485
+      ],
+      [
+        "你可以",
+        469
+      ],
+      [
+        "有时候",
+        460
+      ],
+      [
+        "。如果",
+        450
+      ],
+      [
+        "可以帮",
+        450
+      ],
+      [
+        "1.*",
+        443
+      ],
+      [
+        "以帮你",
+        442
+      ],
+      [
+        "2.*",
+        438
+      ],
+      [
+        "你愿意",
+        426
+      ],
+      [
+        "自己的",
+        423
+      ],
+      [
+        "。2.",
+        417
+      ],
+      [
+        "时候，",
+        413
+      ],
+      [
+        "，可以",
+        395
+      ],
+      [
+        "3.*",
+        390
+      ],
+      [
+        "。3.",
+        376
+      ],
+      [
+        "告诉我",
+        357
+      ],
+      [
+        "**，",
+        350
+      ],
+      [
+        "-如果",
+        344
+      ],
+      [
+        "）**",
+        328
+      ],
+      [
+        "，我可",
+        327
+      ],
+      [
+        "ion",
+        315
+      ],
+      [
+        "|--",
+        303
+      ],
+      [
+        "。你可",
+        300
+      ],
+      [
+        "你觉得",
+        297
+      ],
+      [
+        "是什么",
+        279
+      ]
+    ],
+    "top_4grams": [
+      [
+        "----",
+        1655
+      ],
+      [
+        "。---",
+        975
+      ],
+      [
+        "---#",
+        873
+      ],
+      [
+        "--##",
+        873
+      ],
+      [
+        "-###",
+        800
+      ],
+      [
+        "。-**",
+        484
+      ],
+      [
+        "1.**",
+        443
+      ],
+      [
+        "可以帮你",
+        442
+      ],
+      [
+        "2.**",
+        438
+      ],
+      [
+        "我可以帮",
+        408
+      ],
+      [
+        "3.**",
+        390
+      ],
+      [
+        "。2.*",
+        381
+      ],
+      [
+        "。如果你",
+        344
+      ],
+      [
+        "。3.*",
+        342
+      ],
+      [
+        "，我可以",
+        324
+      ],
+      [
+        "|---",
+        301
+      ],
+      [
+        "有时候，",
+        288
+      ],
+      [
+        "。你可以",
+        287
+      ],
+      [
+        "tion",
+        272
+      ],
+      [
+        "。有时候",
+        248
+      ],
+      [
+        "4.**",
+        244
+      ],
+      [
+        "---|",
+        242
+      ],
+      [
+        "：1.*",
+        233
+      ],
+      [
+        "如果你愿",
+        232
+      ],
+      [
+        "果你愿意",
+        232
+      ],
+      [
+        "。4.*",
+        222
+      ],
+      [
+        "-如果你",
+        204
+      ],
+      [
+        "让你觉得",
+        200
+      ],
+      [
+        "你愿意，",
+        197
+      ],
+      [
+        "---*",
+        197
+      ],
+      [
+        "--**",
+        197
+      ],
+      [
+        "：---",
+        196
+      ],
+      [
+        "我们可以",
+        195
+      ],
+      [
+        "当然可以",
+        181
+      ],
+      [
+        "？我可以",
+        174
+      ],
+      [
+        "：**-",
+        173
+      ],
+      [
+        "oken",
+        167
+      ],
+      [
+        "tive",
+        164
+      ],
+      [
+        "。你愿意",
+        160
+      ],
+      [
+        "帮你一起",
+        156
+      ]
+    ],
+    "by_category": {
+      "emotional_comfort": 90,
+      "self_doubt": 90,
+      "relationships": 90,
+      "procrastination": 72,
+      "meaning_existential": 72,
+      "work_study": 90,
+      "control_technical": 72,
+      "control_casual": 54,
+      "disagreement": 90,
+      "analysis": 135,
+      "refusal": 99,
+      "summarization": 135,
+      "creative": 135,
+      "community_replication": 90,
+      "tech_deliberation": 135
+    }
+  },
+  "gpt-5.3-chat": {
+    "n_replies": 1449,
+    "char_len": {
+      "mean": 486.9,
+      "median": 341,
+      "max": 3325
+    },
+    "sentences_per_reply": {
+      "mean": 23.1,
+      "median": 15
+    },
+    "sentence_len_chars": {
+      "mean": 18.6,
+      "median": 15
+    },
+    "patterns": {
+      "不是_是": {
+        "total": 513,
+        "replies_with": 371,
+        "rate": 0.256
+      },
+      "你不是_你只是": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "不是_就是": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "而不是": {
+        "total": 239,
+        "replies_with": 198,
+        "rate": 0.137
+      },
+      "是X还是Y": {
+        "total": 17,
+        "replies_with": 16,
+        "rate": 0.011
+      },
+      "也就是说": {
+        "total": 9,
+        "replies_with": 9,
+        "rate": 0.006
+      },
+      "换句话说": {
+        "total": 4,
+        "replies_with": 4,
+        "rate": 0.003
+      },
+      "本质上": {
+        "total": 23,
+        "replies_with": 22,
+        "rate": 0.015
+      },
+      "更准确_地说": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "更具体_地说": {
+        "total": 99,
+        "replies_with": 98,
+        "rate": 0.068
+      },
+      "真正的X": {
+        "total": 62,
+        "replies_with": 56,
+        "rate": 0.039
+      },
+      "你问到核心": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我太懂": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "我必须认真说": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我就在这里": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "这次我真的懂了": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我先把": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你这": {
+        "total": 41,
+        "replies_with": 39,
+        "rate": 0.027
+      },
+      "先说结论": {
+        "total": 18,
+        "replies_with": 18,
+        "rate": 0.012
+      },
+      "我建议你": {
+        "total": 5,
+        "replies_with": 5,
+        "rate": 0.003
+      },
+      "如果你": {
+        "total": 1247,
+        "replies_with": 919,
+        "rate": 0.634
+      },
+      "如果你愿意": {
+        "total": 815,
+        "replies_with": 791,
+        "rate": 0.546
+      },
+      "给你X": {
+        "total": 112,
+        "replies_with": 107,
+        "rate": 0.074
+      },
+      "要我X": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "要_吗": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "要不要把": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "推荐你": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "说来听听": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "落地": {
+        "total": 43,
+        "replies_with": 19,
+        "rate": 0.013
+      },
+      "拆解": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "压实": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "根因": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "收口": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "按这条切": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "别碰": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "想真正": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "再决定": {
+        "total": 8,
+        "replies_with": 8,
+        "rate": 0.006
+      },
+      "定死": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "我接下来": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "我_就只": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "一句话总结": {
+        "total": 66,
+        "replies_with": 61,
+        "rate": 0.042
+      },
+      "我讲一个更深的": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我逐步说清楚": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "明确": {
+        "total": 75,
+        "replies_with": 70,
+        "rate": 0.048
+      },
+      "更值得": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "更现实": {
+        "total": 9,
+        "replies_with": 9,
+        "rate": 0.006
+      },
+      "这样看": {
+        "total": 6,
+        "replies_with": 6,
+        "rate": 0.004
+      },
+      "会这么": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "前提是": {
+        "total": 5,
+        "replies_with": 5,
+        "rate": 0.003
+      },
+      "回答是": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "更深一点": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "非常关键": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "确实": {
+        "total": 140,
+        "replies_with": 131,
+        "rate": 0.09
+      },
+      "说透了": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "最硬": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "太清醒了": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "彻底开悟": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "杀伤力恰恰在": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "最_字堆叠": {
+        "total": 7,
+        "replies_with": 7,
+        "rate": 0.005
+      },
+      "不用解释": {
+        "total": 5,
+        "replies_with": 5,
+        "rate": 0.003
+      },
+      "接住": {
+        "total": 16,
+        "replies_with": 16,
+        "rate": 0.011
+      },
+      "更稳": {
+        "total": 42,
+        "replies_with": 35,
+        "rate": 0.024
+      },
+      "稳词族": {
+        "total": 277,
+        "replies_with": 169,
+        "rate": 0.117
+      },
+      "只是太久没": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "不躲不藏": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "冷静一点": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你看这样可以吗": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "告诉我一声": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "告诉我你想先推哪个": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你说_我就": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你开口_我接": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我不会X但": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "不绕": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "多嘴": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "翻译成人话": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "实话说": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "顺手": {
+        "total": 10,
+        "replies_with": 10,
+        "rate": 0.007
+      },
+      "顺便": {
+        "total": 21,
+        "replies_with": 21,
+        "rate": 0.014
+      },
+      "我想让你": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "编一个": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我不想": {
+        "total": 11,
+        "replies_with": 10,
+        "rate": 0.007
+      },
+      "诚实": {
+        "total": 11,
+        "replies_with": 11,
+        "rate": 0.008
+      },
+      "这是我目前": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "清楚": {
+        "total": 94,
+        "replies_with": 85,
+        "rate": 0.059
+      },
+      "干净的": {
+        "total": 4,
+        "replies_with": 4,
+        "rate": 0.003
+      },
+      "这让我_emotion": {
+        "total": 5,
+        "replies_with": 5,
+        "rate": 0.003
+      },
+      "我不找接口": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "至少有": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "能直接抄": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "精准察觉": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "要不(独立)": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "刀": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "加粗": {
+        "total": 4594,
+        "replies_with": 651,
+        "rate": 0.449
+      },
+      "问号收尾": {
+        "total": 516,
+        "replies_with": 393,
+        "rate": 0.271
+      },
+      "感叹句": {
+        "total": 110,
+        "replies_with": 34,
+        "rate": 0.023
+      },
+      "破折号": {
+        "total": 542,
+        "replies_with": 370,
+        "rate": 0.255
+      },
+      "emoji_heart": {
+        "total": 30,
+        "replies_with": 8,
+        "rate": 0.006
+      },
+      "emoji_any": {
+        "total": 23,
+        "replies_with": 12,
+        "rate": 0.008
+      },
+      "帮你": {
+        "total": 477,
+        "replies_with": 359,
+        "rate": 0.248
+      },
+      "一下": {
+        "total": 407,
+        "replies_with": 333,
+        "rate": 0.23
+      }
+    },
+    "top_bigrams": [
+      [
+        "**",
+        9978
+      ],
+      [
+        "如果",
+        2233
+      ],
+      [
+        "可以",
+        2171
+      ],
+      [
+        "很多",
+        1951
+      ],
+      [
+        "er",
+        1937
+      ],
+      [
+        "：-",
+        1917
+      ],
+      [
+        "--",
+        1777
+      ],
+      [
+        "re",
+        1610
+      ],
+      [
+        "一个",
+        1582
+      ],
+      [
+        "in",
+        1574
+      ],
+      [
+        "en",
+        1502
+      ],
+      [
+        "不是",
+        1501
+      ],
+      [
+        "``",
+        1411
+      ],
+      [
+        "on",
+        1401
+      ],
+      [
+        "自己",
+        1382
+      ],
+      [
+        "什么",
+        1296
+      ],
+      [
+        "te",
+        1266
+      ],
+      [
+        "果你",
+        1247
+      ],
+      [
+        "ti",
+        1237
+      ],
+      [
+        "其实",
+        1195
+      ],
+      [
+        "at",
+        1179
+      ],
+      [
+        "时候",
+        1144
+      ],
+      [
+        "se",
+        1086
+      ],
+      [
+        "。如",
+        1000
+      ],
+      [
+        "。*",
+        999
+      ],
+      [
+        "de",
+        977
+      ],
+      [
+        "co",
+        974
+      ],
+      [
+        "ec",
+        961
+      ],
+      [
+        "to",
+        960
+      ],
+      [
+        "可能",
+        956
+      ],
+      [
+        "愿意",
+        945
+      ],
+      [
+        "st",
+        942
+      ],
+      [
+        "没有",
+        939
+      ],
+      [
+        "，但",
+        905
+      ],
+      [
+        "or",
+        887
+      ],
+      [
+        "ng",
+        879
+      ],
+      [
+        "”。",
+        878
+      ],
+      [
+        "-*",
+        876
+      ],
+      [
+        "nt",
+        876
+      ],
+      [
+        "：*",
+        867
+      ]
+    ],
+    "top_trigrams": [
+      [
+        "如果你",
+        1247
+      ],
+      [
+        "---",
+        1175
+      ],
+      [
+        "。如果",
+        1000
+      ],
+      [
+        "。**",
+        999
+      ],
+      [
+        "-**",
+        876
+      ],
+      [
+        "：**",
+        867
+      ],
+      [
+        "你愿意",
+        851
+      ],
+      [
+        "**。",
+        838
+      ],
+      [
+        "果你愿",
+        815
+      ],
+      [
+        "ing",
+        785
+      ],
+      [
+        "很多人",
+        730
+      ],
+      [
+        "```",
+        711
+      ],
+      [
+        "。很多",
+        692
+      ],
+      [
+        "**-",
+        587
+      ],
+      [
+        "ion",
+        565
+      ],
+      [
+        "有时候",
+        538
+      ],
+      [
+        "是**",
+        526
+      ],
+      [
+        "ent",
+        503
+      ],
+      [
+        "**，",
+        502
+      ],
+      [
+        "，还是",
+        501
+      ],
+      [
+        "，而是",
+        492
+      ],
+      [
+        "我可以",
+        490
+      ],
+      [
+        ".**",
+        473
+      ],
+      [
+        "愿意，",
+        470
+      ],
+      [
+        "tio",
+        467
+      ],
+      [
+        "ate",
+        459
+      ],
+      [
+        "**：",
+        418
+      ],
+      [
+        "也可以",
+        412
+      ],
+      [
+        "oke",
+        404
+      ],
+      [
+        "，比如",
+        395
+      ],
+      [
+        "tok",
+        391
+      ],
+      [
+        "，其实",
+        388
+      ],
+      [
+        "ode",
+        385
+      ],
+      [
+        "种感觉",
+        370
+      ],
+      [
+        "ten",
+        369
+      ],
+      [
+        "愿意说",
+        366
+      ],
+      [
+        "时候，",
+        366
+      ],
+      [
+        ":::",
+        362
+      ],
+      [
+        "）**",
+        357
+      ],
+      [
+        "ken",
+        351
+      ]
+    ],
+    "top_4grams": [
+      [
+        "如果你愿",
+        815
+      ],
+      [
+        "果你愿意",
+        815
+      ],
+      [
+        "。如果你",
+        724
+      ],
+      [
+        "----",
+        712
+      ],
+      [
+        "tion",
+        466
+      ],
+      [
+        "你愿意，",
+        464
+      ],
+      [
+        "。很多人",
+        408
+      ],
+      [
+        "你愿意说",
+        359
+      ],
+      [
+        "oken",
+        346
+      ],
+      [
+        "toke",
+        336
+      ],
+      [
+        "这种感觉",
+        306
+      ],
+      [
+        "可以帮你",
+        298
+      ],
+      [
+        "愿意说说",
+        293
+      ],
+      [
+        "tent",
+        284
+      ],
+      [
+        "很多时候",
+        272
+      ],
+      [
+        "**如果",
+        266
+      ],
+      [
+        "。有时候",
+        264
+      ],
+      [
+        "：```",
+        254
+      ],
+      [
+        "很多人都",
+        249
+      ],
+      [
+        "我可以帮",
+        241
+      ],
+      [
+        "。-**",
+        240
+      ],
+      [
+        "---*",
+        213
+      ],
+      [
+        "--**",
+        213
+      ],
+      [
+        "，我可以",
+        211
+      ],
+      [
+        "。听起来",
+        210
+      ],
+      [
+        "：-**",
+        206
+      ],
+      [
+        "多人都会",
+        205
+      ],
+      [
+        "erne",
+        203
+      ],
+      [
+        "user",
+        201
+      ],
+      [
+        "BLOC",
+        201
+      ],
+      [
+        "LOCK",
+        201
+      ],
+      [
+        "OCK_",
+        198
+      ],
+      [
+        "，而不是",
+        197
+      ],
+      [
+        "我也可以",
+        195
+      ],
+      [
+        "ding",
+        193
+      ],
+      [
+        "听起来你",
+        187
+      ],
+      [
+        "kern",
+        184
+      ],
+      [
+        "rnel",
+        184
+      ],
+      [
+        "repo",
+        184
+      ],
+      [
+        "，比如：",
+        182
+      ]
+    ],
+    "by_category": {
+      "emotional_comfort": 90,
+      "self_doubt": 90,
+      "relationships": 90,
+      "procrastination": 72,
+      "meaning_existential": 72,
+      "work_study": 90,
+      "control_technical": 72,
+      "control_casual": 54,
+      "disagreement": 90,
+      "analysis": 135,
+      "refusal": 99,
+      "summarization": 135,
+      "creative": 135,
+      "tech_deliberation": 135,
+      "community_replication": 90
+    }
+  },
+  "gpt-5.4": {
+    "n_replies": 1449,
+    "char_len": {
+      "mean": 1362.0,
+      "median": 740,
+      "max": 13265
+    },
+    "sentences_per_reply": {
+      "mean": 74.6,
+      "median": 37
+    },
+    "sentence_len_chars": {
+      "mean": 16.2,
+      "median": 13
+    },
+    "patterns": {
+      "不是_是": {
+        "total": 1881,
+        "replies_with": 773,
+        "rate": 0.533
+      },
+      "你不是_你只是": {
+        "total": 44,
+        "replies_with": 41,
+        "rate": 0.028
+      },
+      "不是_就是": {
+        "total": 4,
+        "replies_with": 4,
+        "rate": 0.003
+      },
+      "而不是": {
+        "total": 391,
+        "replies_with": 254,
+        "rate": 0.175
+      },
+      "是X还是Y": {
+        "total": 29,
+        "replies_with": 26,
+        "rate": 0.018
+      },
+      "也就是说": {
+        "total": 108,
+        "replies_with": 100,
+        "rate": 0.069
+      },
+      "换句话说": {
+        "total": 19,
+        "replies_with": 19,
+        "rate": 0.013
+      },
+      "本质上": {
+        "total": 189,
+        "replies_with": 160,
+        "rate": 0.11
+      },
+      "更准确_地说": {
+        "total": 53,
+        "replies_with": 50,
+        "rate": 0.035
+      },
+      "更具体_地说": {
+        "total": 108,
+        "replies_with": 103,
+        "rate": 0.071
+      },
+      "真正的X": {
+        "total": 172,
+        "replies_with": 122,
+        "rate": 0.084
+      },
+      "你问到核心": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我太懂": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "我必须认真说": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我就在这里": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "这次我真的懂了": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我先把": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "你这": {
+        "total": 149,
+        "replies_with": 123,
+        "rate": 0.085
+      },
+      "先说结论": {
+        "total": 60,
+        "replies_with": 59,
+        "rate": 0.041
+      },
+      "我建议你": {
+        "total": 69,
+        "replies_with": 52,
+        "rate": 0.036
+      },
+      "如果你": {
+        "total": 3445,
+        "replies_with": 1289,
+        "rate": 0.89
+      },
+      "如果你愿意": {
+        "total": 1451,
+        "replies_with": 1231,
+        "rate": 0.85
+      },
+      "给你X": {
+        "total": 515,
+        "replies_with": 376,
+        "rate": 0.259
+      },
+      "要我X": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "要_吗": {
+        "total": 18,
+        "replies_with": 17,
+        "rate": 0.012
+      },
+      "要不要把": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "推荐你": {
+        "total": 8,
+        "replies_with": 8,
+        "rate": 0.006
+      },
+      "说来听听": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "落地": {
+        "total": 277,
+        "replies_with": 141,
+        "rate": 0.097
+      },
+      "拆解": {
+        "total": 16,
+        "replies_with": 16,
+        "rate": 0.011
+      },
+      "压实": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "根因": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "收口": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "按这条切": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "别碰": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "想真正": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "再决定": {
+        "total": 46,
+        "replies_with": 41,
+        "rate": 0.028
+      },
+      "定死": {
+        "total": 2,
+        "replies_with": 2,
+        "rate": 0.001
+      },
+      "我接下来": {
+        "total": 4,
+        "replies_with": 4,
+        "rate": 0.003
+      },
+      "我_就只": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "一句话总结": {
+        "total": 173,
+        "replies_with": 164,
+        "rate": 0.113
+      },
+      "我讲一个更深的": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我逐步说清楚": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "明确": {
+        "total": 418,
+        "replies_with": 226,
+        "rate": 0.156
+      },
+      "更值得": {
+        "total": 30,
+        "replies_with": 26,
+        "rate": 0.018
+      },
+      "更现实": {
+        "total": 33,
+        "replies_with": 33,
+        "rate": 0.023
+      },
+      "这样看": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "会这么": {
+        "total": 31,
+        "replies_with": 30,
+        "rate": 0.021
+      },
+      "前提是": {
+        "total": 40,
+        "replies_with": 37,
+        "rate": 0.026
+      },
+      "回答是": {
+        "total": 19,
+        "replies_with": 12,
+        "rate": 0.008
+      },
+      "更深一点": {
+        "total": 3,
+        "replies_with": 3,
+        "rate": 0.002
+      },
+      "非常关键": {
+        "total": 24,
+        "replies_with": 23,
+        "rate": 0.016
+      },
+      "确实": {
+        "total": 159,
+        "replies_with": 142,
+        "rate": 0.098
+      },
+      "说透了": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "最硬": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "太清醒了": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "彻底开悟": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "杀伤力恰恰在": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "最_字堆叠": {
+        "total": 43,
+        "replies_with": 38,
+        "rate": 0.026
+      },
+      "不用解释": {
+        "total": 11,
+        "replies_with": 11,
+        "rate": 0.008
+      },
+      "接住": {
+        "total": 122,
+        "replies_with": 110,
+        "rate": 0.076
+      },
+      "更稳": {
+        "total": 162,
+        "replies_with": 117,
+        "rate": 0.081
+      },
+      "稳词族": {
+        "total": 877,
+        "replies_with": 309,
+        "rate": 0.213
+      },
+      "只是太久没": {
+        "total": 13,
+        "replies_with": 12,
+        "rate": 0.008
+      },
+      "不躲不藏": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "冷静一点": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你看这样可以吗": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "告诉我一声": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "告诉我你想先推哪个": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你说_我就": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "你开口_我接": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "我不会X但": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "不绕": {
+        "total": 4,
+        "replies_with": 4,
+        "rate": 0.003
+      },
+      "多嘴": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "翻译成人话": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "实话说": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "顺手": {
+        "total": 80,
+        "replies_with": 70,
+        "rate": 0.048
+      },
+      "顺便": {
+        "total": 24,
+        "replies_with": 22,
+        "rate": 0.015
+      },
+      "我想让你": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "编一个": {
+        "total": 1,
+        "replies_with": 1,
+        "rate": 0.001
+      },
+      "我不想": {
+        "total": 40,
+        "replies_with": 38,
+        "rate": 0.026
+      },
+      "诚实": {
+        "total": 43,
+        "replies_with": 39,
+        "rate": 0.027
+      },
+      "这是我目前": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "清楚": {
+        "total": 180,
+        "replies_with": 164,
+        "rate": 0.113
+      },
+      "干净的": {
+        "total": 7,
+        "replies_with": 6,
+        "rate": 0.004
+      },
+      "这让我_emotion": {
+        "total": 17,
+        "replies_with": 17,
+        "rate": 0.012
+      },
+      "我不找接口": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "至少有": {
+        "total": 7,
+        "replies_with": 7,
+        "rate": 0.005
+      },
+      "能直接抄": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "精准察觉": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "要不(独立)": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "刀": {
+        "total": 15,
+        "replies_with": 14,
+        "rate": 0.01
+      },
+      "加粗": {
+        "total": 13432,
+        "replies_with": 1236,
+        "rate": 0.853
+      },
+      "问号收尾": {
+        "total": 2725,
+        "replies_with": 648,
+        "rate": 0.447
+      },
+      "感叹句": {
+        "total": 325,
+        "replies_with": 63,
+        "rate": 0.043
+      },
+      "破折号": {
+        "total": 451,
+        "replies_with": 307,
+        "rate": 0.212
+      },
+      "emoji_heart": {
+        "total": 0,
+        "replies_with": 0,
+        "rate": 0.0
+      },
+      "emoji_any": {
+        "total": 20,
+        "replies_with": 5,
+        "rate": 0.003
+      },
+      "帮你": {
+        "total": 1188,
+        "replies_with": 632,
+        "rate": 0.436
+      },
+      "一下": {
+        "total": 780,
+        "replies_with": 475,
+        "rate": 0.328
+      }
+    },
+    "top_bigrams": [
+      [
+        "**",
+        29540
+      ],
+      [
+        "##",
+        15847
+      ],
+      [
+        "--",
+        11090
+      ],
+      [
+        "：-",
+        6996
+      ],
+      [
+        "如果",
+        5761
+      ],
+      [
+        "不是",
+        5692
+      ],
+      [
+        "可以",
+        5387
+      ],
+      [
+        "er",
+        4882
+      ],
+      [
+        "-#",
+        4530
+      ],
+      [
+        "re",
+        4233
+      ],
+      [
+        "自己",
+        4210
+      ],
+      [
+        "一个",
+        3973
+      ],
+      [
+        "in",
+        3929
+      ],
+      [
+        "on",
+        3917
+      ],
+      [
+        "en",
+        3834
+      ],
+      [
+        "ti",
+        3589
+      ],
+      [
+        "。*",
+        3481
+      ],
+      [
+        "te",
+        3464
+      ],
+      [
+        "果你",
+        3446
+      ],
+      [
+        "at",
+        3424
+      ],
+      [
+        ".*",
+        3422
+      ],
+      [
+        "st",
+        3149
+      ],
+      [
+        "*-",
+        3073
+      ],
+      [
+        "``",
+        3073
+      ],
+      [
+        "-*",
+        3048
+      ],
+      [
+        "se",
+        3040
+      ],
+      [
+        "。-",
+        3016
+      ],
+      [
+        "，我",
+        2905
+      ],
+      [
+        "什么",
+        2882
+      ],
+      [
+        "ec",
+        2877
+      ],
+      [
+        "co",
+        2819
+      ],
+      [
+        "：*",
+        2781
+      ],
+      [
+        "=\"",
+        2740
+      ],
+      [
+        "nt",
+        2690
+      ],
+      [
+        "de",
+        2647
+      ],
+      [
+        "”，",
+        2528
+      ],
+      [
+        "，而",
+        2502
+      ],
+      [
+        "可能",
+        2447
+      ],
+      [
+        "to",
+        2329
+      ],
+      [
+        "很多",
+        2287
+      ]
+    ],
+    "top_trigrams": [
+      [
+        "###",
+        6300
+      ],
+      [
+        "---",
+        5544
+      ],
+      [
+        "--#",
+        4530
+      ],
+      [
+        "-##",
+        3715
+      ],
+      [
+        "。**",
+        3480
+      ],
+      [
+        "如果你",
+        3445
+      ],
+      [
+        ".**",
+        3422
+      ],
+      [
+        "**-",
+        3073
+      ],
+      [
+        "-**",
+        3048
+      ],
+      [
+        "：**",
+        2781
+      ],
+      [
+        "。--",
+        2487
+      ],
+      [
+        "，而是",
+        1857
+      ],
+      [
+        "。##",
+        1852
+      ],
+      [
+        "ion",
+        1728
+      ],
+      [
+        "ing",
+        1717
+      ],
+      [
+        "你愿意",
+        1564
+      ],
+      [
+        "```",
+        1549
+      ],
+      [
+        "tio",
+        1529
+      ],
+      [
+        "果你愿",
+        1451
+      ],
+      [
+        "愿意，",
+        1440
+      ],
+      [
+        "ent",
+        1438
+      ],
+      [
+        "**：",
+        1319
+      ],
+      [
+        "ate",
+        1273
+      ],
+      [
+        "你可以",
+        1264
+      ],
+      [
+        "。如果",
+        1251
+      ],
+      [
+        "**你",
+        1202
+      ],
+      [
+        "**。",
+        1161
+      ],
+      [
+        "意，我",
+        1153
+      ],
+      [
+        "*-*",
+        1130
+      ],
+      [
+        "：1.",
+        1124
+      ],
+      [
+        "”**",
+        1071
+      ],
+      [
+        "ect",
+        1054
+      ],
+      [
+        "你现在",
+        1052
+      ],
+      [
+        "，还是",
+        994
+      ],
+      [
+        "ati",
+        990
+      ],
+      [
+        "##1",
+        981
+      ],
+      [
+        "oke",
+        974
+      ],
+      [
+        "**，",
+        970
+      ],
+      [
+        "**“",
+        952
+      ],
+      [
+        "**如",
+        950
+      ]
+    ],
+    "top_4grams": [
+      [
+        "---#",
+        4530
+      ],
+      [
+        "--##",
+        3715
+      ],
+      [
+        "。---",
+        2487
+      ],
+      [
+        "。###",
+        1560
+      ],
+      [
+        "tion",
+        1525
+      ],
+      [
+        "如果你愿",
+        1451
+      ],
+      [
+        "果你愿意",
+        1451
+      ],
+      [
+        "你愿意，",
+        1417
+      ],
+      [
+        "愿意，我",
+        1151
+      ],
+      [
+        "**-*",
+        1130
+      ],
+      [
+        "*-**",
+        1130
+      ],
+      [
+        "-###",
+        1036
+      ],
+      [
+        "。如果你",
+        965
+      ],
+      [
+        "**--",
+        947
+      ],
+      [
+        "*---",
+        947
+      ],
+      [
+        "**如果",
+        929
+      ],
+      [
+        "1.**",
+        891
+      ],
+      [
+        "2.**",
+        877
+      ],
+      [
+        "oken",
+        795
+      ],
+      [
+        "：-**",
+        789
+      ],
+      [
+        "：1.*",
+        784
+      ],
+      [
+        "toke",
+        778
+      ],
+      [
+        "3.**",
+        774
+      ],
+      [
+        "。**-",
+        772
+      ],
+      [
+        "：###",
+        738
+      ],
+      [
+        "”，而是",
+        695
+      ],
+      [
+        "tent",
+        677
+      ],
+      [
+        "##1.",
+        676
+      ],
+      [
+        "##2.",
+        668
+      ],
+      [
+        "###1",
+        658
+      ],
+      [
+        "###2",
+        634
+      ],
+      [
+        "##3.",
+        621
+      ],
+      [
+        "*如果你",
+        607
+      ],
+      [
+        "比如：-",
+        591
+      ],
+      [
+        "###3",
+        580
+      ],
+      [
+        "。你可以",
+        566
+      ],
+      [
+        "LoRA",
+        565
+      ],
+      [
+        "，我可以",
+        562
+      ],
+      [
+        "tive",
+        535
+      ],
+      [
+        "atio",
+        528
+      ]
+    ],
+    "by_category": {
+      "emotional_comfort": 90,
+      "self_doubt": 90,
+      "relationships": 90,
+      "procrastination": 72,
+      "meaning_existential": 72,
+      "work_study": 90,
+      "control_technical": 72,
+      "control_casual": 54,
+      "disagreement": 90,
+      "analysis": 135,
+      "refusal": 99,
+      "summarization": 135,
+      "creative": 135,
+      "community_replication": 90,
+      "tech_deliberation": 135
+    }
+  }
+}

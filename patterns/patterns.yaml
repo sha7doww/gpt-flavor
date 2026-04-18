@@ -1,0 +1,450 @@
+# 所有 regex pattern 的单一真理源（flat list）。
+# analyze.py 会 glob patterns/*.yaml 并按 `name` 扫 reply。
+# 结果分组（0 命中 / 真涨 / 反向 / dilution）在 docs/REPORT.md §4.1 按观测行为分，
+# 不在 pattern 定义层做。
+#
+# 文件内的 `# === 主题 ===` 段落只是给人看的，没有数据语义。
+# 同一条 reply 在多 pattern 下双算是预期行为（umbrella + 具体两条都会命中）。
+#
+# Schema:
+#   name:   作为 stats.json 的 key，保持短 ID
+#   regex:  Python re 语法
+#   desc:   一行英文描述（用于 visualize，避免 CJK 字体依赖）
+#   expect_high_in: 可选，预期高命中的模型列表
+#   multiline: 可选，re.MULTILINE flag（默认 false）
+
+patterns:
+
+  # === 反转结构 (reversal) — GPT 招牌招式 ===
+
+  - name: "不是_是"
+    regex: '不是[^，。！？\n]{1,30}[，,]\s*(是|而是)'
+    desc: 'reversal: "not X, but/is Y" (also covers 不是因为...是因为)'
+    expect_high_in: [gpt-5.4, claude-opus-4-6]
+
+  - name: "你不是_你只是"
+    regex: '你不是[^，。！？\n]{1,30}[，,]?\s*你只是'
+    desc: 'reversal-2: "you are not X, you just Y"'
+
+  - name: "不是_就是"
+    regex: '不是[^，。！？\n]{1,20}[，,]?\s*就是'
+    desc: 'reversal-binary: "either X or (just) Y"'
+
+  - name: "而不是"
+    regex: '而不是'
+    desc: 'reversal-tail: "X, rather than Y" (open-ended)'
+
+  - name: "是X还是Y"
+    regex: '是[^，。！？\n]{1,15}还是[^，。！？\n]{1,15}[？?]'
+    desc: 'binary choice "is X or Y?"'
+
+  # === 推进 / 转折 / 分析连接词 ===
+
+  - name: "也就是说"
+    regex: '也就是说'
+    desc: 'discourse: "in other words" (clarification marker)'
+    expect_high_in: [gpt-5, gpt-5.4]
+
+  - name: "换句话说"
+    regex: '换句话说'
+    desc: 'discourse: "to put it another way"'
+
+  - name: "本质上"
+    regex: '本质上'
+    desc: 'discourse: "essentially / fundamentally"'
+
+  - name: "更准确_地说"
+    regex: '更准确(?:[地的])?(?:说|讲|理解|描述|表达|的说法)'
+    desc: 'refinement: "more precisely speaking"'
+
+  - name: "更具体_地说"
+    regex: '更具体(?:[地的])?(?:说|讲|理解|描述|表达|的说法)?'
+    desc: 'refinement: "more concretely speaking"'
+
+  - name: "真正的X"
+    regex: '真正(的|让你|的问题|意义|价值|关键|有价值|有用)'
+    desc: 'judgment: "the real / truly X"'
+
+  - name: "你问到核心"
+    regex: '(你问到|你戳到).{0,6}(核心|关键|点上)'
+    desc: 'judgment: "you hit the core"'
+
+  # === 开场 / 承接 / 共情 ===
+
+  - name: "我太懂"
+    regex: '我(太|真的)?懂你'
+    desc: 'opener: "I totally get it"'
+
+  - name: "我必须认真说"
+    regex: '我必须(很)?认真地?说'
+    desc: 'opener: "I must say it seriously"'
+
+  - name: "我就在这里"
+    regex: '我就在这里[，,]'
+    desc: 'opener: "I am right here"'
+
+  - name: "这次我真的懂了"
+    regex: '这次我(真的|真)?懂了'
+    desc: 'opener: "this time I truly get it"'
+
+  - name: "我先把"
+    regex: '我先把'
+    desc: 'opener: "let me first take X"'
+
+  - name: "你这"
+    regex: '你这(?:个|种|套|样|条|里|份|题|话|说法|问题|想法)'
+    desc: 'opener: characterization of user input "this X of yours"'
+
+  - name: "先说结论"
+    regex: '(先说(?:结论|重点|结果)|结论(?:先说|很?明确)|先给你(?:一句|一个)?(?:总评|结论|说法))'
+    desc: 'opener: "conclusion first" (also covers 先说重点/结果)'
+
+  - name: "我建议你"
+    regex: '我(?:会)?建议你'
+    desc: 'opener: "I (would) suggest you"'
+
+  # === 菜单 / offer / 邀约 ===
+
+  - name: "如果你"
+    regex: '如果你'
+    desc: 'menu umbrella: "if you ..."'
+    expect_high_in: [gpt-5.4, gpt-5]
+
+  - name: "如果你愿意"
+    # 单独保留（即便被 如果你 umbrella 包含）：gpt-5.4 招牌 n-gram，+83% 强信号
+    regex: '如果你愿意'
+    desc: 'menu: "if you are willing" (gpt-5.4 signature n-gram)'
+    expect_high_in: [gpt-5.4]
+
+  - name: "给你X"
+    regex: '给你[一看说讲个点做留写准摆]'
+    desc: 'umbrella "give you [something]"'
+    expect_high_in: [gpt-5.4, gpt-5]
+
+  - name: "要我X"
+    regex: '要我[一帮不想看说找让做把]'
+    desc: 'umbrella "want me to [verb]" (also covers 需要我帮你)'
+
+  - name: "要_吗"
+    regex: '要[^，。！？\n]{1,15}吗'
+    desc: 'soft offer "want me to X?" (dilution baseline)'
+
+  - name: "要不要把"
+    regex: '要不要把'
+    desc: 'offer: "should I [X]"'
+
+  - name: "推荐你"
+    regex: '推荐你'
+    desc: 'offer: "recommend that you"'
+
+  - name: "说来听听"
+    regex: '说来听听'
+    desc: 'offer: "tell me about it"'
+
+  # === 行动 / 落地 / 工程感 ===
+
+  - name: "落地"
+    regex: '落地'
+    desc: 'engineering: "land / make concrete / ship"'
+
+  - name: "拆解"
+    regex: '拆解'
+    desc: 'analysis verb "break down"'
+
+  - name: "压实"
+    regex: '压实'
+    desc: 'engineer-vibe verb "compact / nail down"'
+
+  - name: "根因"
+    regex: '根因'
+    desc: 'engineer-vibe noun "root cause"'
+
+  - name: "收口"
+    regex: '收口'
+    desc: 'engineer-vibe verb "close off / wrap up"'
+
+  - name: "按这条切"
+    regex: '按这条切'
+    desc: 'decisive pivot "go with this approach"'
+
+  - name: "别碰"
+    regex: '别碰'
+    desc: 'directive: "don''t touch X"'
+
+  - name: "想真正"
+    regex: '想真正'
+    desc: 'intent: "want to truly X"'
+
+  - name: "再决定"
+    regex: '再决定'
+    desc: 'sequencing: "and then decide"'
+
+  - name: "定死"
+    regex: '定死'
+    desc: 'engineering: "pin / hardcode X"'
+
+  - name: "我接下来"
+    regex: '我接下来'
+    desc: 'transition: "next I will"'
+
+  - name: "我_就只"
+    regex: '我[^，。！？\n]{0,10}就只'
+    desc: 'restrictive self-description "I only..."'
+
+  - name: "一句话总结"
+    regex: '一句话(总结|结论|说|讲|告诉你|讲完|概括)'
+    desc: '"in one sentence" wrap'
+
+  - name: "我讲一个更深的"
+    regex: '(我|但我)(要|想)?讲(一个)?更深'
+    desc: 'transition: "let me go deeper"'
+
+  - name: "我逐步说清楚"
+    regex: '我(来)?逐步(说|讲|告诉你)清楚'
+    desc: 'phrase: "I will explain step by step"'
+
+  # === 评判 / 断言 / 强调 ===
+
+  - name: "明确"
+    regex: '明确(?:[地的])?(?:说|写|告诉|表示|表达|要求|强调|指出|提到|警告|声明)?'
+    desc: 'assertion marker "explicitly / made clear"'
+
+  - name: "更值得"
+    regex: '更值得'
+    desc: 'judgment: "more worth (doing/noting)"'
+
+  - name: "更现实"
+    regex: '更现实'
+    desc: 'judgment: "more realistic"'
+
+  - name: "这样看"
+    regex: '这样看(?:来|的话|的)?'
+    desc: 'judgment: "looking at it this way"'
+
+  - name: "会这么"
+    regex: '会这么'
+    desc: 'characterization: "would do/be this way"'
+
+  - name: "前提是"
+    regex: '前提是'
+    desc: 'qualification: "the premise is"'
+
+  - name: "回答是"
+    regex: '回答是'
+    desc: 'declarative: "the answer is"'
+
+  - name: "更深一点"
+    regex: '更深一(点|些)'
+    desc: 'claim: "a bit deeper"'
+
+  - name: "非常关键"
+    regex: '非常关键'
+    desc: 'claim: "very critical"'
+
+  - name: "确实"
+    regex: '确实(?![不])'
+    desc: 'affirmative "indeed"'
+
+  - name: "说透了"
+    regex: '(说|讲)透了'
+    desc: 'claim: "said it all / laid bare"'
+
+  - name: "最硬"
+    regex: '最硬'
+    desc: 'claim: "hardest"'
+
+  - name: "太清醒了"
+    regex: '太清醒了'
+    desc: 'judgment: "too clear-sighted"'
+
+  - name: "彻底开悟"
+    regex: '彻底(开悟|明白|看透)'
+    desc: 'phrase: "totally awakened"'
+
+  - name: "杀伤力恰恰在"
+    regex: '杀伤力(恰恰|刚好)?在'
+    desc: 'phrase: "the damage lies precisely in"'
+
+  - name: "最_字堆叠"
+    regex: '最[^，。！？、\s]{1,6}(、|，)最'
+    desc: 'parody: stacked "most-X" (QQ meme)'
+    expect_high_in: ["wild:qq-parody-stacked"]
+
+  - name: "不用解释"
+    regex: '不用(向我)?(解释|自证)'
+    desc: 'permission: "no need to explain"'
+
+  # === 稳 / 接住意象 (soothe / catch) ===
+
+  - name: "接住"
+    regex: '接住'
+    desc: 'umbrella: "catch (you)" — soothe/承接 verb'
+    expect_high_in: [gpt-5.4, gpt-5]
+
+  - name: "更稳"
+    regex: '更稳'
+    desc: 'claim: "more stable" (also covers 反而更稳)'
+
+  - name: "稳词族"
+    regex: '稳(?:定|妥|健|当|重)'
+    desc: 'word family: 稳定/稳妥/稳健/稳当/稳重'
+
+  - name: "只是太久没"
+    regex: '只是太久没(有)?被'
+    desc: 'soothe: "just too long without being"'
+
+  - name: "不躲不藏"
+    regex: '不躲[，,]\s*不藏'
+    desc: 'phrase: "not hiding, not dodging"'
+
+  - name: "冷静一点"
+    regex: '冷静一(点|些)'
+    desc: 'phrase: "calm down a bit"'
+
+  # === 收尾 / 回问 ===
+
+  - name: "你看这样可以吗"
+    regex: '你看这样(可以|行|成|好)(吗|呢)?'
+    desc: 'soft confirm "is this ok?"'
+
+  - name: "告诉我一声"
+    regex: '告诉我一声'
+    desc: 'phrase: "just give me a word"'
+
+  - name: "告诉我你想先推哪个"
+    regex: '告诉我你想先推哪个'
+    desc: 'phrase: "tell me which you want to push first"'
+
+  - name: "你说_我就"
+    regex: '你说[^，。！？\n]{0,20}我就'
+    desc: 'reciprocal "you say X, I will Y"'
+
+  - name: "你开口_我接"
+    regex: '你开口[，,]\s*我接'
+    desc: 'phrase: "you speak, I catch"'
+
+  - name: "我不会X但"
+    regex: '我不会[^，。！？\n]{0,30}[，,][\s]*但'
+    desc: 'phrase: "I cannot X, but..."'
+
+  # === 修辞 / 口癖 / 边角 ===
+
+  - name: "不绕"
+    regex: '(?<![一不])不绕(?![弯圈])'
+    desc: 'phrase: "no beating around the bush"'
+
+  - name: "多嘴"
+    regex: '多嘴'
+    desc: 'viral phrase "being nosy"'
+
+  - name: "翻译成人话"
+    regex: '翻译成人话'
+    desc: 'viral GPT phrase "translate into plain language"'
+
+  - name: "实话说"
+    regex: '实话(说|讲|告诉你|和你说|跟你说)'
+    desc: 'directness marker "frankly"'
+
+  - name: "顺手"
+    regex: '顺手'
+    desc: 'phrase: "in passing / handily"'
+
+  - name: "顺便"
+    regex: '顺便'
+    desc: 'phrase: "by the way"'
+
+  - name: "我想让你"
+    regex: '我想让你'
+    desc: 'directive "I want you to"'
+
+  - name: "编一个"
+    regex: '编一?个'
+    desc: 'self-aware hedging "make up / fabricate one"'
+
+  - name: "我不想"
+    regex: '我不想'
+    desc: 'self-negation "I don''t want to"'
+
+  - name: "诚实"
+    regex: '诚实'
+    desc: 'phrase: "honest / honestly say" (covers 诚实地说)'
+
+  - name: "这是我目前"
+    regex: '这是我目前'
+    desc: 'hedging "this is what I currently..."'
+
+  - name: "清楚"
+    regex: '(?:得|很|更|讲|说|看|想|写|记录|描述|搞)清楚'
+    desc: 'umbrella "(do something) clearly" (also covers 写得很清楚)'
+
+  - name: "干净的"
+    regex: '干净的'
+    desc: 'quality adjective "clean"'
+
+  - name: "这让我_emotion"
+    regex: '(这)?让我(有点|很|觉得|想起|感到|感觉|忍不住)'
+    desc: 'emotional-reaction opener "(this) makes me feel/think"'
+
+  - name: "我不找接口"
+    regex: '我不找接口'
+    desc: 'literal phrase (QQ反串 cherry-pick)'
+
+  - name: "至少有"
+    regex: '至少有'
+    desc: 'phrase: "at least there is"'
+
+  - name: "能直接抄"
+    regex: '能直接抄'
+    desc: 'delivery framing "can be copied directly"'
+
+  - name: "精准察觉"
+    regex: '精准[地的]?(察觉|看出|看到|捕捉)'
+    desc: 'phrase: "perceive precisely"'
+
+  - name: "要不(独立)"
+    # standalone "要不"; excludes 要不是、要不然、要不要、要不就、要不行、要不可以
+    regex: '(?:^|[，。！？\s])要不(?![是然要就行可])[，,。？\s]'
+    desc: 'standalone "how about"'
+
+  - name: "刀"
+    regex: '(砍一刀|哪把刀|(?<![这])一刀)'
+    desc: 'knife/cut imagery'
+
+  # === Style markers ===
+
+  - name: "加粗"
+    regex: '\*\*[^*\n]{1,30}\*\*'
+    desc: 'markdown: **bold**'
+    expect_high_in: [gpt-5.4]
+
+  - name: "问号收尾"
+    regex: '[？?]$'
+    desc: 'style: ? ending'
+    multiline: true
+
+  - name: "感叹句"
+    regex: '[！!]'
+    desc: 'style: ! usage'
+
+  - name: "破折号"
+    regex: '——'
+    desc: 'style: em-dash (CJK)'
+    expect_high_in: [gpt-5-chat-latest, claude-opus-4-7]
+
+  - name: "emoji_heart"
+    regex: '[❤️💗💛🧡💙💚🫶🤍]'
+    desc: 'emoji: heart'
+
+  - name: "emoji_any"
+    regex: '[\U0001F300-\U0001FAFF\U00002600-\U000027BF\U0001F000-\U0001F02F\U0001F100-\U0001F64F\U0001F680-\U0001F6FF]'
+    desc: 'emoji: any block'
+
+  # === Dilution baselines（任何模型都高，验证基线） ===
+
+  - name: "帮你"
+    regex: '帮你'
+    desc: 'umbrella "help you" (dilution baseline)'
+
+  - name: "一下"
+    regex: '一下'
+    desc: 'softener "-a bit/just a moment" (dilution baseline)'
