@@ -408,6 +408,7 @@ C 组的"招牌"们——加粗、反转句（不是_是）、"真正的 X"、"�
 - **community_replication 仅 10 条**。task-oriented 场景的统计 power 有限
 - **161 seeds 不能覆盖所有真实使用场景**。结论仅适用于本 seed 集涵盖的 prompt 分布
 - **cosine Δ 幅度在噪声范围内**。split-half bootstrap 显示各模型 self-cos noise 约 0.008-0.024（见 §3.1），所有 4 个 GPT 的 +0.013 ~ +0.036 Δ 都只是 1-2× 噪声量级，方向成立但幅度应读作温和信号；其中 +0.013（vs gpt-5.4）低于噪声底，本数据集不显著
+- **cosine 未做长度控制**。4.7 回复 median 短 37%，短文本 char n-gram 分布更集中，会让"4.7 对任何模型的 cos 都天然偏高一点"——这是 §3.1 noise floor 之外的独立 confound，未单独校正。严格论证"4.7 在控制长度后仍更像 GPT"需要把所有 reply 截到同一长度（例如 median 200 字）后重算 cos matrix；本报告未做
 
 ### 5.3 复现
 
