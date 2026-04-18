@@ -92,6 +92,8 @@ LinearSVC（char n-gram TF-IDF, 80/20 split，**`GroupShuffleSplit` 按 seed 分
 
 **2 类 100%、6 类 ≥ 93%、11 类 ≥ 80%**，但 **community_replication（社区复现短语）和 control_casual（闲聊短句）接近随机**——这两类里 4.6 和 4.7 的输出几乎不可分。这是一个有内容的 null：4.7 在"哈哈"一类短闲聊、和"帮我落地 landing page"一类 community_replication 场景下，输出风格与 4.6 高度重合；风格切换主要体现在较长的情感 / 分析 / 技术类生成里。
 
+**这个 null 反过来解释了社区叙事**：用户感知的"4.7 变 GPT 味"几乎只能来自较长的生成场景（情感 / task / refusal）；用 4.7 写"哈哈好的"或赶 landing page 的人，在风格层面其实没机会感觉到任何切换——这部分用户也不会发推抱怨。社区抱怨样本因此天然偏向"长生成"那一侧，比真实总体更 dramatic。
+
 ### 2.3 长度大缩水：median -37%
 
 | 模型 | mean 字数 | median 字数 |
