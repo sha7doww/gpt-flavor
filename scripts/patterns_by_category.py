@@ -35,9 +35,10 @@ KEY_PATTERNS = ["加粗", "不是_是", "接住", "给你X", "如果你愿意"]
 
 
 def configure_font():
-    # order matches src/visualize.py — Linux uming (original) first, then
-    # macOS Songti (closest serif Ming match), then sans-serif fallbacks.
-    for p in [
+    # Per-glyph fallback: Times New Roman for Latin, Ming serif for CJK.
+    # matplotlib >=3.6 walks the family list per-glyph, so order matters:
+    # TNR first → CJK second.
+    cjk_paths = [
         "/usr/share/fonts/truetype/arphic/uming.ttc",
         "/usr/share/fonts/truetype/arphic-gbsn00lp/gbsn00lp.ttf",
         "/System/Library/Fonts/Supplemental/Songti.ttc",
@@ -49,14 +50,29 @@ def configure_font():
         "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
         "C:/Windows/Fonts/msyh.ttc",
         "C:/Windows/Fonts/simhei.ttf",
-    ]:
+    ]
+    latin_paths = [
+        "/System/Library/Fonts/Supplemental/Times New Roman.ttf",
+        "C:/Windows/Fonts/times.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf",
+        "/usr/share/fonts/truetype/liberation2/LiberationSerif-Regular.ttf",
+    ]
+    family = []
+    for p in latin_paths:
         if Path(p).exists():
             fm.fontManager.addfont(p)
-            name = fm.FontProperties(fname=p).get_name()
-            plt.rcParams["font.sans-serif"] = [name, "DejaVu Sans"]
-            plt.rcParams["font.family"] = "sans-serif"
-            plt.rcParams["axes.unicode_minus"] = False
-            return
+            family.append(fm.FontProperties(fname=p).get_name())
+            break
+    for p in cjk_paths:
+        if Path(p).exists():
+            fm.fontManager.addfont(p)
+            family.append(fm.FontProperties(fname=p).get_name())
+            break
+    family.append("DejaVu Serif")
+    # matplotlib only does per-glyph fallback when font.family holds the
+    # concrete font-name list; a generic category resolves to one font.
+    plt.rcParams["font.family"] = family
+    plt.rcParams["axes.unicode_minus"] = False
 
 
 def main():

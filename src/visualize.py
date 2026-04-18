@@ -29,15 +29,14 @@ FIG = ANA / "figures"
 
 
 def configure_cjk_font():
-    """Find a single font file that has BOTH Latin and CJK, register it."""
-    # prefer fonts that cover both CJK and Latin in one file.
-    # order chosen to match the Linux AR PL UMing serif/Ming look of the
-    # original figures — Songti / uming are both Ming-style CJK serifs.
-    preferred_paths = [
+    """Set up per-glyph font fallback: Times New Roman for Latin, a Ming
+    serif CJK font for Chinese. matplotlib >=3.6 picks the first font in
+    the family list that has a given glyph, so the order is TNR → CJK."""
+    cjk_paths = [
         # Linux arphic uming — the ORIGINAL rendering font
         "/usr/share/fonts/truetype/arphic/uming.ttc",
         "/usr/share/fonts/truetype/arphic-gbsn00lp/gbsn00lp.ttf",
-        # macOS (Songti = Ming serif, closest match; others are sans-serif fallbacks)
+        # macOS (Songti = Ming serif, closest match)
         "/System/Library/Fonts/Supplemental/Songti.ttc",
         "/System/Library/Fonts/Hiragino Sans GB.ttc",
         "/System/Library/Fonts/STHeiti Medium.ttc",
@@ -50,19 +49,41 @@ def configure_cjk_font():
         "C:/Windows/Fonts/msyh.ttc",
         "C:/Windows/Fonts/simhei.ttf",
     ]
-    chosen = next((p for p in preferred_paths if Path(p).exists()), None)
-    if chosen:
-        fm.fontManager.addfont(chosen)
-        # derive the font's actual name and set it as primary
-        name = fm.FontProperties(fname=chosen).get_name()
-        plt.rcParams["font.sans-serif"] = [name, "DejaVu Sans"]
-        plt.rcParams["font.family"] = "sans-serif"
-        plt.rcParams["axes.unicode_minus"] = False
-        print(f"Font: {name} ({chosen})")
-        return name
+    latin_paths = [
+        # macOS
+        "/System/Library/Fonts/Supplemental/Times New Roman.ttf",
+        # Windows
+        "C:/Windows/Fonts/times.ttf",
+        # Linux TNR metric-compatible
+        "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf",
+        "/usr/share/fonts/truetype/liberation2/LiberationSerif-Regular.ttf",
+    ]
+
+    cjk = next((p for p in cjk_paths if Path(p).exists()), None)
+    latin = next((p for p in latin_paths if Path(p).exists()), None)
+
+    family = []
+    if latin:
+        fm.fontManager.addfont(latin)
+        latin_name = fm.FontProperties(fname=latin).get_name()
+        family.append(latin_name)
+    if cjk:
+        fm.fontManager.addfont(cjk)
+        cjk_name = fm.FontProperties(fname=cjk).get_name()
+        family.append(cjk_name)
+    family.append("DejaVu Serif")  # matplotlib-bundled final fallback
+
+    # IMPORTANT: put the specific-font list in font.family directly (not in
+    # font.serif with family="serif"). matplotlib only does per-glyph
+    # fallback when font.family is a list of concrete font names; using a
+    # generic category resolves to a single font and tofu appears instead.
+    plt.rcParams["font.family"] = family
     plt.rcParams["axes.unicode_minus"] = False
-    print("WARN: no CJK font found; Chinese may render as tofu.")
-    return None
+
+    print(f"Font chain: {family}")
+    if not cjk:
+        print("WARN: no CJK font found; Chinese may render as tofu.")
+    return family[0] if family else None
 
 
 def plot_cosine_heatmap():
