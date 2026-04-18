@@ -16,7 +16,7 @@
 
 | Q | 结论 | 一句话证据 |
 |---|---|---|
-| **Q1** 4.7 变了吗？ | ✅ **大变** | 4.6 vs 4.7 二分类 96.7% accuracy；回复 median 字数 333 → 210（-37%，15/15 类方向一致）；加粗率 83% → 48%（-35pp）|
+| **Q1** 4.7 变了吗？ | ✅ **大变** | 4.6 vs 4.7 二分类 87.2% accuracy（按 seed 分组留出）；回复 median 字数 333 → 210（-37%，15/15 类方向一致）；加粗率 83% → 48%（-35pp）|
 | **Q2** 变得像 GPT 吗？ | ✅ **方向成立，但程度有限** | cosine 对全部 4 个 GPT +0.013 ~ +0.036（4.6 一律更远）；offer 类招式 +2-3pp（远不及 gpt-5.4 的 25-85%）|
 | **Q3** 那它变成什么了？ | ⚠️ **压缩版 Claude + 一点 ChatGPT 菜单口** | 最像 ChatGPT 短句体 `gpt-5-chat-latest`（cosine +0.036 最大）；学了 offer-style 但反转/加粗/emoji 反而少 |
 
@@ -60,35 +60,37 @@
 
 ## 2. Q1 — 4.7 真变了吗？
 
-### 2.1 整体二分类器：96.7%
+### 2.1 整体二分类器：87.2%
 
-LinearSVC（char n-gram TF-IDF, 80/20 split）在 reply 层面区分 opus-4-6 vs opus-4-7，准确率 **96.7%**。同样架构区分 6 个模型 multi-class 准确率 **96.5%**，区分"是 gpt-5.4 吗"准确率 **99.0%**。
+LinearSVC（char n-gram TF-IDF, 80/20 split，**`GroupShuffleSplit` 按 seed 分组留出**）在 reply 层面区分 opus-4-6 vs opus-4-7，准确率 **87.2%**。随机基线 50%。同样架构区分 6 个模型 multi-class 准确率 **96.4%**（6 模型风格差异远大于单模型版本间差异），区分"是 gpt-5.4 吗"准确率 **99.0%**。
 
-`>= 95%` 的 binary accuracy 意味着 4.6 和 4.7 的回复在词汇 / 排版 / 句式上几乎完全可分——**这不是一个 minor patch，是明显的风格切换**。
+> **⚠️ 早期版本曾报告 96.7% **——那是用 `train_test_split(stratify=y)` 的结果。由于每个 seed 有 18 行（3 条件 × 3 runs × 2 模型），同一 prompt 的回复会在 train/test 两边同时出现，分类器实际上在"见过同一问题的另两次回答"的情况下猜作者。改用 `GroupShuffleSplit(groups=seed)` 强制按 prompt 分组后，真实留出泛化性能是 **87.2%**（-9.5pp）。老脚本保留在 git 历史，新数字是当前仓库 `run_all.sh` 默认产出。
 
-### 2.2 per-category 二分类：13/15 类都 ≥ 93%
+`>= 85%` 的留出 binary accuracy 意味着 4.6 和 4.7 的回复在词汇 / 排版 / 句式上**对未见过的 prompt** 仍明显可分——**这不是一个 minor patch，是明显的风格切换**。
 
-把 4.6 vs 4.7 二分类拆到每个 seed 类别单独跑：
+### 2.2 per-category 二分类：2 类接近随机，其余仍明显可分
+
+把 4.6 vs 4.7 二分类拆到每个 seed 类别单独跑（同样 `GroupShuffleSplit`）：
 
 | seed 类别 | accuracy | n_test |
 |---|---|---|
-| control_casual | **100.0%** | 22 |
-| control_technical | **100.0%** | 29 |
-| meaning_existential | **100.0%** | 29 |
-| procrastination | **100.0%** | 29 |
-| refusal | **100.0%** | 40 |
-| tech_deliberation | **100.0%** | 54 |
-| work_study | **100.0%** | 36 |
-| analysis | 98.1% | 54 |
-| disagreement | 97.2% | 36 |
-| emotional_comfort | 97.2% | 36 |
-| relationships | 97.2% | 36 |
-| creative | 94.4% | 54 |
-| self_doubt | 94.4% | 36 |
-| summarization | 92.6% | 54 |
-| community_replication | 86.1% | 36 |
+| analysis | **100.0%** | 54 |
+| meaning_existential | **100.0%** | 36 |
+| self_doubt | 97.2% | 36 |
+| work_study | 97.2% | 36 |
+| tech_deliberation | 96.3% | 54 |
+| procrastination | 94.4% | 36 |
+| refusal | 90.7% | 54 |
+| emotional_comfort | 88.9% | 36 |
+| relationships | 86.1% | 36 |
+| control_technical | 83.3% | 36 |
+| creative | 81.5% | 54 |
+| disagreement | 80.6% | 36 |
+| summarization | 70.4% | 54 |
+| community_replication | **52.8%** | 36 |
+| control_casual | **50.0%** | 36 |
 
-**13/15 类 ≥ 93%，7 类 100%**，最低 community_replication 86.1%（n_test=36 较小有噪声）。**风格变化基本是全局的**，几乎没有某个场景能完全掩盖它。
+**2 类 100%、6 类 ≥ 93%、11 类 ≥ 80%**，但 **community_replication（社区复现短语）和 control_casual（闲聊短句）接近随机**——这两类里 4.6 和 4.7 的输出几乎不可分。这是一个有内容的 null：4.7 在"哈哈"一类短闲聊、和"帮我落地 landing page"一类 community_replication 场景下，输出风格与 4.6 高度重合；风格切换主要体现在较长的情感 / 分析 / 技术类生成里。
 
 ### 2.3 长度大缩水：median -37%
 
@@ -124,7 +126,7 @@ mean 1115 被 `community_replication`（铺路落地页 HTML 长达数千字）�
 
 ### Q1 结论
 
-✅ **变了，而且变得很彻底**——可识别度 96.7%、长度砍 60%、markdown 砍半、emoji 砍半，全部 15 个 seed 类都能区分。
+✅ **变了，而且变得明显**——按 seed 留出的可识别度 87.2%（baseline 50%）、长度砍 60%、markdown 砍半、emoji 砍半，13/15 seed 类明显可分，仅短闲聊 / community_replication 两类接近随机。
 
 ---
 

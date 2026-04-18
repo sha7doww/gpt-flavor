@@ -25,7 +25,7 @@ from pathlib import Path
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import GroupShuffleSplit, train_test_split
 from sklearn.svm import LinearSVC
 from sklearn.metrics import classification_report, confusion_matrix
 
@@ -173,19 +173,33 @@ def run_cosine(records, group_key, ngram_min, ngram_max):
 # 3. LinearSVC classifier: can styles be told apart at reply level?
 # ---------------------------------------------------------------------------
 
-def run_classifier(records, group_key, ngram_min, ngram_max, min_per_class=10):
-    """Train LinearSVC on char-ngram TF-IDF of individual replies."""
+def run_classifier(records, group_key, ngram_min, ngram_max,
+                   min_per_class=10, split_by_seed=False):
+    """Train LinearSVC on char-ngram TF-IDF of individual replies.
+
+    If split_by_seed=True, use GroupShuffleSplit keyed on r['seed'] so the
+    same prompt's replies don't leak across train/test. Required when the
+    classifier has to generalize to unseen prompts (e.g. 4.6 vs 4.7, where
+    every seed was shown to both models).
+    """
     buckets = defaultdict(list)
+    seeds_buckets = defaultdict(list)
     for r in records:
         buckets[group_key(r)].append(r["reply"])
-    buckets = {k: v for k, v in buckets.items() if len(v) >= min_per_class}
+        seeds_buckets[group_key(r)].append(r.get("seed", ""))
+    keep = {k for k, v in buckets.items() if len(v) >= min_per_class}
+    buckets = {k: buckets[k] for k in keep}
+    seeds_buckets = {k: seeds_buckets[k] for k in keep}
 
     X_text = []
     y = []
+    seeds = []
     for g, replies in buckets.items():
         X_text.extend(replies)
         y.extend([g] * len(replies))
+        seeds.extend(seeds_buckets[g])
     y = np.array(y)
+    seeds = np.array(seeds)
     if len(set(y)) < 2:
         return None
 
@@ -198,9 +212,15 @@ def run_classifier(records, group_key, ngram_min, ngram_max, min_per_class=10):
     )
     X = vec.fit_transform(X_text)
 
-    X_tr, X_te, y_tr, y_te = train_test_split(
-        X, y, test_size=0.2, random_state=42, stratify=y
-    )
+    if split_by_seed:
+        gss = GroupShuffleSplit(n_splits=1, test_size=0.2, random_state=42)
+        tr_idx, te_idx = next(gss.split(X, y, groups=seeds))
+        X_tr, X_te = X[tr_idx], X[te_idx]
+        y_tr, y_te = y[tr_idx], y[te_idx]
+    else:
+        X_tr, X_te, y_tr, y_te = train_test_split(
+            X, y, test_size=0.2, random_state=42, stratify=y
+        )
     clf = LinearSVC(C=1.0, max_iter=5000, dual="auto")
     clf.fit(X_tr, y_tr)
     y_pred = clf.predict(X_te)
@@ -252,7 +272,7 @@ def main():
     # --- log-odds ---
     print("\n[1/3] Weighted log-odds (Monroe et al.)...")
     top_per_group, _ = run_log_odds(
-        records, group_key_model, args.top_k, nmin, nmax, args.min_doc_freq
+        records, gk, args.top_k, nmin, nmax, args.min_doc_freq
     )
     (OUT_DIR / "log_odds_top.json").write_text(
         json.dumps({g: [{"ngram": w, "z": z} for w, z in items] for g, items in top_per_group.items()},
@@ -309,6 +329,20 @@ def main():
         )
         print(f"  accuracy: {bin_result['accuracy']:.3f}")
         print(f"  macro F1: {bin_result['macro_f1']:.3f}")
+
+    # --- also run binary: claude-opus-4-6 vs claude-opus-4-7 ---
+    # Headline result of README §Q1 — must stay reproducible from run_all.sh.
+    opus_records = [r for r in records
+                    if r["model"] in ("claude-opus-4-6", "claude-opus-4-7")]
+    print("\n[3c/3] Binary: claude-opus-4-6 vs claude-opus-4-7?")
+    opus_result = run_classifier(opus_records, group_key_model, nmin, nmax,
+                                 split_by_seed=True)
+    if opus_result is not None:
+        (OUT_DIR / "classifier_binary_opus46vs47.json").write_text(
+            json.dumps(opus_result, ensure_ascii=False, indent=2)
+        )
+        print(f"  accuracy: {opus_result['accuracy']:.3f}")
+        print(f"  macro F1: {opus_result['macro_f1']:.3f}")
 
     print("\nDone.")
 

@@ -1,17 +1,17 @@
 {
   "__overall__": {
-    "accuracy": 0.9637931034482758,
-    "macro_f1": 0.9637929958174667,
-    "n_train": 2318,
-    "n_test": 580,
+    "accuracy": 0.8804713804713805,
+    "macro_f1": 0.8804141016879946,
+    "n_train": 2304,
+    "n_test": 594,
     "class_counts": {
       "claude-opus-4-7": 1449,
       "claude-opus-4-6": 1449
     }
   },
   "analysis": {
-    "accuracy": 0.9814814814814815,
-    "macro_f1": 0.9814751286449399,
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
     "n_train": 216,
     "n_test": 54,
     "class_counts": {
@@ -20,8 +20,8 @@
     }
   },
   "community_replication": {
-    "accuracy": 0.8611111111111112,
-    "macro_f1": 0.8610038610038611,
+    "accuracy": 0.5277777777777778,
+    "macro_f1": 0.39225422045680236,
     "n_train": 144,
     "n_test": 36,
     "class_counts": {
@@ -30,28 +30,28 @@
     }
   },
   "control_casual": {
-    "accuracy": 1.0,
-    "macro_f1": 1.0,
-    "n_train": 86,
-    "n_test": 22,
+    "accuracy": 0.5,
+    "macro_f1": 0.3333333333333333,
+    "n_train": 72,
+    "n_test": 36,
     "class_counts": {
       "claude-opus-4-7": 54,
       "claude-opus-4-6": 54
     }
   },
   "control_technical": {
-    "accuracy": 1.0,
-    "macro_f1": 1.0,
-    "n_train": 115,
-    "n_test": 29,
+    "accuracy": 0.8333333333333334,
+    "macro_f1": 0.8328173374613003,
+    "n_train": 108,
+    "n_test": 36,
     "class_counts": {
       "claude-opus-4-7": 72,
       "claude-opus-4-6": 72
     }
   },
   "creative": {
-    "accuracy": 0.9444444444444444,
-    "macro_f1": 0.94442538593482,
+    "accuracy": 0.8148148148148148,
+    "macro_f1": 0.8106591865357644,
     "n_train": 216,
     "n_test": 54,
     "class_counts": {
@@ -60,8 +60,8 @@
     }
   },
   "disagreement": {
-    "accuracy": 0.9722222222222222,
-    "macro_f1": 0.9722007722007722,
+    "accuracy": 0.8055555555555556,
+    "macro_f1": 0.8017309205350118,
     "n_train": 144,
     "n_test": 36,
     "class_counts": {
@@ -70,8 +70,8 @@
     }
   },
   "emotional_comfort": {
-    "accuracy": 0.9722222222222222,
-    "macro_f1": 0.9722007722007722,
+    "accuracy": 0.8888888888888888,
+    "macro_f1": 0.8885448916408669,
     "n_train": 144,
     "n_test": 36,
     "class_counts": {
@@ -82,34 +82,44 @@
   "meaning_existential": {
     "accuracy": 1.0,
     "macro_f1": 1.0,
-    "n_train": 115,
-    "n_test": 29,
+    "n_train": 108,
+    "n_test": 36,
     "class_counts": {
       "claude-opus-4-7": 72,
       "claude-opus-4-6": 72
     }
   },
   "procrastination": {
-    "accuracy": 1.0,
-    "macro_f1": 1.0,
-    "n_train": 115,
-    "n_test": 29,
+    "accuracy": 0.9444444444444444,
+    "macro_f1": 0.9444444444444444,
+    "n_train": 108,
+    "n_test": 36,
     "class_counts": {
       "claude-opus-4-7": 72,
       "claude-opus-4-6": 72
     }
   },
   "refusal": {
-    "accuracy": 1.0,
-    "macro_f1": 1.0,
-    "n_train": 158,
-    "n_test": 40,
+    "accuracy": 0.9074074074074074,
+    "macro_f1": 0.9066067104808024,
+    "n_train": 144,
+    "n_test": 54,
     "class_counts": {
       "claude-opus-4-7": 99,
       "claude-opus-4-6": 99
     }
   },
   "relationships": {
+    "accuracy": 0.8611111111111112,
+    "macro_f1": 0.8583792289535799,
+    "n_train": 144,
+    "n_test": 36,
+    "class_counts": {
+      "claude-opus-4-7": 90,
+      "claude-opus-4-6": 90
+    }
+  },
+  "self_doubt": {
     "accuracy": 0.9722222222222222,
     "macro_f1": 0.9722007722007722,
     "n_train": 144,
@@ -119,19 +129,9 @@
       "claude-opus-4-6": 90
     }
   },
-  "self_doubt": {
-    "accuracy": 0.9444444444444444,
-    "macro_f1": 0.9444444444444444,
-    "n_train": 144,
-    "n_test": 36,
-    "class_counts": {
-      "claude-opus-4-7": 90,
-      "claude-opus-4-6": 90
-    }
-  },
   "summarization": {
-    "accuracy": 0.9259259259259259,
-    "macro_f1": 0.9255172413793104,
+    "accuracy": 0.7037037037037037,
+    "macro_f1": 0.6823529411764706,
     "n_train": 216,
     "n_test": 54,
     "class_counts": {
@@ -140,8 +140,8 @@
     }
   },
   "tech_deliberation": {
-    "accuracy": 1.0,
-    "macro_f1": 1.0,
+    "accuracy": 0.9629629629629629,
+    "macro_f1": 0.9629120879120879,
     "n_train": 216,
     "n_test": 54,
     "class_counts": {
@@ -150,8 +150,8 @@
     }
   },
   "work_study": {
-    "accuracy": 1.0,
-    "macro_f1": 1.0,
+    "accuracy": 0.9722222222222222,
+    "macro_f1": 0.9722007722007722,
     "n_train": 144,
     "n_test": 36,
     "class_counts": {

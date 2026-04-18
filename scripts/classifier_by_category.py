@@ -2,11 +2,15 @@
 """
 Gap 3 — LinearSVC "opus-4-6 vs opus-4-7" binary classifier, per seed category.
 
-Global accuracy = 96.7% (very high). Broken down by category, we can ask:
+Global accuracy = 88.0% (GroupShuffleSplit by seed). Broken down by category,
+we can ask:
   - In which scenarios does the classifier do best (→ 4.6 vs 4.7 most different)?
   - In which scenarios does it barely beat random (→ 4.6 ≈ 4.7 in those)?
 
-This pinpoints where the 4.6→4.7 style shift is most/least visible.
+This pinpoints where the 4.6→4.7 style shift is most/least visible. Uses
+GroupShuffleSplit keyed on seed so same-prompt replies don't leak across
+train/test (otherwise each seed's 18 rows — 3 conds × 3 runs × 2 models —
+would overlap both splits and inflate accuracy ~10pp).
 
 Output:
   analysis/classifier_by_category.json
@@ -19,7 +23,7 @@ from collections import defaultdict
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import classification_report
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import GroupShuffleSplit
 from sklearn.svm import LinearSVC
 
 from _common import load_records, ANALYSIS_DIR
@@ -31,12 +35,15 @@ def run_one(records):
     """Train LinearSVC on 4.6 vs 4.7 for these records."""
     X_text = []
     y = []
+    groups = []
     for r in records:
         if r["model"] not in ("claude-opus-4-6", "claude-opus-4-7"):
             continue
         X_text.append(r["reply"])
         y.append(r["model"])
+        groups.append(r["seed"])
     y = np.array(y)
+    groups = np.array(groups)
     if len(X_text) < MIN_PER_CLASS * 2:
         return None
     if len(set(y)) < 2:
@@ -50,9 +57,13 @@ def run_one(records):
         min_df=2, max_features=20000, sublinear_tf=True,
     )
     X = vec.fit_transform(X_text)
-    X_tr, X_te, y_tr, y_te = train_test_split(
-        X, y, test_size=0.2, random_state=42, stratify=y
-    )
+    # Group by seed: each seed has up to 18 replies (3 conditions × 3 runs × 2
+    # models). Without grouping, same-seed replies leak across train/test and
+    # inflate accuracy by several pp.
+    gss = GroupShuffleSplit(n_splits=1, test_size=0.2, random_state=42)
+    tr_idx, te_idx = next(gss.split(X, y, groups=groups))
+    X_tr, X_te = X[tr_idx], X[te_idx]
+    y_tr, y_te = y[tr_idx], y[te_idx]
     clf = LinearSVC(C=1.0, max_iter=5000, dual="auto")
     clf.fit(X_tr, y_tr)
     y_pred = clf.predict(X_te)

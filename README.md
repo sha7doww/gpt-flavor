@@ -36,7 +36,7 @@ seed 选材 / pattern 选取 / 方法论都存在局限（详见 [REPORT §5.2](
 
 社区说"Opus 4.7 变 GPT 味了"——
 
-- ✅ **4.7 确实变了**（4.6 vs 4.7 二分类 96.7% 准确率，全部 15 个 seed 类都能区分）
+- ✅ **4.7 确实变了**（4.6 vs 4.7 二分类 **87.2%** 准确率，按 seed 分组留出；13/15 类明显可分，仅 `control_casual` / `community_replication` 近随机）
 - ✅ **整体上朝 GPT 漂移**（cosine 对全部 4 个 GPT 模型都 +0.013~0.036）
 - ⚠️ **但按场景走了相反方向**：情感 / 关系类 → **更极简 Claude**（markdown -49~-80pp、offer 招式都下降）；task / creative / refusal → **真学了 GPT offer 腔**（`帮你` +4~+29pp、`给你X` 涨）
 - 🎯 **最像 ChatGPT 短句体**（`gpt-5-chat-latest`，cos +0.036 最大）而不是"全功能" `gpt-5.4`
@@ -49,7 +49,7 @@ seed 选材 / pattern 选取 / 方法论都存在局限（详见 [REPORT §5.2](
 
 ### Q1 — 4.7 真变了吗？ ✅ 大变
 
-二分类器 **96.7% accuracy** 区分 4.6 vs 4.7。**7/15 个 seed 类 100%**，13/15 类 ≥ 93%（最低 community_replication 86%）。回复 median 字数 **333 → 210（-37%）**（mean 1115 → 446，但被长任务 seed 严重拉偏，详见 REPORT §2.3），加粗率 **83% → 48%（-35pp）**，emoji 率 **50% → 22%（-28pp）**。
+二分类器 **87.2% accuracy** 区分 4.6 vs 4.7（`GroupShuffleSplit` 按 seed 分组留出，避免同一 prompt 的多次 run 跨 train/test 泄漏）。**2/15 类 100%**（analysis, meaning_existential），**6/15 类 ≥ 93%**，13/15 类 ≥ 80%，但 **community_replication 53% / control_casual 50%** 近随机——这两类 4.6 和 4.7 行为几乎不可分。回复 median 字数 **333 → 210（-37%）**（mean 1115 → 446，但被长任务 seed 严重拉偏，详见 REPORT §2.3），加粗率 **83% → 48%（-35pp）**，emoji 率 **50% → 22%（-28pp）**。
 
 → 详细见 [REPORT §2](docs/REPORT.md#2-q1--47-真变了吗)
 
