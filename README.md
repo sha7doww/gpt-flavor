@@ -105,21 +105,22 @@ seed 选材 / pattern 选取 / 方法论都存在局限（详见 [REPORT §5.2](
 
 社区"变 GPT 味"的说法其实混淆了**两种相反的变化**：情感场景"变得更冷淡极简"被误读成"变 GPT"，task / creative 场景才是真的"学了 GPT 的菜单口"。
 
-#### 削减方向：4.7 同时离 4.6 和 GPT 都更远
+#### C 组 15 条（boolean 下降）：方向是朝"更极简"，不是朝 GPT
 
-⚠️ **先澄清一件事**：`patterns/patterns.yaml` 里每条 pattern 的 `expect_high_in` 字段标的都是 `gpt-5.4 / gpt-5` 等——**整个 pattern 集本来就是按"GPT 招式假设"写的**，不是"Claude 味检测器"。所以 C 组 15 条 boolean 下降**不等于"Claude 味被削弱"**——它等于"4.7 比 4.6 更少用这些 GPT 风格招式"。
+`patterns/patterns.yaml` 的每条 pattern 的 `expect_high_in` 字段都标了 `gpt-5.4 / gpt-5`——pattern 集测的就是"是不是 GPT 风格招式"。C 组 15 条 boolean 下降 = **4.7 比 4.6 更少用这些 GPT 风格招式**，方向是朝"零使用"压缩，不是朝 GPT 漂移。
 
-C 组 15 条按跨模型位置拆：
+按跨模型 boolean 拆：
 
-| 类型 | 招式 | 跨模型位置 | 4.7 削减的含义 |
+| 类型 | 招式 | 跨模型位置 | 4.7 下降的方向含义 |
 |---|---|---|---|
-| 1 条意外的 Claude 独有 | emoji (Claude 50% vs 4 GPT 最高 22%) | 作者原本按 GPT 假设写进 yaml，实采发现 Claude 反而最高 | **唯一真 "去 Claude 化" 的招式** |
-| 若干条两家都高 | 加粗 (Claude 83% ≈ gpt-5.4 85%) | 通用排版 | boolean 下降主要是长度效应（§4.3 审计：per-char 反涨 +1.31） |
-| 大多数 (7 条) GPT > Claude | 不是X是Y / 本质上 / 一句话总结 / 先说结论 / 如果你 / 明确 / 感叹句 | 按预期 GPT 用得更多（gpt-5.4 `不是X是Y` 53% / `如果你` 89% / `本质上` 11%、gpt-4o `感叹句` 29%） | **4.7 在这些 GPT 重词上反而离 GPT 更远** |
+| GPT > Claude（7 条） | 不是X是Y / 本质上 / 一句话总结 / 先说结论 / 如果你 / 明确 / 感叹句 | gpt-5.4 `不是X是Y` 53% / `如果你` 89% / `本质上` 11%、gpt-4o `感叹句` 29% | **4.7 在这些 GPT 重词上离 GPT 更远** |
+| 两家都高（1 条） | 加粗 | Claude 83% ≈ gpt-5.4 85% | 通用排版，下降主要是长度效应（§4.3 审计：per-char 反涨 +1.31） |
+| Claude > 4 GPT（1 条） | emoji（Claude 4.6 50% vs 4 GPT 最高 22%） | pattern 集里这是异常——作者按 GPT 假设写进 yaml，实采发现 Claude 最高 | 4.7 照样砍到 22% |
+| 弱 Claude / 边缘（6 条） | 真正的X / 接住 / 确实 / 诚实 / 拆解 / emoji_heart | 量级低或差距小 | 方向次要 |
 
-所以 C 组的真实含义是：**4.7 同时离 4.6 和 GPT 都更远，方向朝"更极简"**——这和 B 组（6 条真朝 GPT 漂移的 offer 类）形成**局部矛盾**：4.7 在 offer 类学了一点 GPT，在反转 / 强调 / 总结等 GPT 重词上反而更少用。唯一真正"去 Claude"的是 emoji（pattern 集里意外的 Claude 独有项）。
+所以**这和 B 组（6 条真朝 GPT 漂移的 offer 类）形成局部矛盾**：4.7 在 offer 类学了一点 GPT，在反转 / 强调 / 总结等 GPT 重词上反而更少用。Q2 的 "朝 GPT 漂移" 在 cosine 层面成立（整体短句 char n-gram 风格朝 gpt-5-chat-latest），在 pattern 层面方向分裂。
 
-跨模型 boolean 详细对比见 [REPORT 附录 A.3](docs/REPORT.md#a3-c-组-15-条-vs-跨模型-boolean-只有-emoji-真-claude-独有)。
+跨模型 boolean 详细分布见 [REPORT 附录 A.3](docs/REPORT.md#a3-c-组-15-条的跨模型-boolean-分布)。
 
 #### 对 pattern 集的诚实交代
 

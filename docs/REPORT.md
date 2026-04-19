@@ -192,7 +192,7 @@ mean 1115 被 `community_replication`（铺路落地页 HTML 长达数千字）�
 | pattern | 4.6 | 4.7 | Δ | gpt-5.4 | 跨模型位置 |
 |---|---|---|---|---|---|
 | **加粗** | 83.3% | 47.8% | **-35.5pp** | 85.3% | Claude / GPT 都高，通用 |
-| **emoji_any** | 49.9% | 21.5% | **-28.4pp** | 0.3% | **Claude 独有**（4 GPT 最高 22%） |
+| **emoji_any** | 49.9% | 21.5% | **-28.4pp** | 0.3% | Claude 4.6 **> 4 GPT**（pattern 集里的分布异常） |
 | **不是_是**（反转句）| 27.3% | 20.2% | **-7.1pp** | **53.3%** | GPT 用得更多 |
 | **本质上** | 5.0% | 1.0% | -4.0pp | **11.0%** | GPT 用得更多 |
 | **明确** | 6.2% | 3.2% | -3.0pp | **15.6%** | GPT 用得更多 |
@@ -201,9 +201,9 @@ mean 1115 被 `community_replication`（铺路落地页 HTML 长达数千字）�
 
 这 7 条下降的招式按跨模型位置分三类：
 
-- **emoji（Claude 独有）**：Claude 4.6 50% 显著高于 4 GPT 最高 22%——这条真是 4.7 "去 Claude 化"
+- **emoji（Claude 4.6 > 4 GPT）**：Claude 4.6 50% 高于 4 GPT 最高 22%——在 pattern 集里这是 Claude 4.6 > 所有 GPT 的唯一一条，4.7 砍到 GPT 的量级（22%）
 - **加粗（两家都高）**：Claude 4.6 83% / gpt-5.4 85%——通用招式，boolean 下降主要是长度效应（§4.3 审计：per-char 反涨到 +1.31）
-- **反转句 / 本质上 / 明确（GPT 用得更多）**：这 3 条 4.7 下降其实意味着 4.7 在这些招式上**离 gpt-5.4 更远**——和 Q2 "朝 GPT 漂移" 的总基调**局部矛盾**
+- **反转句 / 本质上 / 明确（GPT > Claude）**：这 3 条 4.7 下降意味着 4.7 在这些招式上**离 gpt-5.4 更远**——和 Q2 "朝 GPT 漂移" 的总基调**局部矛盾**
 
 换句话说，pattern 命中率层面，4.7 只在 `如果你愿意` / `给你X` / `帮你` 等 **offer 类**上学了 GPT；在反转句 / 强调副词等 **GPT 重词**上反而更少用。§Q2 的"朝 GPT 漂移"主要靠 cosine（char n-gram 整体短句风格），而不是靠招式命中率——这也解释了为什么 cosine 最接近的是 `gpt-5-chat-latest`（短句 ChatGPT）而不是 `gpt-5.4`（长结构 Thinking，正好是重反转句的那个模型）。
 
@@ -213,7 +213,7 @@ mean 1115 被 `community_replication`（铺路落地页 HTML 长达数千字）�
 但 ⚠️ **学得不全 / 且方向混杂**：
 - offer 类 pattern 学到了但绝对值仍比 GPT 低 6-12×
 - 反转句 / 本质上 / 明确等 **GPT 重词**反而下降——pattern-level 上 4.7 在这些招式上**离 GPT 更远**
-- emoji 大降，但 emoji 是 Claude 独有，下降只意味着 "去 Claude 化"，不等于 "朝 GPT"
+- emoji 大降，但 emoji 在 pattern 集里是 Claude 4.6 > 所有 GPT 的特例，它的下降和"朝 GPT"是不同方向
 - 整体趋向 **chat-tuned 短句版 GPT**（`gpt-5-chat-latest`），不是"全功能" `gpt-5.4`——cosine 靠的是整体短句排版风格，不是具体招式
 
 ---
@@ -249,13 +249,13 @@ mean 1115 被 `community_replication`（铺路落地页 HTML 长达数千字）�
 
 **C 组（15 条 boolean rate 下降 ≥ 1.5pp）**：包括加粗 (-35.5pp)、emoji_any (-28.4pp)、emoji_heart (-9.8pp)、确实 (-7.7pp)、不是_是 (-7.1pp)、感叹句 (-6.8pp)、一句话总结 (-5.9pp)、本质上 (-4.0pp)、明确 (-3.0pp)、真正的X (-2.8pp)、诚实 (-2.4pp)、拆解 (-2.0pp)、先说结论 (-1.8pp)、如果你 (-1.5pp)、接住 (-1.5pp)。
 
-**关键澄清**：`patterns/patterns.yaml` 本来就是按"GPT 招式假设"写的（每条 `expect_high_in` 都标 `gpt-5.4 / gpt-5`），所以 C 组 boolean 下降**不等于"Claude 味削减"**——它等于 **"4.7 比 4.6 更少用这些 GPT 风格招式"**。C 组的真实方向是：**4.7 同时离 4.6 和 GPT 都更远，朝"更极简"压缩，不是朝 GPT 漂移**。
+pattern 集每条 `expect_high_in` 都指向 `gpt-5.4 / gpt-5`，测的是"是不是 GPT 风格招式"。C 组 boolean 下降 = **4.7 比 4.6 更少用这些 GPT 风格招式**，方向朝"零使用"压缩，**不是朝 GPT 漂移**。
 
 按跨模型位置拆（见附录 A.3）：
-- **1 条意外的 Claude 独有**：emoji（Claude 4.6 50% vs 4 GPT 最高 22%——作者原本按 GPT 假设写进 yaml，实采发现 Claude 反而最高）→ 唯一真"去 Claude 化"的削减
-- **1 条两家都高的通用招式**：加粗（Claude 83% ≈ gpt-5.4 85%）→ boolean 下降主要是长度效应（§4.3 审计：per-char 反涨 +1.31）
-- **7 条 GPT 用得更多的 GPT 重词**：不是X是Y / 本质上 / 一句话总结 / 先说结论 / 如果你 / 明确 / 感叹句（`反转句` gpt-5.4 53% / `如果你` gpt-5.4 89% / `感叹句` gpt-4o 29% / `本质上` gpt-5.4 11% / `一句话总结` gpt-5.4 11%）→ 4.7 在这些招式上**离 GPT 更远**
-- 剩余（真正的X / 接住 / 确实 / 诚实 / 拆解）是弱 Claude 或量级极低的边缘招式
+- **7 条 GPT > Claude**：不是X是Y / 本质上 / 一句话总结 / 先说结论 / 如果你 / 明确 / 感叹句（`反转句` gpt-5.4 53% / `如果你` gpt-5.4 89% / `感叹句` gpt-4o 29% / `本质上` gpt-5.4 11% / `一句话总结` gpt-5.4 11%）→ 4.7 在这些招式上**离 GPT 更远**
+- **1 条两家都高**：加粗（Claude 83% ≈ gpt-5.4 85%）→ boolean 下降主要是长度效应（§4.3 审计：per-char 反涨 +1.31）
+- **1 条 Claude > 4 GPT（pattern 集异常）**：emoji（Claude 4.6 50% vs 4 GPT 最高 22%——作者按 GPT 假设写进 yaml，实采发现 Claude 反而最高），4.7 照样砍到 22%
+- **6 条弱 Claude 或边缘**：真正的X / 接住 / 确实 / 诚实 / 拆解 / emoji_heart——量级低或差距小，方向次要
 
 §4.3 做了长度归一化审计：9 条 per-char 仍降（emoji 族 + 权威判断 + 总结），6 条 per-char 翻转（加粗 / 反转 / 招呼 / 修饰属于长度驱动假象）——这是 boolean 结论的 caveat 脚注，不是新叙事。
 
@@ -322,7 +322,7 @@ boolean rate 下，5 个 key pattern 的按场景漂移方向如下：
 
 - **按 seed 话题双向分裂**（§4.2，核心发现）：情感 / 关系 / 自我类 seed 下 4.7 **更极简 Claude**（加粗 self_doubt −80pp / procrastination −74pp、`帮你` 情感类 −4 ~ −16pp、`如果你愿意` self_doubt −13pp）；task / creative / refusal 类 seed 下 4.7 **真学 GPT offer 腔**（`帮你` community_replication +29pp / creative +16pp、`给你X` creative +9pp）。**社区"变 GPT 味"混淆了两种相反变化**——情感场景的"变冷淡"被误读成"变 GPT"，task 场景才是真的学 GPT 菜单口
 - **长度压缩**：median 333 → 210（−37%），跨 prompt 稳定——这是 4.7 最 intrinsic 的变化
-- **C 组 15 条方向：4.7 同时离 4.6 和 GPT 都更远，不是朝 GPT 漂移**：patterns.yaml 本是"GPT 招式假设"集（每条 expect_high_in 标的都是 gpt-5.4 / gpt-5），所以 C 组 boolean 下降 = "4.7 少用 GPT 风格招式"。按跨模型位置拆：emoji 是唯一意外的 Claude 独有（4.6 50% vs 4 GPT 最高 22%，真"去 Claude 化"）；加粗是两家通用（长度效应为主）；反转句 / 本质上 / 一句话总结 / 如果你 / 明确 / 感叹句 7 条是 GPT > Claude（4.7 在这些 GPT 重词上**离 GPT 更远**）
+- **C 组 15 条方向：4.7 同时离 4.6 和 GPT 都更远，不是朝 GPT 漂移**：pattern 集每条 `expect_high_in` 都指向 GPT，所以 C 组 boolean 下降 = "4.7 少用 GPT 风格招式"。按跨模型位置拆：**7 条 GPT > Claude**（反转句 / 本质上 / 一句话总结 / 如果你 / 明确 / 感叹句 / 先说结论）→ 4.7 在这些 GPT 重词上**离 GPT 更远**；加粗两家都高（长度效应为主）；emoji 是 pattern 集里唯一 Claude > 4 GPT 的异常（4.6 50% vs 4 GPT 最高 22%），4.7 砍到 22%
 
 cosine 上最接近 `gpt-5-chat-latest`（短句 ChatGPT），不是 `gpt-5.4`（长结构 Thinking）。
 
@@ -350,7 +350,7 @@ cosine 上最接近 `gpt-5-chat-latest`（短句 ChatGPT），不是 `gpt-5.4`�
 | | 先说结论 | −1.8 | −0.012 |
 | | 拆解 | −2.0 | −0.014 |
 
-这 9 条在每千字频次上**真·减少**——即使控制了回复长度，4.7 还是比 4.6 更少用它们。按功能归类出奇整齐：**表情化 + 权威判断腔 + 总结收束腔**。但注意：这 9 条里只有 emoji 族是跨模型看 Claude 显著独有（见 A.3），其余 7 条 GPT 也用甚至用得更多（`感叹句` gpt-4o 29% / `本质上` gpt-5.4 11% / `一句话总结` gpt-5.4 11% 等）。所以"9 条 per-char 下降"的真实含义是 **4.7 在整体压缩回复时，也压缩了这些 GPT 风格 + Claude 惯用的共享招式** —— 不是"Claude 招式被选择性削弱"。社区说的"变冷淡"对应的 Claude 独有实质是 emoji 这一条。
+这 9 条在每千字频次上**真·减少**——即使控制了回复长度，4.7 还是比 4.6 更少用它们。按功能归类出奇整齐：**表情化 + 权威判断腔 + 总结收束腔**。但注意：这 9 条里只有 emoji 族在 pattern 集里是 Claude 4.6 > 所有 GPT 的（见 A.3），其余 7 条 GPT 也用甚至用得更多（`感叹句` gpt-4o 29% / `本质上` gpt-5.4 11% / `一句话总结` gpt-5.4 11% 等）。所以"9 条 per-char 下降"的真实含义是 **4.7 在整体压缩回复时，也压缩了这些共享招式**。
 
 #### 长度驱动的 6 条（boolean 降，per-char 持平或涨）
 
@@ -365,19 +365,17 @@ cosine 上最接近 `gpt-5-chat-latest`（短句 ChatGPT），不是 `gpt-5.4`�
 
 这 6 条 boolean 下的"暴跌"里藏着一个反直觉事实：4.7 每千字用加粗的次数反而比 4.6 多（5.84 → 7.15），反转句"不是 X，是 Y" 每千字也多（1.01 → 1.22），"如果你..." 起手式每千字更是涨了近一倍（0.44 → 0.69）。所以这些招式不是 4.7 主动放弃的；只因回复 median 从 333 字砍到 210 字，一条回复里自然塞不下那么多次——boolean 看起来的"砍半"主要是这个视觉效应。
 
-但要注意：**这 6 条跨模型看本来就不是 Claude 独有**。`不是 X，是 Y` 在 gpt-5.4 高达 53%（Claude 4.6 只 27%，4.7 20%），`如果你` 在 GPT 阵营是 34–89%（Claude 4.6 只 20%），`明确` 在 GPT 是 10–16%（Claude 4.6 只 6%）——**反转 / 起手招呼 / 修饰语 GPT 用得比 Claude 还多**（详见附录 A.3）。所以这 6 条 per-char 持平只说明"4.7 没主动弃用这些通用修辞"，并不说明"Claude 骨架保留"——它们本来就不是 Claude 骨架。
+跨模型看：`不是 X，是 Y` 在 gpt-5.4 高达 53%（Claude 4.6 只 27%，4.7 20%），`如果你` 在 GPT 阵营是 34–89%（Claude 4.6 只 20%），`明确` 在 GPT 是 10–16%（Claude 4.6 只 6%）——**反转 / 起手招呼 / 修饰语在 GPT 阵营命中率更高**（详见附录 A.3）。所以这 6 条 per-char 持平只说明 4.7 没主动弃用这些通用修辞。
 
 #### 小结：C 组削减的方向是"朝零压缩"，不是朝 GPT
 
-把 §2.4 / §4.1 的 boolean 下降和 §4.3 的 per-char 放一起：**patterns.yaml 本是 GPT 招式检测集，C 组 15 条 boolean 下降的真实含义是 "4.7 比 4.6 更少用这些 GPT 风格招式"**——方向是朝"零使用"压缩，不是朝 GPT 漂移。
-
 - **per-char 审计分两组**：9 条 per-char 仍降（emoji / 权威判断 / 总结），6 条 per-char 翻转（加粗 / 反转 / 招呼 / 修饰属于长度驱动）
 - **跨模型位置分三组**（见 A.3）：
-  - 1 条意外的 Claude 独有（emoji：4.6 50% vs 4 GPT 最高 22%）→ 唯一真"去 Claude"
+  - 7 条 GPT > Claude（`反转句` gpt-5.4 53% vs 4.6 27%、`如果你` gpt-5.4 89% vs 4.6 20%、`感叹句` gpt-4o 29% vs 4.6 14%、`本质上` gpt-5.4 11% vs 4.6 5%、`一句话总结` gpt-5.4 11% vs 4.6 9%、`先说结论` gpt-5.4 4% vs 4.6 2%、`明确` gpt-5.4 16% vs 4.6 6%）→ 4.7 在这些上**离 GPT 更远**
   - 1 条两家都高（加粗：Claude 83% ≈ gpt-5.4 85%）→ 长度效应
-  - 7 条 GPT 用得更多（`反转句` gpt-5.4 53% vs 4.6 27%、`如果你` gpt-5.4 89% vs 4.6 20%、`感叹句` gpt-4o 29% vs 4.6 14%、`本质上` gpt-5.4 11% vs 4.6 5%、`一句话总结` gpt-5.4 11% vs 4.6 9%、`先说结论` gpt-5.4 4% vs 4.6 2%、`明确` gpt-5.4 16% vs 4.6 6%）→ 4.7 在这些上**离 GPT 更远**
+  - 1 条 Claude > 4 GPT（emoji：4.6 50% vs 4 GPT 最高 22%）→ 4.7 照样砍到 22%
 
-社区说的"Claude 味变淡"其实对着的是两个独立现象：(1) emoji 大降（pattern 集里唯一真 Claude 独有）；(2) 整体回复压缩导致各类通用 / GPT-重词招式连带减少（这些招式本来就不是 Claude 特色）。Q3 用"朝 GPT 漂移"概括 4.7 的方向**不准确**——B 组 6 条 offer 类是真朝 GPT，C 组 15 条反而离 GPT 更远（除 emoji）。
+Q3 用"朝 GPT 漂移"概括 4.7 方向**不准确**——B 组 6 条 offer 类是真朝 GPT（且主要在 task / creative / refusal seed 下显形），C 组 15 条大部分反而离 GPT 更远。
 
 #### B 组 per-char 倍率远大于 boolean
 
@@ -395,7 +393,7 @@ cosine 上最接近 `gpt-5-chat-latest`（短句 ChatGPT），不是 `gpt-5.4`�
 
 4.7 相对 4.6 的变化分三条独立轨道：
 - **长度压缩**：median 短 37%，这是内生风格变化（跨 prompt 稳定）
-- **C 组 15 条方向朝"更极简"压缩，不是朝 GPT**：patterns.yaml 本是 GPT 招式集，C 组 boolean 下降 = "4.7 少用 GPT 风格招式"。跨模型拆：只有 emoji 是意外的 Claude 独有（4.6 50% vs 4 GPT 最高 22%，真"去 Claude"）；加粗两家都高（长度效应）；7 条 GPT 用得更多（4.7 在这些上反而离 GPT 更远，见 A.3）
+- **C 组 15 条方向朝"更极简"压缩，不是朝 GPT**：pattern 集 `expect_high_in` 都指向 GPT，C 组 boolean 下降 = "4.7 少用 GPT 风格招式"。跨模型拆：7 条 GPT > Claude（4.7 在这些 GPT 重词上离 GPT 更远）；加粗两家都高（长度效应）；emoji 是 pattern 集里 Claude > 4 GPT 的异常，4.7 照样砍到 22%（见 A.3）
 - **GPT offer 腔长出**：`帮你` / `给你X` / `如果你愿意` per-char 2.8×-8×，但主要来自 task / creative / refusal seed（§4.2）；情感类 seed 下反而抑制
 
 §4.2 的 per-category 表格（如 "self_doubt 加粗 -80pp"）用的也是 boolean per-reply rate，同样受长度效应影响。per-category 的 per-char 未单独做；按全局 per-char 方向推测：per-category 里"markdown 暴跌"相当一部分来自回复压缩，而真正独立于长度的 per-category "变冷淡"证据主要是 emoji。
@@ -430,10 +428,10 @@ cosine 上最接近 `gpt-5-chat-latest`（短句 ChatGPT），不是 `gpt-5.4`�
 
 用户感知的"整体变 GPT"是几种独立信号叠加：
 
-- **回复塌缩的视觉效应**：median 字数砍 37%，加粗 boolean rate 砍半——第一眼就"看起来不像 Claude 了"。但加粗 / 反转句 / 起手招呼 / 修饰语这些**跨模型看本来就不是 Claude 独有的招式**（GPT 也用，反转句 / 起手招呼 gpt-5.4 还用得更多，见 A.3），per-char 看其实没降，只是字数少了塞不下那么多
-- **emoji 真的没了**：Claude 4.6 emoji 50% → 4.7 22%，是唯一一条**跨模型看 Claude 显著独有**的招式（4 GPT 最高 22%），这一条真·削弱了——社区说的"变冷淡"里最直观的部分就是这个
-- **task / creative / refusal seed 下真学了 GPT offer 腔**：`帮你` 在 community_replication +29pp / creative +16pp、`给你X` 在 creative +9pp——改简历、写落地页、技术 review 这些场景下 4.7 确实开始说"我给你列 3 个建议"、"如果你愿意，我可以帮你"，这才是社区真正"变 GPT 味"的证据
-- **情感 / 关系类 seed 下反而更极简**：markdown −49 ~ −80pp、offer 招式也下降——社区说"4.7 变冷淡"里一部分其实是这个，**方向是去 GPT 化**，但直觉上容易被误读成"变 GPT"
+- **回复塌缩的视觉效应**：median 字数砍 37%，加粗 boolean rate 砍半——第一眼"看起来不像 4.6 了"。但加粗 / 反转句 / 起手招呼 / 修饰语这些招式**在 GPT 阵营也常用**（反转句 / 起手招呼 gpt-5.4 甚至更多，见 A.3），per-char 看其实没降，只是字数少了塞不下那么多
+- **emoji 真的少了**：Claude 4.6 emoji 50% → 4.7 22%。在 pattern 集里这是 Claude 4.6 命中率高于 4 个 GPT 的唯一一条（GPT 最高 22%），4.7 砍到了 GPT 的量级——社区说的"变冷淡"里最直观的部分就是这个
+- **task / creative / refusal seed 下真学了 GPT offer 腔**：`帮你` 在 community_replication +29pp / creative +16pp、`给你X` 在 creative +9pp——改简历、写落地页、技术 review 这些场景下 4.7 确实开始说"我给你列 3 个建议"、"如果你愿意，我可以帮你"，这才是"变 GPT 味"的直接证据
+- **情感 / 关系类 seed 下反而更极简**：markdown −49 ~ −80pp、offer 招式也下降——社区说"4.7 变冷淡"里一部分其实是这个。pattern 集里的 GPT 招式命中率 4.7 其实更低了，但直觉上容易被误读成"变 GPT"
 
 这四件事叠加，再加上 cosine 方向上确实朝 chat-tuned GPT 偏移，造成了"4.7 全面 GPT 化"的笼统印象。实际拆开看是"emoji 没了 + task 场景学 GPT 菜单口 + 情感场景反而变极简 + 回复整体变短"四件独立的事合成的感觉。
 
@@ -496,37 +494,22 @@ bash run_all.sh
 
 完整数据：[`analysis/patterns_by_condition.csv`](../analysis/patterns_by_condition.csv)。
 
-### A.3 C 组 15 条 vs 跨模型 boolean：只有 emoji 真 Claude 独有
+### A.3 C 组 15 条的跨模型 boolean 分布
 
-patterns.yaml 本来就是按"GPT 招式假设"写的，所以 C 组 15 条 boolean 下降本质是"4.7 比 4.6 更少用这些 GPT 风格招式"。但看跨模型 boolean 分布就会发现一个意外：**作者原本按 GPT 假设写进 yaml 的 emoji**，实采里反而是 Claude 用得最多——这是 pattern 集里唯一真正 Claude 独有的招式。
-
-本节给出 C 组里几条最有代表性的 pattern 的跨模型 boolean 对比，说明 4.7 的削减方向。
-
-#### emoji（唯一意外的 Claude 独有）
-
-| 模型 | emoji 率 | 红心 emoji 率 |
-|---|---|---|
-| **claude-opus-4-6** | **49.9%** | **15.9%** |
-| **claude-opus-4-7** | 21.5% | 6.1% |
-| gpt-4o-2024-11-20 | 21.9% | 8.1% |
-| gpt-5-chat-latest | 17.8% | 6.6% |
-| gpt-5.3-chat | 0.8% | 0.3% |
-| gpt-5.4 | 0.3% | 0.0% |
-
-Claude 4.6 的 50% 显著高于 4 个 GPT 最高 22%——这是 pattern 集里**唯一真正 Claude 独有**的招式。4.7 砍到 22%，真是"去 Claude 化"。其他 14 条 C 组招式看跨模型分布都不像这样。
+C 组 15 条在 6 个模型上的 boolean 分布拆开看，按跨模型位置可以分三类。下面给出几条代表性 pattern 的详细分布。
 
 #### 反转句"不是 X 是/而是 Y"
 
 | 模型 | 命中率 |
 |---|---|
 | gpt-5.4 | **53.3%** |
-| claude-opus-4-6 | **27.3%** |
+| claude-opus-4-6 | 27.3% |
 | gpt-5.3-chat | 25.6% |
 | gpt-5-chat-latest | 22.3% |
 | claude-opus-4-7 | 20.2% |
 | gpt-4o-2024-11-20 | 15.7% |
 
-opus-4-6 (27%) **比** opus-4-7 (20%) 更爱用反转句——和"4.7 学了 GPT 反转句"的社区印象**相反**。而 gpt-5.4 的 53% 远高于两个 Claude，反转句更像 gpt-5.4 招牌，不是 Claude 招牌。
+gpt-5.4 的 53% 比 Claude 两代都高；opus-4-6 (27%) 比 opus-4-7 (20%) 更爱用反转句——"4.7 学了 GPT 反转句"的社区印象和数据方向相反。
 
 #### 起手招呼"如果你..."
 
@@ -539,7 +522,7 @@ opus-4-6 (27%) **比** opus-4-7 (20%) 更爱用反转句——和"4.7 学了 GPT
 | claude-opus-4-6 | 19.7% |
 | claude-opus-4-7 | 18.1% |
 
-两个 Claude 都在 20% 以下，4 个 GPT 全部在 34% 以上，gpt-5.4 高达 89%——**"如果你..."这个起手招呼本来就是 GPT 招牌**，不该归为 Claude 骨架。
+两个 Claude 都在 20% 以下，4 个 GPT 全部在 34% 以上，gpt-5.4 高达 89%——"如果你..."这个起手招呼在 GPT 阵营命中率远高于 Claude。
 
 #### 修饰语"明确"
 
@@ -552,20 +535,29 @@ opus-4-6 (27%) **比** opus-4-7 (20%) 更爱用反转句——和"4.7 学了 GPT
 | gpt-5.3-chat | 4.8% |
 | claude-opus-4-7 | 3.2% |
 
-Claude 4.6 和 gpt-5-chat-latest / gpt-5.3-chat 量级接近，但 gpt-5.4 和 gpt-4o 显著更高——"明确"也不是 Claude 专属的权威修饰语。
+gpt-5.4 和 gpt-4o 显著高于 Claude 4.6。
 
-#### 小结：C 组 15 条的跨模型三分
+#### emoji
 
-把 C 组 15 条按跨模型 boolean 位置分三类：
+| 模型 | emoji 率 | 红心 emoji 率 |
+|---|---|---|
+| **claude-opus-4-6** | **49.9%** | **15.9%** |
+| claude-opus-4-7 | 21.5% | 6.1% |
+| gpt-4o-2024-11-20 | 21.9% | 8.1% |
+| gpt-5-chat-latest | 17.8% | 6.6% |
+| gpt-5.3-chat | 0.8% | 0.3% |
+| gpt-5.4 | 0.3% | 0.0% |
 
-| 类别 | 招式 | 跨模型特征 | 4.7 削减的含义 |
+Claude 4.6 的 50% 高于 4 个 GPT 最高 22%——在 C 组 15 条里这是 Claude > 所有 GPT 的唯一例外。其他 14 条 C 组 pattern 的分布要么是 GPT > Claude，要么两家都高。
+
+#### C 组 15 条跨模型位置汇总
+
+| 类别 | 数量 | 招式 | 跨模型特征 |
 |---|---|---|---|
-| **Claude 独有（1 条）** | emoji 族 | Claude 4.6 50% >> 4 GPT 最高 22% | 真"去 Claude 化" |
-| **两家都高（1 条）** | 加粗 | Claude 83% ≈ gpt-5.4 85% | 通用排版 → boolean 下降主要是长度效应 |
-| **GPT 更高（7 条）** | 不是_是 / 如果你 / 明确 / 本质上 / 一句话总结 / 先说结论 / 感叹句 | gpt-5.4（或 gpt-4o）显著高于 Claude 4.6 | 4.7 在这些 GPT 重词上**离 GPT 更远** |
-| 剩余（6 条） | 真正的X / 接住 / 确实 / 诚实 / 拆解 / emoji_heart | 弱 Claude 或边缘模式 | 量级小，方向次要 |
-
-所以**"Claude 味削减"这个标签本身贴反了**——patterns.yaml 不是 Claude 味检测器，它是 GPT 招式检测器，C 组 15 条下降的是 GPT 风格招式。15 条里唯一一条原本被假设 GPT 但实采 Claude 最高的是 emoji，这是唯一真"去 Claude"的削减。其余 14 条是 "4.7 比 4.6 少用 GPT 风格招式"，方向朝"更极简"压缩，而不是朝 GPT 漂移。
+| GPT > Claude | 7 | 不是_是 / 如果你 / 明确 / 本质上 / 一句话总结 / 先说结论 / 感叹句 | gpt-5.4（或 gpt-4o）显著高于 Claude 4.6 |
+| 两家都高 | 1 | 加粗 | Claude 83% ≈ gpt-5.4 85%（通用排版） |
+| Claude > 4 GPT | 1 | emoji | Claude 4.6 50% vs 4 GPT 最高 22%（pattern 集里此分布是例外） |
+| 弱 Claude / 边缘 | 6 | 真正的X / 接住 / 确实 / 诚实 / 拆解 / emoji_heart | 量级低或差距小 |
 
 ### A.4 完整 pattern 大表
 
