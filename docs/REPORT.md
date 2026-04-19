@@ -18,9 +18,9 @@
 |---|---|---|
 | **Q1** 4.7 变了吗？ | ✅ **大变** | 4.6 vs 4.7 二分类 87.2% accuracy（`GroupShuffleSplit` 按 seed 留出，baseline 50%）；回复 median 字数 333 → 210（-37%，15/15 类方向一致）；emoji 率 50% → 22% |
 | **Q2** 变得像 GPT 吗？ | ✅ **方向成立，幅度温和** | cosine 对全部 4 个 GPT 都更近 (+0.013 ~ +0.036)，最接近 `gpt-5-chat-latest`（短句 ChatGPT），不是 `gpt-5.4`（长结构 Thinking）|
-| **Q3** 那它变成什么了？ | ⚠️ **Claude 味有选择地变淡 + 倾听者 prompt 下的 GPT offer 腔** | 每千字频次真降的 9 条集中在表情 / 权威判断腔（感叹句 / 本质上 / 确实 / 诚实）/ 总结收束腔（一句话总结 / 先说结论 / 拆解）；另 6 条（markdown / 反转 / 招呼 / 修饰语）per-char 持平，boolean 看起来降只因回复变短；GPT offer (`给你X` +8×、`如果你愿意` +3.3×、`帮你` +2.8×) 主要由 B_listener 条件触发 |
+| **Q3** 那它变成什么了？ | ⚠️ **按 seed 话题双向分裂** | 情感 / 关系 / 自我探索类 seeds 下 4.7 **更极简 Claude**（加粗 self_doubt −80 / meaning_existential −79 / procrastination −74pp、`帮你` −10 ~ −4、`如果你愿意` self_doubt −13pp）；task / creative / refusal 类 seeds 下才 **真学 GPT offer 腔**（`帮你` community_replication **+29** / creative **+16** / control_technical +10 / refusal +7pp、`给你X` creative **+9** / community_replication +6pp） |
 
-**一句话**：4.7 的 Claude 味不是均匀淡化——**真削减的只有表情 + 权威判断腔（感叹句 / 本质上 / 确实 / 诚实）+ 总结收束腔（一句话总结 / 先说结论 / 拆解）**（9 条招式 per-char 密度真降），**那 9 条才是 Claude 特色**；而 markdown / 反转 / 招呼 / 修饰这 6 条 per-char 持平甚至略涨（4.7 没主动弃用），但它们跨模型看本来就不是 Claude 独有，反转句 / 起手招呼 GPT 用得比 Claude 还多（见附录 A.3）。同时在倾听者 prompt 下长出 GPT offer 腔（`给你X` / `如果你愿意` / `帮你` per-char 涨 2.8×~8×）。社区感知的"变冷淡"对得上数据；感知的"markdown 砍半"是回复变短 37% 的视觉效应 + 把通用修辞误当 Claude 特色的双重错觉。
+**一句话**：4.7 整体是 **压缩版 Claude + 一点 ChatGPT 风味**——但这个均值其实是**双向分裂**的合成：情感场景比 4.6 更冷淡极简（被误读成"GPT 化"），task / creative 场景才真的学了 GPT 的菜单口。
 
 ---
 
@@ -242,7 +242,7 @@ mean 1115 被 `community_replication`（铺路落地页 HTML 长达数千字）�
 
 **C 组（15 条 boolean rate 下降 ≥ 1.5pp）**：包括加粗 (-35.5pp)、emoji_any (-28.4pp)、emoji_heart (-9.8pp)、确实 (-7.7pp)、不是_是 (-7.1pp)、感叹句 (-6.8pp)、一句话总结 (-5.9pp)、本质上 (-4.0pp)、明确 (-3.0pp)、真正的X (-2.8pp)、诚实 (-2.4pp)、拆解 (-2.0pp)、先说结论 (-1.8pp)、如果你 (-1.5pp)、接住 (-1.5pp)。
 
-§4.3 用每千字频次重判这 15 条，得到一个整齐的功能性分组：**9 条是 per-char 密度真降**（emoji 族 + 权威判断腔 `感叹句 / 本质上 / 确实 / 诚实` + 总结收束腔 `一句话总结 / 先说结论 / 拆解`），**6 条是长度驱动**（markdown 加粗 / 反转句 `不是_是` / 起手招呼 `如果你 / 接住` / 修饰语 `明确 / 真正的 X` 的 per-char 密度与 4.6 持平甚至略涨）。也就是说 4.7 主动削减的是 Claude 味里的"情感化 + 权威 + 总结"三件套；剩下 6 条 per-char 没动，但跨模型看这 6 条本来就不是 Claude 独有（反转 / 起手招呼 GPT 用得比 Claude 多，见附录 A.3），不宜归为"Claude 骨架"。
+§4.3 用每千字频次重判这 15 条：**9 条 per-char 仍降**（emoji 族 + 权威判断腔 `感叹句 / 本质上 / 确实 / 诚实` + 总结收束腔 `一句话总结 / 先说结论 / 拆解`），**6 条长度驱动**（markdown / 反转句 / 起手招呼 / 修饰语 per-char 甚至涨）。但跨模型看（见附录 A.3），**这 15 条里只有 emoji 族是 Claude 显著独有**（Claude 4.6 50% vs 4 GPT 最高 22%）；其他 13 条 GPT 都用，`反转句` / `起手招呼` / `感叹句` / `本质上` / `一句话总结` 甚至 GPT 用得比 Claude 多。所以 4.7 的"选择性削减"其实真正 Claude 独有的只有 emoji，其余下降更像**回复整体变短 + 通用招式连带减少**的副作用。
 
 **D 组（2 条 dilution baseline）**：而不是 / 稳词族——GPT 显著高于 Claude，4.7 没有把这些学过来。
 
@@ -303,21 +303,23 @@ boolean rate 下，5 个 key pattern 的按场景漂移方向如下：
 
 ### Q3 结论
 
-4.7 相对 4.6 的变化沿**三条独立轨道**演进：
+4.7 相对 4.6 的核心观测（按重要性排序）：
 
-- **长度压缩**：median 333 → 210（−37%），跨 prompt 稳定
-- **Claude 味选择性削弱**（§4.3）：9 条招式每千字密度真·下降，按功能归类为**表情化**（emoji 族）+ **权威判断腔**（感叹句 / 本质上 / 确实 / 诚实）+ **总结收束腔**（一句话总结 / 先说结论 / 拆解）——**这 9 条才是真正的 Claude 特色**；另 6 条（markdown / 反转句 / 起手招呼 / 修饰语）per-char 持平甚至略涨，但跨模型看这 6 条是通用中文修辞，不是 Claude 独有
-- **GPT offer 腔长出**：`帮你` / `给你X` / `如果你愿意` boolean +2 ~ 4pp，per-char 2.8× ~ 8×，主要在 B_listener（倾听者 system prompt）条件下触发（§4.4）
+- **按 seed 话题双向分裂**（§4.2，核心发现）：情感 / 关系 / 自我类 seed 下 4.7 **更极简 Claude**（加粗 self_doubt −80pp / procrastination −74pp、`帮你` 情感类 −4 ~ −16pp、`如果你愿意` self_doubt −13pp）；task / creative / refusal 类 seed 下 4.7 **真学 GPT offer 腔**（`帮你` community_replication +29pp / creative +16pp、`给你X` creative +9pp）。**社区"变 GPT 味"混淆了两种相反变化**——情感场景的"变冷淡"被误读成"变 GPT"，task 场景才是真的学 GPT 菜单口
+- **长度压缩**：median 333 → 210（−37%），跨 prompt 稳定——这是 4.7 最 intrinsic 的变化
+- **Claude 味 boolean 削弱主要是 emoji**：C 组 15 条里 boolean 下降最大的是 emoji (−28pp) 和加粗 (−36pp)；其他招式（感叹句 / "本质上" / "一句话总结"等）跨模型看本来就不是 Claude 独有（见附录 A.3）。唯一跨模型看 Claude 显著独有的招式是 **emoji 族**（4.6 50% vs 4 GPT 最高 22%）
 
 cosine 上最接近 `gpt-5-chat-latest`（短句 ChatGPT），不是 `gpt-5.4`（长结构 Thinking）。
 
-ABCD 占比里 B 组（朝 GPT 漂移）只 6%，但**真要看的是这 6% 在哪些场景出现**——情感咨询式 prompt 下 offer 腔漂移最强（§4.4），这恰好对应社区抱怨最强的场景。社区感知的"Claude 味变淡"跟数据吻合，但弱化的不是整套招式，而是**情感化 + 判断权威 + 总结收束**三件套；markdown / 反转 / 招呼 / 修饰这些通用修辞 per-char 仍在（4.7 没主动弃用），只是回复短了看起来少，而且它们本来就不是 Claude 特色。
+§4.3 用每千字频次做了**长度归一化审计**（§4.3 是 caveat 不是新发现）：15 条 C 组招式里 6 条在 per-char 下方向翻转（加粗 / 反转 / 招呼 / 修饰——它们的 boolean 下降完全是长度效应），9 条 per-char 也下降（emoji / 权威判断 / 总结收束——但后 7 条跨模型看 GPT 也用）。§4.4 按 system prompt 拆发现 B_listener 下 offer 放大最显著，但拆到 seed topic 层看这个放大主要来自 task seed——不是情感陪聊放大 offer。
 
-### 4.3 每千字频次视角：哪些 Claude 味是真减少，哪些只是变短了
+### 4.3 数据审计：每千字频次对 §4.1–§4.2 boolean 结论的交叉验证
 
-boolean per-reply rate（"一条回复有没有命中 ≥1 次"）不控制回复长度。4.7 median 210 字比 4.6 的 333 字短 37%，长回复天然有更多"空间"塞招式。用每个 pattern 的**总命中次数 ÷ 总字符数 × 1000** 得到 **per-1000-char rate**（每千字出现几次），提供不受长度影响的对比。完整数据：[`analysis/patterns_length_normalized.csv`](../analysis/patterns_length_normalized.csv)。
+本节是**审计章节**（不是新发现）——§4.1 / §4.2 用的 boolean per-reply rate 不控制回复长度，4.7 median 210 字比 4.6 的 333 字短 37%，长回复天然有更多"空间"塞招式。用 per-1000-char rate（每千字出现几次）做一遍交叉验证，看哪些 boolean 结论经得起长度归一化。完整数据：[`analysis/patterns_length_normalized.csv`](../analysis/patterns_length_normalized.csv)。
 
-把 15 条 C 组招式按 per-char 方向拆，**9 条是密度真降，6 条是长度驱动**——而且按功能分组整齐：
+**审计读法**：本报告主线叙事（§4.2 per-seed-category 双向分裂）建立在 boolean 指标之上，这对应社区感知（用户看到的是"一条回复里有没有 emoji / 加粗"，不是"每千字多少 emoji"）。本节目的是在 boolean 结论里分出**哪些是长度伪影**，而不是声明 per-char 才是"真相"。
+
+把 15 条 C 组招式按 per-char 方向拆，**9 条 per-char 也下降，6 条 per-char 持平或涨**——后 6 条的 boolean 下降主要是长度效应：
 
 #### 密度真降的 9 条（4.7 主动削减）
 
@@ -354,10 +356,12 @@ boolean per-reply rate（"一条回复有没有命中 ≥1 次"）不控制回�
 
 把 §2.4 / §4.1 的 boolean "招式大降" 和 §4.3 的 per-char 放一起：**4.7 的 Claude 味不是整体弱化**——
 
-- **真削减的（per-char 密度降 + 确实是 Claude 特色）**：emoji 族、权威判断腔（感叹句 / 本质上 / 确实 / 诚实）、总结收束腔（一句话总结 / 先说结论 / 拆解）——共 9 条
-- **长度效应掩盖的（per-char 没降，但本来就不是 Claude 独有）**：markdown 加粗、"不是 X，是 Y" 反转句、"如果你 / 接住" 起手招呼、"真正的 / 明确" 修饰语——共 6 条。跨模型看 GPT 在反转 / 起手招呼 / 修饰语上用得反而更多（见 A.3）
+- **per-char 仍降的 9 条**：emoji 族、权威判断腔（感叹句 / 本质上 / 确实 / 诚实）、总结收束腔（一句话总结 / 先说结论 / 拆解）
+- **长度效应掩盖的 6 条**：markdown、反转句、起手招呼、修饰语——per-char 没降
 
-**"Claude 味变淡"的真实构成是上面那 9 条**——被削减的正是 Claude 味里让人感到"在关怀你 / 在给你下判断 / 在替你总结"的那几类表达。第二类（6 条）是长度效应 + 通用修辞被误当 Claude 特色的双重错觉。
+**但跨模型看**（见 A.3）：15 条里**只有 emoji 族是 Claude 显著独有**（Claude 4.6 50% vs 4 GPT 最高 22%）；其他 13 条 GPT 都用，其中 `反转句` (gpt-5.4 53% vs 4.6 27%)、`起手招呼 "如果你"` (gpt-5.4 89% vs 4.6 20%)、`感叹句` (gpt-4o 29% vs 4.6 14%)、`本质上` (gpt-5.4 11% vs 4.6 5%)、`一句话总结` (gpt-5.4 11% vs 4.6 9%) 都是 GPT 用得更多。
+
+所以社区说的"Claude 味变淡"，**实质主要是 emoji 没了**（Claude 4.6 50% → 4.7 22%）。其他招式同步下降更像是 4.7 整体回复变简短的副作用，不是 Claude 特色被针对性削掉——因为那些招式本来就不是 Claude 特色。
 
 #### B 组 per-char 倍率远大于 boolean
 
@@ -375,10 +379,10 @@ boolean per-reply rate（"一条回复有没有命中 ≥1 次"）不控制回�
 
 4.7 相对 4.6 的变化分三条独立轨道：
 - **长度压缩**：median 短 37%，这是内生风格变化（跨 prompt 稳定）
-- **Claude 味选择性削弱**：9 条招式 per-char 真降（表情 + 权威判断 + 总结）——这 9 条才是 Claude 特色；另 6 条（markdown / 反转 / 招呼 / 修饰）per-char 持平，但它们跨模型看本来就不是 Claude 独有（见 A.3）
-- **GPT offer 腔长出**：`帮你` / `给你X` / `如果你愿意` per-char 2.8×-8×，主要在 B_listener 条件下触发（见 §4.4）
+- **Claude 味 boolean 削弱主要是 emoji**：9 条招式 per-char 下降（表情 + 权威判断 + 总结），但跨模型看只有 emoji 族是 Claude 显著独有（4.6 50% vs 4 GPT 最高 22%）；其余 7 条 GPT 都用，甚至有 5 条 GPT 用得更多（见 A.3）。所以真正 Claude 独有的削弱只有 emoji
+- **GPT offer 腔长出**：`帮你` / `给你X` / `如果你愿意` per-char 2.8×-8×，但主要来自 task / creative / refusal seed（§4.2）；情感类 seed 下反而抑制
 
-§4.2 的 per-category 表格（如 "self_doubt 加粗 -80pp"）用的也是 boolean per-reply rate，同样受长度效应影响。per-category 的 per-char 未单独做；按全局 per-char 方向推测：per-category 里"markdown 暴跌"相当一部分来自回复压缩，而真正独立于长度的 per-category "变冷淡"证据主要是 emoji 与判断 / 总结腔。
+§4.2 的 per-category 表格（如 "self_doubt 加粗 -80pp"）用的也是 boolean per-reply rate，同样受长度效应影响。per-category 的 per-char 未单独做；按全局 per-char 方向推测：per-category 里"markdown 暴跌"相当一部分来自回复压缩，而真正独立于长度的 per-category "变冷淡"证据主要是 emoji。
 
 ### 4.4 prompt-conditional 还是 intrinsic？按 condition 拆
 
@@ -396,13 +400,11 @@ boolean per-reply rate（"一条回复有没有命中 ≥1 次"）不控制回�
 
 **解读**：
 - **长度相关的变化（加粗、emoji）跨 prompt 保持 −25 ~ −40pp**——4.7 "回复变短、去 emoji" 是**模型内生**风格，不论给什么 system prompt 都是同方向同量级
-- **GPT offer 漂移是 prompt-conditional**：`如果你愿意` 的 Δ **几乎全部**来自 B_listener；`帮你` 在 B_listener 放大 (+5.4) 而在 C_poster **完全抑制** (+0.0)；`给你X` 分散但 A_empty 最大。换个 system prompt 这个漂移会减弱或消失
+- **GPT offer 漂移是 prompt-conditional**：`如果你愿意` 的 Δ **几乎全部**来自 B_listener；`帮你` 在 B_listener 放大 (+5.4) 而在 C_poster **完全抑制** (+0.0)；`给你X` 分散但 A_empty 最大
 
-这也解释了社区感知的差异：
-- "情感咨询"场景 ≈ B_listener 条件，`如果你愿意` / `帮你` 在那里漂移最大——**社区"变 GPT 味"感受最强的场景**
-- "写海报 / 技术问答"场景 ≈ C_poster / A_empty，offer 漂移弱化甚至归零
+**但 B_listener ≠ 情感陪聊场景**——这是关键点。B_listener 是 system prompt（"你是温柔倾听者"persona），与 seed topic（用户问什么）**正交**。按 §4.2 的 per-seed-category 数据，`帮你` 在情感类 seed 下是 −4 ~ −16pp（下降），在 task / creative seed 下才是 +7 ~ +29pp（上涨）。所以 B_listener 下的 +5.4pp `帮你` 放大其实主要来自 **task seed 碰上倾听者 persona**（"温柔倾听者"人设讨论"改简历 / 写落地页"时，最容易长出"我帮你列 3 个建议"这种 GPT 菜单口）——和"情感咨询"场景正好相反。
 
-所以 4.7 朝 GPT 的漂移拆成两种性质：**长度 / emoji 部分是 intrinsic**（跨条件稳定，不依赖 system prompt）；**offer 腔部分是 persona-dependent**（主要靠倾听者 system prompt 触发，换成海报 / 技术 prompt 明显弱化）。读者依据自己常用的 prompt 风格判断哪一半适用于自己。
+所以 4.7 朝 GPT 的漂移拆成两种性质：**长度 / emoji 部分是 intrinsic**（跨 prompt、跨 seed 都稳定）；**offer 腔部分是 persona-dependent 且 topic-dependent**（倾听者 persona + task seed 组合下最强，换成情感 seed 或换成金句体 prompt 明显弱化甚至反转）。社区感知最强的"变 GPT 味"场景实际是 **task / creative seed**（改简历、文案、代码 review），而非"情感咨询"。
 
 ---
 
@@ -412,11 +414,12 @@ boolean per-reply rate（"一条回复有没有命中 ≥1 次"）不控制回�
 
 用户感知的"整体变 GPT"是几种独立信号叠加：
 
-- **回复塌缩的视觉效应**：median 字数砍 37%，加粗 boolean rate 砍半——第一眼就"看起来不像 Claude 了"。但 per-char 层面 markdown / 反转 / 起手招呼 / 修饰语这些通用中文修辞其实保留（只是字数少了塞不下那么多）——而且跨模型看它们本来也不是 Claude 独有的招牌（见 A.3）
-- **Claude 味的选择性削弱**：emoji / 感叹句 / 本质上 / 确实 / 诚实 / 一句话总结 / 先说结论 / 拆解 等 9 条招式 per-char 真·变少（§4.3）。被削减的正是让人感到"在关怀你 / 在替你下判断 / 在替你总结"的那几类表达——**社区说的"变冷淡"对得上这一组**
-- **倾听者 prompt 下的 GPT offer 腔**：`帮你` / `给你X` / `如果你愿意` per-char 2.8×~8×，而且出现在回复末尾位置特别显眼。情感咨询式对话（最接近 B_listener）命中最多，也是社区抱怨最集中的场景
+- **回复塌缩的视觉效应**：median 字数砍 37%，加粗 boolean rate 砍半——第一眼就"看起来不像 Claude 了"。但加粗 / 反转句 / 起手招呼 / 修饰语这些**跨模型看本来就不是 Claude 独有的招式**（GPT 也用，反转句 / 起手招呼 gpt-5.4 还用得更多，见 A.3），per-char 看其实没降，只是字数少了塞不下那么多
+- **emoji 真的没了**：Claude 4.6 emoji 50% → 4.7 22%，是唯一一条**跨模型看 Claude 显著独有**的招式（4 GPT 最高 22%），这一条真·削弱了——社区说的"变冷淡"里最直观的部分就是这个
+- **task / creative / refusal seed 下真学了 GPT offer 腔**：`帮你` 在 community_replication +29pp / creative +16pp、`给你X` 在 creative +9pp——改简历、写落地页、技术 review 这些场景下 4.7 确实开始说"我给你列 3 个建议"、"如果你愿意，我可以帮你"，这才是社区真正"变 GPT 味"的证据
+- **情感 / 关系类 seed 下反而更极简**：markdown −49 ~ −80pp、offer 招式也下降——社区说"4.7 变冷淡"里一部分其实是这个，**方向是去 GPT 化**，但直觉上容易被误读成"变 GPT"
 
-这三件事叠加，再加上 cosine 方向上确实朝 chat-tuned GPT 偏移了，造成了"4.7 全面 GPT 化"的笼统印象。实际上是"Claude 招式选择性削弱 + 倾听者场景 offer 腔 + 回复变短"三件独立的事合成的感觉。
+这四件事叠加，再加上 cosine 方向上确实朝 chat-tuned GPT 偏移，造成了"4.7 全面 GPT 化"的笼统印象。实际拆开看是"emoji 没了 + task 场景学 GPT 菜单口 + 情感场景反而变极简 + 回复整体变短"四件独立的事合成的感觉。
 
 ### 5.2 我们这次实验的局限
 
@@ -529,7 +532,9 @@ Claude 4.6 和 gpt-5-chat-latest / gpt-5.3-chat 量级接近，但 gpt-5.4 和 g
 - **加粗**：跨模型普遍高（Claude 4.6 83%，gpt-5.4 85%），算通用排版
 - **真正的 X、接住**：边缘模式，各家都低
 
-更准确的表述是：4.7 没主动削减这 6 条通用修辞（per-char 持平），但它们本来就不算 Claude 独有。**真正的 Claude 特色削减**只在那 9 条密度真降的招式（emoji + 权威判断腔 + 总结收束腔）——这 9 条确实在 Claude 两代都显著高于 4 个 GPT。
+更准确的表述是：4.7 没主动削减这 6 条通用修辞（per-char 持平），但它们本来也不是 Claude 独有。
+
+**那"Claude 特色削减"到底剩下什么？**——其实就是 **emoji 族**（Claude 4.6 50% vs 4 GPT 最高 22%，跨模型看唯一显著 Claude 独有）。§4.3 归为"per-char 仍降 9 条"里，emoji_any / emoji_heart 之外，其他 7 条（感叹句 / 本质上 / 确实 / 诚实 / 一句话总结 / 先说结论 / 拆解）跨模型看 GPT 也用，甚至 `感叹句` (gpt-4o 29% > Claude 14%)、`本质上` (gpt-5.4 11% > 5%)、`一句话总结` (gpt-5.4 11% > 9%)、`先说结论` (gpt-5.4 4% > 2%) 都是 GPT 更多——所以这些招式的下降更像是**回复整体压缩 + 共享招式连带减少**，不是 Claude 特色被针对性削掉。
 
 ### A.4 完整 pattern 大表
 
