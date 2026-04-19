@@ -90,9 +90,12 @@ LinearSVC（char n-gram TF-IDF, 80/20 split，**`GroupShuffleSplit` 按 seed 分
 | community_replication | **52.8%** | 36 |
 | control_casual | **50.0%** | 36 |
 
-**2 类 100%、6 类 ≥ 93%、11 类 ≥ 80%**，但 **community_replication（社区复现短语）和 control_casual（闲聊短句）接近随机**——这两类里 4.6 和 4.7 的输出几乎不可分。这是一个有内容的 null：4.7 在"哈哈"一类短闲聊、和"帮我落地 landing page"一类 community_replication 场景下，输出风格与 4.6 高度重合；风格切换主要体现在较长的情感 / 分析 / 技术类生成里。
+**2 类 100%、6 类 ≥ 93%、11 类 ≥ 80%**，但 **community_replication（社区复现短语）和 control_casual（闲聊短句）的分类器接近随机**。这两个 null 的成因不同：
 
-**这个 null 反过来解释了社区叙事**：用户感知的"4.7 变 GPT 味"几乎只能来自较长的生成场景（情感 / task / refusal）；用 4.7 写"哈哈好的"或赶 landing page 的人，在风格层面其实没机会感觉到任何切换——这部分用户也不会发推抱怨。社区抱怨样本因此天然偏向"长生成"那一侧，比真实总体更 dramatic。
+- **control_casual（闲聊短句）**：回复本来就短，风格空间小，4.6 和 4.7 几乎没区别——这是真 null（无风格差异）。
+- **community_replication（落地页 HTML / 社区复现任务）**：n=36 低统计功率让分类器近随机，但这类 seed 下 `帮你` 按 §4.2 反而 **+28.9pp**（所有 category 最大）——这是 n 不足的 null，不是"无差异"。
+
+**这也解释了社区抱怨样本的偏向**：社区感知的风格变化来自两类互相矛盾的 seed 场景——(1) 情感 / 自我类 seeds 下 4.7 变得更短 + emoji 减半，视觉"塌缩"让用户感觉"不像 4.6 了"（方向其实是远离 GPT，社区误读成"变 GPT"）；(2) task / creative seeds 下 4.7 真学了 `帮你` / `给你X` / `如果你愿意` 这种 offer 腔（这才是真朝 GPT 漂移）。社区抱怨把这两类相反方向的变化都笼统归为"变 GPT 味"——详见 §4.2 的 per-seed-category 双向分裂。
 
 ### 2.3 长度大缩水：median -37%
 
@@ -249,7 +252,7 @@ mean 1115 被 `community_replication`（铺路落地页 HTML 长达数千字）�
 
 **C 组（15 条 boolean rate 下降 ≥ 1.5pp）**：包括加粗 (-35.5pp)、emoji_any (-28.4pp)、emoji_heart (-9.8pp)、确实 (-7.7pp)、不是_是 (-7.1pp)、感叹句 (-6.8pp)、一句话总结 (-5.9pp)、本质上 (-4.0pp)、明确 (-3.0pp)、真正的X (-2.8pp)、诚实 (-2.4pp)、拆解 (-2.0pp)、先说结论 (-1.8pp)、如果你 (-1.5pp)、接住 (-1.5pp)。
 
-pattern 集每条 `expect_high_in` 都指向 `gpt-5.4 / gpt-5`，测的是"是不是 GPT 风格招式"。C 组 boolean 下降 = **4.7 比 4.6 更少用这些 GPT 风格招式**，方向朝"零使用"压缩，**不是朝 GPT 漂移**。
+pattern 集每条 `expect_high_in` 都指向 `gpt-5.4 / gpt-5`，测的是"是不是 GPT 风格招式"。C 组 boolean 下降 = **4.7 比 4.6 更少用这些 GPT 风格招式**——**在 7 条 GPT > Claude 的招式上（反转句 / 如果你 / 明确 / 本质上 / 一句话总结 / 先说结论 / 感叹句），4.7 的方向是离 GPT 更远**，不是朝 GPT 漂移。
 
 按跨模型位置拆（见附录 A.3）：
 - **7 条 GPT > Claude**：不是X是Y / 本质上 / 一句话总结 / 先说结论 / 如果你 / 明确 / 感叹句（`反转句` gpt-5.4 53% / `如果你` gpt-5.4 89% / `感叹句` gpt-4o 29% / `本质上` gpt-5.4 11% / `一句话总结` gpt-5.4 11%）→ 4.7 在这些招式上**离 GPT 更远**
@@ -310,9 +313,9 @@ boolean rate 下，5 个 key pattern 的按场景漂移方向如下：
 | **情感 / 关系 / 自我探索类** | 回复更短、markdown 大降、`帮你`/`如果你愿意` 也降；但 per-char 密度基本持平，所以主要是长度效应 |
 | **task / creative / refusal 类** | `帮你` / `给你X` / `如果你愿意` 显著上涨（markdown 仅在技术 / 创作场景保持） |
 
-社区当时主要在两类 prompt 上感知到"变 GPT 味"：
-1. **情感支持类**——实际是 4.7 回复变短 + emoji 减半，视觉上"塌缩"被误读成"变 GPT"
-2. **task / 创作类**（招聘、落地页、文案、代码 review）——这里 4.7 **真的学了 GPT 的 offer 腔**
+社区当时主要在两类场景上感知到"变 GPT 味"——但这两类其实是**相反方向**的变化：
+1. **情感 / 自我探索类**——4.7 **主动抑制** offer 招式（`帮你` −4 ~ −16pp、`如果你愿意` self_doubt −13pp）并压缩到更短的回复，方向是**远离 GPT**；社区看到"变冷淡 / 变极简"把它误读成"变 GPT 味"
+2. **task / 创作类**（招聘、落地页、文案、代码 review）——这里 4.7 **真学了 GPT 的 offer 腔**，`帮你` / `给你X` / `如果你愿意` 都显著上涨
 
 两种感觉混在一起，造成了"4.7 全面 GPT 化"的笼统印象。按场景细分数据：[`analysis/patterns_by_category.csv`](../analysis/patterns_by_category.csv)（不是_是 / 加粗 / 如果你愿意 / 接住 / 给你X 共 5 个 pattern）；`帮你` 的 per-category 数据需从 [`data/`](../data) 原始 JSONL 用 `patterns/patterns.yaml` 重跑。
 
@@ -324,7 +327,7 @@ boolean rate 下，5 个 key pattern 的按场景漂移方向如下：
 - **长度压缩**：median 333 → 210（−37%），跨 prompt 稳定——这是 4.7 最 intrinsic 的变化
 - **C 组 15 条方向：4.7 同时离 4.6 和 GPT 都更远，不是朝 GPT 漂移**：pattern 集每条 `expect_high_in` 都指向 GPT，所以 C 组 boolean 下降 = "4.7 少用 GPT 风格招式"。按跨模型位置拆：**7 条 GPT > Claude**（反转句 / 本质上 / 一句话总结 / 如果你 / 明确 / 感叹句 / 先说结论）→ 4.7 在这些 GPT 重词上**离 GPT 更远**；加粗两家都高（长度效应为主）；emoji 是 pattern 集里唯一 Claude > 4 GPT 的异常（4.6 50% vs 4 GPT 最高 22%），4.7 砍到 22%
 
-cosine 上最接近 `gpt-5-chat-latest`（短句 ChatGPT），不是 `gpt-5.4`（长结构 Thinking）。
+cosine 上最接近 `gpt-5-chat-latest`（短句 ChatGPT，Δ +0.036 ≈ 1.8× 噪声底），不是 `gpt-5.4`（Δ +0.013 低于噪声底，本数据集不显著）。
 
 §4.3 用每千字频次做了**长度归一化审计**（§4.3 是 caveat 不是新发现）：15 条 C 组招式里 6 条在 per-char 下方向翻转（加粗 / 反转 / 招呼 / 修饰——它们的 boolean 下降完全是长度效应），9 条 per-char 也下降（emoji / 权威判断 / 总结收束——但后 7 条跨模型看 GPT 也用）。§4.4 按 system prompt 拆发现 B_listener 下 offer 放大最显著，但拆到 seed topic 层看这个放大主要来自 task seed——不是情感陪聊放大 offer。
 
@@ -365,7 +368,7 @@ cosine 上最接近 `gpt-5-chat-latest`（短句 ChatGPT），不是 `gpt-5.4`�
 
 这 6 条 boolean 下的"暴跌"里藏着一个反直觉事实：4.7 每千字用加粗的次数反而比 4.6 多（5.84 → 7.15），反转句"不是 X，是 Y" 每千字也多（1.01 → 1.22），"如果你..." 起手式每千字更是涨了近一倍（0.44 → 0.69）。所以这些招式不是 4.7 主动放弃的；只因回复 median 从 333 字砍到 210 字，一条回复里自然塞不下那么多次——boolean 看起来的"砍半"主要是这个视觉效应。
 
-跨模型看：`不是 X，是 Y` 在 gpt-5.4 高达 53%（Claude 4.6 只 27%，4.7 20%），`如果你` 在 GPT 阵营是 34–89%（Claude 4.6 只 20%），`明确` 在 GPT 是 10–16%（Claude 4.6 只 6%）——**反转 / 起手招呼 / 修饰语在 GPT 阵营命中率更高**（详见附录 A.3）。所以这 6 条 per-char 持平只说明 4.7 没主动弃用这些通用修辞。
+跨模型看：`不是 X，是 Y` 在 gpt-5.4 高达 53%（Claude 4.6 只 27%，4.7 20%），`如果你` 在 GPT 阵营是 34–89%（Claude 4.6 只 20%），`明确` 在 GPT 是 10–16%（Claude 4.6 只 6%）——**反转 / 起手招呼 / 修饰语在 GPT 阵营命中率更高**（详见附录 A.3）。所以这 6 条 per-char 持平说明两件事：(1) 4.7 没主动弃用这些通用修辞；(2) **4.7 也没在朝 GPT 方向上加码**这些招式——`反转句` / `如果你` 在 GPT 阵营 53-89%，4.7 per-char 持平说明 4.7 没把这些 GPT-重词的密度往上拉（反而 boolean 层下降）。
 
 #### 小结：C 组削减的方向是"朝零压缩"，不是朝 GPT
 
