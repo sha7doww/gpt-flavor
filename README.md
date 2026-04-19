@@ -36,27 +36,31 @@ seed 选材 / pattern 选取 / 方法论都存在局限（详见 [REPORT §5.2](
 
 社区说"Opus 4.7 变 GPT 味了"——
 
-- ✅ **4.7 确实变了**（4.6 vs 4.7 二分类 **87.2%** 准确率，按 seed 分组留出；13/15 类明显可分，仅 `control_casual` / `community_replication` 近随机）
-- ✅ **整体上朝 GPT 漂移**（cosine 对全部 4 个 GPT 模型都 +0.013~0.036；self-cos noise 基线见 REPORT §3.1——方向全部成立，+0.036 是温和信号，最小的 +0.013 vs gpt-5.4 在噪声里不显著）
-- ⚠️ **朝 GPT 漂移 per-char 比 boolean 显示的更强**：长度归一化后（REPORT §4.3），`帮你` +2.8×、`给你X` +8×、`如果你愿意` +3.3×——boolean 指标严重低估了 offer 类漂移
-- ⚠️ **"情感类更极简 Claude"大部分是长度 artifact**：4.7 回复短 37%、emoji 减半是真；但 bold / 反转 / Claude 招牌的 per-char 密度并没降——原来说的"markdown -49~-80pp"多半来自"回复短了塞不下"而不是"主动弃用"
-- 🎯 **最像 ChatGPT 短句体**（`gpt-5-chat-latest`，cos +0.036 最大）而不是"全功能" `gpt-5.4`
+- ✅ **4.7 确实变了**：4.6 vs 4.7 二分类 **87.2%** 准确率（按 seed 留出，baseline 50%）；回复 median **333 → 210 字（-37%）**；emoji 率 **50% → 22%**
+- ✅ **方向上朝 GPT 漂移**：cosine 对全部 4 个 GPT 都更近 (+0.013 ~ +0.036)，最接近 `gpt-5-chat-latest`（短句 ChatGPT）而不是 `gpt-5.4`（长结构 Thinking）
+- 🎯 **真学了 GPT 的是 offer 类短语**：按每千字频次，`给你X` **8×**、`如果你愿意` **3.3×**、`帮你` **2.8×**——但主要出现在"温柔倾听者"这类 system prompt 下，写海报或纯技术问答几乎不漂移
+- ⚠️ **但"整体变 GPT"是错觉**：bold / 反转句 / "真正的 X" 等 Claude 招式在每千字密度上**并没减少**，只是回复变短了、一条回复里塞不下那么多招式。"markdown 砍半"的直观感来自长度压缩，不是 Claude 招式真·弱化
 
-**一句话**：4.7 的核心变化是**回复短 37% + emoji 减半**——招式密度（bold / 反转 / Claude 招牌）基本没变；**真·朝 GPT 漂移的证据在 offer 类短语上，per-char 倍率 2.8×~8×，比报告 boolean 指标显示的强得多**。社区"变 GPT 味"的说法**部分成立**（task 场景 offer 腔确实 GPT 化），另一部分是错觉（短回复 + 少 emoji 被误读为"风格大变"）。
+**一句话**：4.7 = **更短、更少 emoji 的 Claude，在倾听者 prompt 下长出一小截 GPT offer 腔**。社区"变 GPT 味"的感觉部分成立：情感咨询场景确实会看到 offer 句式多了；但常说的"markdown 砍半 / 反转少了"主要是回复短的错觉。
 
 ---
 
 ## 我们想回答 3 个问题
 
-### Q1 — 4.7 真变了吗？ ✅ 大变
+### Q1 — 4.7 真变了吗？ ✅ 是
 
-二分类器 **87.2% accuracy** 区分 4.6 vs 4.7（`GroupShuffleSplit` 按 seed 分组留出，避免同一 prompt 的多次 run 跨 train/test 泄漏）。**2/15 类 100%**（analysis, meaning_existential），**6/15 类 ≥ 93%**，13/15 类 ≥ 80%，但 **community_replication 53% / control_casual 50%** 近随机——这两类 4.6 和 4.7 行为几乎不可分。回复 median 字数 **333 → 210（-37%）**（mean 1115 → 446，但被长任务 seed 严重拉偏，详见 REPORT §2.3），加粗率 **83% → 48%（-35pp）**，emoji 率 **50% → 22%（-28pp）**。
+二分类器 **87.2% accuracy** 区分 4.6 vs 4.7（`GroupShuffleSplit` 按 seed 留出，保证 test 的 prompt 不在 train 里；随机基线 50%）。按 15 个 seed 类别拆开：
+
+- **2 类 100% 可分**（analysis / meaning_existential），**6 类 ≥ 93%**，13 类 ≥ 80%
+- **但 control_casual（闲聊）和 community_replication（落地页复现）两类 ≈ 50%**——这两种场景下 4.6 和 4.7 几乎无法区分
+
+表层变化：回复 median 字数 **333 → 210（-37%）**（mean 1115 → 446，被长任务 seed 严重拉偏，详见 REPORT §2.3）；加粗率 83% → 48%；emoji 率 50% → 22%。
 
 → 详细见 [REPORT §2](docs/REPORT.md#2-q1--47-真变了吗)
 
-### Q2 — 变得像 GPT 吗？ ✅ 方向成立但程度有限
+### Q2 — 变得像 GPT 吗？ ✅ 方向成立，程度温和
 
-**cosine 距离全部 4 个 GPT 都更近**：
+4.7 对全部 4 个 GPT 的 cosine 都比 4.6 更近：
 
 ![cosine heatmap](analysis/figures/cosine_heatmap.png)
 
@@ -67,7 +71,9 @@ seed 选材 / pattern 选取 / 方法论都存在局限（详见 [REPORT §5.2](
 | ↔ `gpt-5-chat-latest`（旧 ChatGPT） | 0.826 | **0.862** | **+0.036** |
 | ↔ `gpt-4o-2024-11-20` | 0.816 | **0.851** | +0.035 |
 
-但 **pattern 级别学得不全**——4.7 在 GPT 招牌招式上仍落后 6-12×：
+同模型的 split-half self-cos 噪声底约 0.008–0.024（REPORT §3.1），所以这些 Δ 都是 **1–2× 噪声量级**的温和信号——方向都成立，但 `gpt-5.4` 的 +0.013 在噪声里不算显著，所以 4.7 更像的是**短句 ChatGPT**而不是长结构 Thinking。
+
+绝对水平上 4.7 离 gpt-5.4 仍有很大距离：
 
 | pattern | 4.7 | gpt-5.4 | 差距 |
 |---|---|---|---|
@@ -78,32 +84,45 @@ seed 选材 / pattern 选取 / 方法论都存在局限（详见 [REPORT §5.2](
 
 → 详细见 [REPORT §3](docs/REPORT.md#3-q2--变得像-gpt-吗)
 
-### Q3 — 那它具体变成什么了？ ⚠️ 同一个模型，按场景走了相反方向
+### Q3 — 那它具体变成什么了？ ⚠️ 两件独立的事
 
-100 条 pattern 按观测行为分组：
+4.6 → 4.7 的变化拆成两块独立看更清楚。
 
-| 组 | 含义 | 数量 | 占比 |
+#### 1. 跨 prompt 稳定的"压缩"
+
+无论给什么 system prompt，4.7 都：
+
+- 回复 median 短 37%（333 → 210 字）
+- emoji 砍半（按每千字频次也降）——**emoji 是真·减少**
+- 加粗 / 反转 / "真正的 X" 等 Claude 招式的 **每千字密度与 4.6 基本持平**——boolean rate 看起来砍半只是因为短回复里塞不下那么多招式
+
+这部分是 4.7 的内生风格，不受 prompt 影响。
+
+#### 2. 只在"倾听者"prompt 下显形的 GPT offer 腔
+
+按每千字频次（计次数而不是"是否出现过"）：
+
+| pattern | 4.6 / 千字 | 4.7 / 千字 | 倍率 |
 |---|---|---|---|
-| **A** | 本数据集 0 命中（全模型 ≤ 1%） | 52 | 52% |
-| **B** | 真朝 GPT 漂移（4.7 比 4.6 高 ≥1.5pp） | 6 | 6% |
-| **C** | 反向漂移（4.7 比 4.6 低 ≥1.5pp） | 15 | 15% |
-| **D** | dilution baseline（GPT ≫ Claude） | 2 | 2% |
-| 其他 | 微动 / 不分类 | 25 | 25% |
+| 给你X | 0.011 | 0.088 | **8×** |
+| 如果你愿意 | 0.044 | 0.144 | **3.3×** |
+| 帮你 | 0.272 | 0.760 | **2.8×** |
 
-但 **6% 这个均值是误导**——按 seed 类别拆开看 4.7 - 4.6 在 5 个 key pattern 上的 **boolean** 变化，呈现**双向分裂**：
+但这个漂移**按 system prompt 拆开**才看得准：
 
-| 场景 | 4.7 的 boolean 方向 | 例：`帮你` 的 Δpp |
-|---|---|---|
-| **情感 / 关系 / 自我类** | boolean 下"更极简 Claude"（markdown -49 ~ -80pp、`帮你`/`如果你愿意` 减少）——**但 §4.3 长度归一化后大部分是 artifact**：真·独立于长度的减少只剩 emoji 族 | self_doubt -10 / relationships -8.9 / emotional_comfort -4.4 / work_study -15.6 |
-| **task / creative / refusal 类** | **真的学了 GPT 的 offer 腔**，且 per-char 倍率比 boolean 强很多（全局 2.8×–8×） | community_replication +28.9 / creative +15.6 / control_technical +9.7 / disagreement +7.8 / refusal +7.1 |
+| pattern | A_empty (空) | B_listener (倾听者) | C_poster (金句体) |
+|---|---|---|---|
+| 如果你愿意 | +0.2pp | **+4.2pp** | +0.2pp |
+| 帮你 | +3.1pp | **+5.4pp** | +0.0pp |
+| 给你X | +3.3pp | +1.8pp | +2.9pp |
 
-**⚠️ 长度归一化后（REPORT §4.3）：15/100 pattern 的 Δ 符号翻转**——C 组（"反向漂移"）的招牌 pattern 在 per-char 指标下**反而涨了**（加粗 -35.5pp bool / +1.31 per-1k、反转句 -7.1pp bool / +0.21 per-1k）。所以上表的"情感类更极简 Claude"应降格理解为"**情感类 4.7 回复更短 + 更少 emoji**"，不是"主动弃用 Claude 招式"。真朝 GPT 漂移的证据集中在 task 场景的 offer 腔。
+情感咨询式对话 ≈ B_listener——**这恰好是社区"变 GPT 味"感受最强的场景**。换成海报 / 技术 prompt，offer 漂移大幅弱化甚至归零。
 
-**52% 在本数据集 0 命中**——`patterns.yaml` 是在数据采集前预先写好的一组假设 pattern，其中 52 条在 8,694 条样本里全模型 ≤1%。应理解为**作者预注册假设被实采证伪**（本 pattern 集 precision 约 48%），不是"社区传说普遍有问题"。
+#### 对 pattern 集的诚实交代
 
-校准后社区"变 GPT 味"的叙事：**task / creative 场景的 offer 腔是真 GPT 化**（per-char 倍率显著）；**情感场景的"变冷淡"是真变短，但不是真弃用 Claude 招式**——前者可以说"变 GPT 味"，后者更像"变得更短更 minimalist"。
+`patterns/patterns.yaml` 的 100 条 regex 是**在数据采集前**根据社区印象写好的假设集。其中 52 条（A 组）在 8,694 条样本里全模型 ≤1%——即作者预注册的一半假设**被实采证伪**，本 pattern 集 precision 约 48%；不是"社区传说都没根据"。
 
-→ 完整 ABCD 分组 + 长度归一化重审见 [REPORT §4](docs/REPORT.md#4-q3--那它具体变成什么了)
+→ 完整 ABCD 分组、per-category 细分、长度归一化、按 condition 拆分见 [REPORT §4](docs/REPORT.md#4-q3--那它具体变成什么了)
 
 ---
 
@@ -181,7 +200,7 @@ gpt-flavor/
 ├── patterns/patterns.yaml         # 100 条 regex pattern（flat list）
 ├── seeds/                         # 161 个中文 seed × 15 类 + 3 个 system prompt
 ├── src/                           # 主 pipeline：collect / analyze / stylo / visualize
-├── scripts/                       # 4 个细化脚本（patterns_by_*/classifier_by_*/abcd_breakdown）+ _common.py helper
+├── scripts/                       # 6 个细化脚本（per-category / per-condition / per-1000-char / ABCD / cosine noise / classifier）+ _common.py helper
 ├── data/                          # 8,694 条原始 JSONL（按 model/condition 分目录）
 └── analysis/                      # stats / cosine / classifier / abcd / log_odds × 多切片 + figures/
 ```
