@@ -6,7 +6,7 @@
 > 不外推到英文 / 多轮对话 / 你的具体使用场景。
 
 **数据采集**：2026-04-17 ~ 18（Opus 4.7 发布后 1-2 天）
-**样本量**：6 模型 × 3 prompt 条件 × 161 个中文 seed × 3 runs ≈ **8,694 条**实采回复
+**样本量**：6 模型 × 3 prompt 条件 × 161 个中文 seed × 3 runs = **8,694 条**实采回复
 **默认粒度**：**per-model 池化**——每模型 1,449 条样本（= 3 条件 × 161 seeds × 3 runs，pool 全部）。所有"4.6 vs 4.7"对比、cosine、pattern 命中率、字数都是这个池化粒度下的数字。需要拆条件 / 拆 seed 类别的细分见各小节。
 **代码 + 数据**：开源于本仓库（MIT + CC-BY-4.0）
 
@@ -90,7 +90,7 @@ LinearSVC（char n-gram TF-IDF, 80/20 split，**`GroupShuffleSplit` 按 seed 分
 | community_replication | **52.8%** | 36 |
 | control_casual | **50.0%** | 36 |
 
-**2 类 100%、6 类 ≥ 93%、11 类 ≥ 80%**，但 **community_replication（社区复现短语）和 control_casual（闲聊短句）的分类器接近随机**。这两个 null 的成因不同：
+**2 类 100%、6 类 ≥ 93%、12 类 ≥ 80%**，但 **community_replication（社区复现短语）和 control_casual（闲聊短句）的分类器接近随机**。这两个 null 的成因不同：
 
 - **control_casual（闲聊短句）**：回复本来就短，风格空间小，4.6 和 4.7 几乎没区别——这是真 null（无风格差异）。
 - **community_replication（落地页 HTML / 社区复现任务）**：n=36 低统计功率让分类器近随机，但这类 seed 下 `帮你` 按 §4.2 反而 **+28.9pp**（所有 category 最大）——这是 n 不足的 null，不是"无差异"。
@@ -443,7 +443,7 @@ Q3 用"朝 GPT 漂移"概括 4.7 方向**不准确**——B 组 6 条 offer 类�
 - **只测中文**。英文 / 多轮 / 工具调用场景的 GPT 味漂移可能完全不同
 - **single-turn**。多轮对话中模型有更多累积上下文，风格漂移可能放大
 - **只设了 `temperature=1.0`**（部分模型不接受非默认值则走 server 默认，基本也是 1.0），其余参数全走默认
-- **boolean 与 per-char 指标差异较大**。主报告表格使用 boolean per-reply rate（"一条回复是否出现过该 pattern"）。因 4.7 回复 median 短 37%，boolean 指标会低估短回复模型的招式密度；长度归一化后（§4.3 + [`analysis/patterns_length_normalized.csv`](../analysis/patterns_length_normalized.csv)），15/100 pattern 的 Δ(4.7−4.6) 方向相反——bold / 反转句 / 真正的 X / 明确 / 接住 的每千字密度基本持平，emoji 是唯一在两个指标下都真减少的 C 组招牌。读者引用"markdown 砍半"一类数字时请连带 §4.3 的 per-char 对比
+- **boolean 与 per-char 指标差异较大**。主报告表格使用 boolean per-reply rate（"一条回复是否出现过该 pattern"）。因 4.7 回复 median 短 37%，boolean 指标会低估短回复模型的招式密度；长度归一化后（§4.3 + [`analysis/patterns_length_normalized.csv`](../analysis/patterns_length_normalized.csv)），C 组 15 条分两半：**6 条方向翻转**——加粗 / 不是_是 / 如果你 / 接住 / 真正的 X / 明确 的每千字密度基本持平或反涨，boolean 下降主要是长度效应；**9 条 per-char 也真降**——emoji 族 + 感叹句 / 确实 / 本质上 / 诚实 / 一句话总结 / 先说结论 / 拆解。读者引用"markdown 砍半"一类数字时请连带 §4.3 的 per-char 对比
 - **community_replication 仅 10 条**。task-oriented 场景的统计 power 有限
 - **161 seeds 不能覆盖所有真实使用场景**。结论仅适用于本 seed 集涵盖的 prompt 分布
 - **cosine Δ 幅度在噪声范围内**。split-half bootstrap 显示各模型 self-cos noise 约 0.008-0.024（见 §3.1），所有 4 个 GPT 的 +0.013 ~ +0.036 Δ 都只是 1-2× 噪声量级，方向成立但幅度应读作温和信号；其中 +0.013（vs gpt-5.4）低于噪声底，本数据集不显著

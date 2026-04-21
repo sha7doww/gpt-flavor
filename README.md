@@ -51,7 +51,7 @@ seed 选材 / pattern 选取 / 方法论都存在局限（详见 [REPORT §5.2](
 
 二分类器 **87.2% accuracy** 区分 4.6 vs 4.7（`GroupShuffleSplit` 按 seed 留出，保证 test 的 prompt 不在 train 里；随机基线 50%）。按 15 个 seed 类别拆开：
 
-- **2 类 100% 可分**（analysis / meaning_existential），**6 类 ≥ 93%**，13 类 ≥ 80%
+- **2 类 100% 可分**（analysis / meaning_existential），**6 类 ≥ 93%**，12 类 ≥ 80%
 - **但 control_casual（闲聊）和 community_replication（落地页复现）两类 ≈ 50%**——这两种场景下 4.6 和 4.7 几乎无法区分
 
 表层变化：回复 median 字数 **333 → 210（-37%）**（mean 1115 → 446，被长任务 seed 严重拉偏，详见 REPORT §2.3）；加粗率 83% → 48%；emoji 率 50% → 22%。
@@ -187,7 +187,7 @@ cp -r gpt-flavor/skill/gpt-flavor ~/.claude/skills/
 
 ---
 
-*SKILL 主文件：[skill/gpt-flavor/SKILL.md](skill/gpt-flavor/SKILL.md)；更多参考输出：[examples.md](skill/gpt-flavor/assets/examples.md)；voice DNA 背后的数据分析见 [REPORT.md §3](docs/REPORT.md#3-q2--变得像-gpt-吗)。*
+*SKILL 主文件：[skill/gpt-flavor/SKILL.md](skill/gpt-flavor/SKILL.md)；更多参考输出：[examples.md](skill/gpt-flavor/assets/examples.md)；voice DNA 背后的数据分析见 [REPORT.md §3](docs/REPORT.md#3-q2--变得像-gpt-吗) + [§4](docs/REPORT.md#4-q3--那它具体变成什么了)。*
 
 ---
 

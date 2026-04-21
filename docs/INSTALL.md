@@ -57,7 +57,7 @@ ln -s /path/to/gpt-flavor/skill/gpt-flavor .claude/skills/gpt-flavor
 用 GPT 味写一段：我是不是太情绪化了？
 ```
 
-对照 [SKILL.md 里的六招](../skill/gpt-flavor/SKILL.md#六招模板库) 检查输出是否覆盖"承接 → 反转 → 展开 → 金句 → 菜单 → 回问"。
+对照 [SKILL.md 的 Voice DNA](../skill/gpt-flavor/SKILL.md#voice-dna) 三条取向判断输出是否具备"短句优先 / 被说中感 / 菜单 offer 咬住原话"的底层风格——不是套模板，是看取向。
 
 ## 其他 AgentSkills 兼容的 coding agent
 
@@ -67,7 +67,7 @@ ln -s /path/to/gpt-flavor/skill/gpt-flavor .claude/skills/gpt-flavor
 |---|---|---|
 | Claude Code | `~/.claude/skills/` 或 `.claude/skills/` | `/gpt-flavor` 或自然语言 |
 | Cursor | 按 Cursor 文档配置 skills 目录 | 自然语言（Cursor 不一定支持斜杠命令） |
-| Gemini CLI | `~/.gemini/skills/` | 自然语言 |
+| Gemini CLI | 按 Gemini CLI 文档配置 skills 目录 | 自然语言 |
 | OpenCode | 按 OpenCode 文档配置 | 自然语言 |
 | Goose | 按 Goose 文档配置 | 自然语言 |
 

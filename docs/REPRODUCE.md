@@ -49,9 +49,11 @@ bash run_all.sh
 | log-odds + 6×6 cosine + 3 个 classifier | `src/stylo.py` | `analysis/{log_odds_top.json, cosine_matrix.json, classifier*.json}` |
 | 3 张图（cosine / log_odds / prompt_sensitivity） | `src/visualize.py` | `analysis/figures/*.png` |
 | pattern × 3 condition | `scripts/patterns_by_condition.py` | `analysis/patterns_by_condition.csv` |
-| 5 key pattern × 15 category + drift heatmap | `scripts/patterns_by_category.py` | `analysis/patterns_by_category.csv` + `drift_by_category.png` |
+| 5 key pattern × 15 category + drift heatmap（第 4 张图） | `scripts/patterns_by_category.py` | `analysis/patterns_by_category.csv` + `drift_by_category.png` |
 | 4.6 vs 4.7 分 category 二分类 | `scripts/classifier_by_category.py` | `analysis/classifier_by_category.json` |
 | 100 pattern 按 ABCD 行为分组 | `scripts/abcd_breakdown.py` | `analysis/abcd_breakdown.json` |
+| cosine 自稳定性噪声底 | `scripts/cosine_self_stability.py` | `analysis/cosine_self_stability.json` |
+| 每千字频次（长度归一化审计） | `scripts/patterns_length_normalized.py` | `analysis/patterns_length_normalized.csv` |
 
 ---
 
