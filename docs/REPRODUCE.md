@@ -22,6 +22,8 @@ cp .env.example .env
 
 ## 2. 数据采集（可选——data/ 已含）
 
+> **⚠️ 重采会得到和原数据不同的绝对值**。本仓库 `data/` 的原始采集时间是 2026-04-17~18，正好在 Anthropic Claude Code "≤100 words" verbosity 指令窗口（04-16 ~ 04-20）内且通过第三方 OpenAI-compatible 中转站采——两个因素都会让今天重采的 median 字数、markdown boolean rate 等指标跟原数据不完全对得上。结构性结论（offer 漂移、按 seed 场景双向分裂、cosine 朝 `gpt-5-chat-latest`）在两种后端假设下都成立，绝对数字不保证复刻。详见 [REPORT §5.2](REPORT.md#52-我们这次实验的局限) + [§5.3](REPORT.md#53-与-anthropic-官方-postmortem-对照)。
+
 ```bash
 python src/collect.py run \
   --models gpt-4o-2024-11-20 gpt-5-chat-latest gpt-5.3-chat gpt-5.4 claude-opus-4-6 claude-opus-4-7 \
