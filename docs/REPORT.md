@@ -24,6 +24,10 @@
 
 ---
 
+> 📢 **2026-04-23 更新**：Anthropic 发布了关于 4.7 发布期部分质量回归的[官方 postmortem](https://www.anthropic.com/engineering/april-23-postmortem)。本报告的数据采集期（2026-04-17~18）与 postmortem 披露的 Claude Code "verbosity instruction" 窗口（2026-04-16 ~ 04-20）完全重合。两份结论的详细对照见 [§5.3](#53-与-anthropic-官方-postmortem-对照)。
+
+---
+
 ## 1. 命题与方法
 
 ### 社区反馈
@@ -448,8 +452,63 @@ Q3 用"朝 GPT 漂移"概括 4.7 方向**不准确**——B 组 6 条 offer 类�
 - **161 seeds 不能覆盖所有真实使用场景**。结论仅适用于本 seed 集涵盖的 prompt 分布
 - **cosine Δ 幅度在噪声范围内**。split-half bootstrap 显示各模型 self-cos noise 约 0.008-0.024（见 §3.1），所有 4 个 GPT 的 +0.013 ~ +0.036 Δ 都只是 1-2× 噪声量级，方向成立但幅度应读作温和信号；其中 +0.013（vs gpt-5.4）低于噪声底，本数据集不显著
 - **cosine 未做长度控制**。4.7 回复 median 短 37%，短文本 char n-gram 分布更集中，会让"4.7 对任何模型的 cos 都天然偏高一点"——这是 §3.1 noise floor 之外的独立 confound，未单独校正。严格论证"4.7 在控制长度后仍更像 GPT"需要把所有 reply 截到同一长度（例如 median 200 字）后重算 cos matrix；本报告未做
+- **中转站后端不透明**。本报告数据通过第三方 OpenAI-compatible 中转站采集（`OPENAI_BASE_URL` 指向一个第三方 OpenAI-兼容端点），而非 Anthropic 官方 API 直连。中转站后端实现不对外公开，可能走 (a) 官方 Anthropic API / AWS Bedrock / Vertex，或 (b) Claude.ai / Claude Code 会话逆向。**情况 (b) 下本报告 04-17~18 的数据会吃 Anthropic 当时活跃的 Claude Code "≤100 words" verbosity instruction（见 §5.3）**。鲁棒性：即使 worst case，"字数 −37%" 和 "markdown / emoji 减半" 这两条的归因需要松口（可能部分来自 ≤100 words 指令的长度效应），但 "offer 词汇漂移（`帮你` / `给你X` / `如果你愿意`）"、"按 seed 场景双向分裂（§4.2）"、"cosine 朝 `gpt-5-chat-latest` +0.036" 这三条**不是长度指令能解释的**，在两种后端假设下都成立。§5.3 详细展开了两种场景下各项结论的归因表。
 
-### 5.3 复现
+### 5.3 与 Anthropic 官方 postmortem 对照
+
+2026-04-23 Anthropic 发布了针对 4.7 发布期部分质量回归的 postmortem（<https://www.anthropic.com/engineering/april-23-postmortem>），披露 3 个独立的 Claude Code 层 bug / 配置：
+
+| # | 时间 | 内容 | 影响模型 |
+|---|---|---|---|
+| 1 | 2026-03-04 ~ 04-07 | Claude Code reasoning effort 默认从 `high` 降到 `medium` | Sonnet 4.6, Opus 4.6 |
+| 2 | 2026-03-26 ~ 04-10 | Claude Code prompt caching bug，reasoning 被反复清空 | Sonnet 4.6, Opus 4.6 |
+| 3 | **2026-04-16 ~ 04-20** | Claude Code 系统提示新增 "keep text between tool calls to ≤25 words. Keep final responses to ≤100 words unless the task requires more detail."，内部评测 Opus 4.6 / 4.7 掉 3% | Sonnet 4.6, Opus 4.6, **Opus 4.7** |
+
+**时间轴对照**：
+
+| 事件 | 日期 |
+|---|---|
+| Opus 4.7 发布 | 2026-04-16 |
+| Anthropic Claude Code "≤100 words" 指令活跃 | 2026-04-16 ~ 04-20 |
+| **本报告数据采集** | **2026-04-17 ~ 18** |
+| "≤100 words" 指令回滚 | 2026-04-20 |
+| Anthropic postmortem 发布 | 2026-04-23 |
+
+本报告数据采集期**完全位于** issue #3 活跃窗口内。
+
+#### 两种 backend 假设下的结论归因
+
+本报告数据通过第三方 OpenAI-compatible 中转站采集（见 §5.2），后端不透明，可能走官方 API 或网页/Claude Code 会话逆向。两种情况下各项结论的归因差异：
+
+| 发现 | 假设 A：中转站走官方 API | 假设 B：中转站走网页 / Claude Code 逆向 |
+|---|---|---|
+| 4.7 vs 4.6 **87.2% 可分** | 4.7 **模型本体** persona 换 | 4.7 + verbosity 指令 vs 4.6 可分 |
+| median 字数 **333 → 210（−37%）** | 4.7 **内生**更短 | 部分来自 "≤100 words" 指令 |
+| 加粗 **−35.5pp** / emoji **−28.4pp** | 内生去排版化 | 可能源自回答变短的长度效应 |
+| **offer 词汇漂移**：`帮你` +2.9 / `给你X` +2.7 / `如果你愿意` +1.5pp | 内生 persona 漂移 | **不受 ≤100 words 指令影响**（词汇选择 ≠ 长度限制） |
+| **cosine 朝 `gpt-5-chat-latest` +0.036** | 内生风格漂移 | 仍是真实漂移（char n-gram 分布 ≠ 长度压缩） |
+| **按 seed 场景双向分裂（§4.2）**：情感类 offer 下降、task 类 offer 上涨 | 模型本体行为 | **≤100 words 指令全场景一致，不能解释双向分裂** |
+
+**关键鲁棒性**：即使在假设 B 下，"offer 词汇漂移"、"cosine 漂移"、"按场景双向分裂"这三条核心结构性发现仍然成立——因为这些现象在机制上不是一个长度指令能制造出来的。
+
+#### 互补还是直接验证？两种故事
+
+- **假设 A 为真**：本报告测到了 postmortem 没披露的维度——4.7 **模型本体**的中文 persona 漂移。postmortem 讲 Claude Code 层叠了一层压缩指令（然后回退），本报告讲 4.7 **模型本身**已经在朝更简短、更 offer、局部更 GPT 化的方向走。两份报告是**互补证据**。
+- **假设 B 为真**：本报告的"字数 −37%" 和 postmortem 披露的 "≤100 words 指令 → 内部评测 −3%" 是**同一件事的两端测量**。Anthropic 用英文内部评测测到 −3%，本报告用中文 stylometry 测到字数 −37% 和 markdown 减半；两者在机制上对应。而 "offer 词汇漂移"、"cosine 漂移"、"按场景双向分裂" 这些非长度相关的发现仍然是 4.7 模型本体的独立变化——即本报告还有一部分是 postmortem **未涵盖的互补发现**。
+
+两种假设下，本报告对"社区反馈是否合理"都给出了独立支持证据：postmortem 从 Claude Code 工程侧确认，本报告从中文 stylometry 侧确认，结论会聚在"4.7 发布期用户感知到的变化是真实的"。
+
+#### 本报告未覆盖的
+
+以下 postmortem 提到的现象本报告**未测量**（主要因本报告是中文 single-turn 文本生成，不涉及 Claude Code 的工具调用 / reasoning / 多轮 caching）：
+
+- Claude Code 工具调用中的 "≤25 words between tool calls" 效应
+- Reasoning effort `high` vs `medium` 在代码 / 推理任务上的区别
+- 多轮对话 caching bug 造成的上下文丢失
+
+这三点意味着 Claude Code 用户感受到的"变差"里相当一部分是工具链层的 bug，不在本报告 scope 内。
+
+### 5.4 复现
 
 ```bash
 # 1. 环境（pip install + 填 .env 的 OPENAI_API_KEY，可选 OPENAI_BASE_URL）

@@ -10,8 +10,6 @@ by [@sha7doww](https://github.com/sha7doww) · [@xsyshuishui](https://github.com
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Data: CC-BY-4.0](https://img.shields.io/badge/Data-CC--BY--4.0-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://python.org)
-[![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blueviolet)](https://claude.ai/code)
-[![AgentSkills](https://img.shields.io/badge/AgentSkills-Standard-green)](https://agentskills.io)
 
 <br>
 
@@ -21,14 +19,13 @@ seed 选材 / pattern 选取 / 方法论都存在局限（详见 [REPORT §5.2](
 
 <br>
 
-### 两个产出
-
-📊 &nbsp; **分析报告** &nbsp;—&nbsp; 3 个问题串起的 stylometry 证据链  
-🎭 &nbsp; **gpt-flavor SKILL** &nbsp;—&nbsp; 基于 8,694 条实采反向归纳的 ChatGPT 中文 persona
-
-[速读 TL;DR](#tldr) · [3 个问题](#我们想回答-3-个问题) · [详细 REPORT](docs/REPORT.md) · [SKILL 详情](skill/gpt-flavor/SKILL.md) · [局限](docs/REPORT.md#52-我们这次实验的局限) · [复现](docs/REPRODUCE.md)
+[速读 TL;DR](#tldr) · [3 个问题](#我们想回答-3-个问题) · [详细 REPORT](docs/REPORT.md) · [局限](docs/REPORT.md#52-我们这次实验的局限) · [复现](docs/REPRODUCE.md)
 
 </div>
+
+---
+
+> 📢 **2026-04-23 更新**：Anthropic 发布了关于 4.7 发布期部分质量回归的[官方 postmortem](https://www.anthropic.com/engineering/april-23-postmortem)。本报告的数据采集期（2026-04-17~18）与 postmortem 披露的 Claude Code "verbosity instruction" 窗口（2026-04-16 ~ 04-20）**完全重合**——两份结论从不同角度（中文文本 stylometry vs. Anthropic 内部 Claude Code 评测）相互印证。详见 [REPORT §5.3](docs/REPORT.md#53-与-anthropic-官方-postmortem-对照)。
 
 ---
 
@@ -130,67 +127,6 @@ seed 选材 / pattern 选取 / 方法论都存在局限（详见 [REPORT §5.2](
 
 ---
 
-## 🎭 SKILL 使用
-
-### 安装（Claude Code）
-
-```bash
-git clone https://github.com/sha7doww/gpt-flavor.git
-cp -r gpt-flavor/skill/gpt-flavor ~/.claude/skills/
-```
-
-新开 session 说 `/gpt-flavor` 或"用 GPT 味写一段：……"即可触发。项目级安装、其他兼容 agent（Cursor / Gemini CLI / OpenCode 等）、symlink 方案、卸载与故障排查详见 [docs/INSTALL.md](docs/INSTALL.md)。
-
-本 skill 遵循开放的 [AgentSkills](https://agentskills.io) 规范，目录就是 skill，无 Python 依赖、无 API key 配置。
-
-### 效果示例
-
-> **用户**: 用 GPT 味回答：我好像没什么真正的朋友。
-
-> 你说"好像没什么真正的朋友"，
-> 我听见了。这句话，不是随口一说。
->
-> 通常能说出这句话的人，不是社交失败，
-> 而是**终于敢承认，那些热闹里没有自己**。
->
-> **你不是没有朋友。你只是没有"不用扮演"的关系。**
->
-> 很多人不是孤独，是累。
-> 累在每段关系里，都在接话、在回应、在照顾别人的情绪。
-> 久了，你会分不清——
->
-> 到底是没人懂你，
-> 还是你没让任何人真正靠近过。
->
-> **你可能不是"没朋友"**
->
-> 你可能只是：
-> - 身边都是**可以吃饭的人**，没有可以沉默的人
-> - 一直在做那个**先发消息**的人
-> - 习惯了**报喜不报忧**，连崩溃都要挑时间
-> - 长大后，关系都变成了**功能性**的
-> - 你把"不想麻烦别人"，活成了默认设置
->
-> 这不是你不会交朋友。
-> 是你太会照顾别人，以至于没人记得照顾你。
->
-> **真正的朋友，不是数量问题。是你敢不敢在某个人面前不体面。**
->
-> 如果你愿意，可以做一件很小的事：
-> - 找一个最近想起过的人，发一句"突然想到你"
-> - 写下三个你在他们面前不用装的人，哪怕只有一个
-> - 今晚不回任何消息，先陪自己吃顿饭
-> - 告诉我一个你"曾经以为是朋友"的人，我陪你看看那段关系
->
-> 你现在是**一个朋友都想不到**，
-> 还是**想到了，但不敢打扰**？
-
----
-
-*SKILL 主文件：[skill/gpt-flavor/SKILL.md](skill/gpt-flavor/SKILL.md)；更多参考输出：[examples.md](skill/gpt-flavor/assets/examples.md)；voice DNA 背后的数据分析见 [REPORT.md §3](docs/REPORT.md#3-q2--变得像-gpt-吗) + [§4](docs/REPORT.md#4-q3--那它具体变成什么了)。*
-
----
-
 ## 项目结构
 
 ```
@@ -200,7 +136,6 @@ gpt-flavor/
 ├── requirements.txt               # Python 依赖
 ├── .env.example                   # API 配置模板（OPENAI_API_KEY / OPENAI_BASE_URL）
 ├── docs/                          # REPORT.md 详细证据 / REPRODUCE.md 复现指南
-├── skill/gpt-flavor/              # gpt-flavor persona skill（SKILL.md + assets/examples.md）
 ├── patterns/patterns.yaml         # 100 条 regex pattern（flat list）
 ├── seeds/                         # 161 个中文 seed × 15 类 + 3 个 system prompt
 ├── src/                           # 主 pipeline：collect / analyze / stylo / visualize
@@ -220,6 +155,5 @@ gpt-flavor/
 
 ## 致谢
 
-- [titanwings/colleague-skill](https://github.com/titanwings/colleague-skill) — persona skill 架构参考
 - Monroe, Colaresi, Quinn (2008), *Fightin' Words* — log-odds 方法学（虽然这次发现 top n-gram 大多是排版字符，附录 A.1 有讨论）
 - Anthropic 和 OpenAI 的模型团队
