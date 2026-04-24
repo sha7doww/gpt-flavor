@@ -456,7 +456,7 @@ Q3 用"朝 GPT 漂移"概括 4.7 方向**不准确**——B 组 6 条 offer 类�
 
 ### 5.3 与 Anthropic 官方 postmortem 对照
 
-2026-04-23 Anthropic 发布了针对 4.7 发布期部分质量回归的 postmortem（<https://www.anthropic.com/engineering/april-23-postmortem>），披露 3 个独立的 Claude Code 层 bug / 配置：
+2026-04-23 Anthropic 发布了针对 4.7 发布期部分质量回归的[官方 postmortem](https://www.anthropic.com/engineering/april-23-postmortem)，披露 3 个独立的 Claude Code 层 bug / 配置：
 
 | # | 时间 | 内容 | 影响模型 |
 |---|---|---|---|

@@ -14,7 +14,7 @@ by [@sha7doww](https://github.com/sha7doww) · [@xsyshuishui](https://github.com
 <br>
 
 一份社区使用者的 weekend 兴趣调查，**不是学术研究**。<br>
-seed 选材 / pattern 选取 / 方法论都存在局限（详见 [REPORT §5.2](docs/REPORT.md#52-我们这次实验的局限)），结论仅供参考。<br>
+seed 选材 / pattern 选取 / 数据采集 / 方法论都存在局限（详见 [REPORT §5.2](docs/REPORT.md#52-我们这次实验的局限)），结论仅供参考。<br>
 **8,694 条**实采样本（6 模型 × 3 条件 × 161 seeds × 3 runs），用 stylometry 做定量分析。
 
 <br>

@@ -20,6 +20,8 @@ cp .env.example .env
 # 非默认端点同时设 OPENAI_BASE_URL
 ```
 
+> **注**：本仓库 `data/` 中的 Claude 样本通过**第三方 OpenAI 兼容中转站**采集——该中转站后端对外不透明（可能走 Anthropic 官方 API / Bedrock / Vertex，也可能走 Claude.ai 会话逆向）。如需严格复现 "Claude 模型本体" 的风格，建议走 Anthropic 官方 `/v1/messages`（本项目脚本未内置该路径，要改 `src/collect.py`）。背景与 caveat 见 [REPORT §5.2 / §5.3](REPORT.md#52-我们这次实验的局限)。
+
 ## 2. 数据采集（可选——data/ 已含）
 
 > **⚠️ 重采会得到和原数据不同的绝对值**。本仓库 `data/` 的原始采集时间是 2026-04-17~18，正好在 Anthropic Claude Code "≤100 words" verbosity 指令窗口（04-16 ~ 04-20）内且通过第三方 OpenAI-compatible 中转站采——两个因素都会让今天重采的 median 字数、markdown boolean rate 等指标跟原数据不完全对得上。结构性结论（offer 漂移、按 seed 场景双向分裂、cosine 朝 `gpt-5-chat-latest`）在两种后端假设下都成立，绝对数字不保证复刻。详见 [REPORT §5.2](REPORT.md#52-我们这次实验的局限) + [§5.3](REPORT.md#53-与-anthropic-官方-postmortem-对照)。
